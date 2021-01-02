@@ -1,19 +1,26 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View} from 'react-native';
 import {navigate} from '../services/NavigationService';
+import styled from 'styled-components/native';
 
 export const Recipes = () => (
   <View>
-    <TouchableOpacity
-      onPress={() => navigate('Recipe')}
-      style={{
-        borderColor: 'black',
-        borderWidth: 1,
-        padding: 8,
-        margin: 4,
-        marginTop: 12,
-      }}>
+    <Button onPress={() => navigate('Recipe')}>
       <Text>Recipes</Text>
-    </TouchableOpacity>
+    </Button>
   </View>
 );
+
+const Button = styled.TouchableOpacity`
+  border-color: ${(props) => props.theme.colors.primary};
+  background-color: ${(props) => props.theme.colors.fill};
+  border-radius: ${(props) => props.theme.borderRadius};
+  border-width: 1px;
+  padding: 8px;
+  margin: 4px;
+  margin-top: 12px;
+`;
+
+const Text = styled.Text`
+  color: ${(props) => props.theme.colors.text};
+`;

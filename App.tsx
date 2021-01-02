@@ -15,6 +15,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {Recipes} from './src/screens/Recipes';
 import {Recipe} from './src/screens/Recipe';
 import {navigationRef} from './src/services/NavigationService';
+import {ThemeProvider} from './src/context/ThemeContext';
 
 declare const global: {HermesInternal: null | {}};
 
@@ -22,7 +23,7 @@ const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <>
+    <ThemeProvider>
       <StatusBar barStyle="dark-content" />
       <NavigationContainer ref={navigationRef}>
         <Stack.Navigator initialRouteName="Recipes">
@@ -30,7 +31,7 @@ const App = () => {
           <Stack.Screen name="Recipe" component={Recipe} />
         </Stack.Navigator>
       </NavigationContainer>
-    </>
+    </ThemeProvider>
   );
 };
 
