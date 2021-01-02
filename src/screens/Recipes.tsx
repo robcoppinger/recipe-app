@@ -23,4 +23,5 @@ const Button = styled.TouchableOpacity`
 
 const Text = styled.Text`
   color: ${(props) => props.theme.colors.text};
+  font-family: ${(props) => props.theme.defaultFontFamily['regular']};
 `;
