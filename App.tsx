@@ -25,7 +25,11 @@ const App = () => {
     <ThemeProvider>
       <StatusBar barStyle="dark-content" />
       <NavigationContainer>
-        <Stack.Navigator initialRouteName="Recipes">
+        <Stack.Navigator
+          screenOptions={{
+            headerShown: false,
+          }}
+          initialRouteName="Recipes">
           <Stack.Screen name="Recipes" component={Recipes} />
           <Stack.Screen name="Recipe" component={Recipe} />
         </Stack.Navigator>

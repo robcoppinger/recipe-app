@@ -1,8 +1,9 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {Text} from 'react-native';
+import {Layout} from '../components/common/Layout';
 
 export const Recipe = () => (
-  <View>
+  <Layout>
     <Text>Recipe: My recipe</Text>
-  </View>
+  </Layout>
 );

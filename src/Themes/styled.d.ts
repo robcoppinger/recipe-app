@@ -15,7 +15,8 @@ declare module 'styled-components' {
 
   export type ThemeColors = {
     screenBackground: string;
-    headerColor: string;
+    headerBackground: string;
+    headerBorder: string;
     primary: string;
     text: string;
     textSecondary: string;
@@ -24,12 +25,12 @@ declare module 'styled-components' {
   };
 
   export type FontSize = {
-    h1: number;
-    h2: number;
-    h3: number;
-    regular: number;
-    small: number;
-    xsmall: number;
+    h1: string;
+    h2: string;
+    h3: string;
+    regular: string;
+    small: string;
+    xsmall: string;
   };
 
   export interface DefaultTheme {

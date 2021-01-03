@@ -9,8 +9,9 @@ type ColorsObj = {
 
 const themeColors: ColorsObj = {
   light: {
-    screenBackground: '#f5f5f5',
-    headerColor: '#FFFFFF',
+    screenBackground: '#F2F2F2',
+    headerBackground: '#FFFFFF',
+    headerBorder: '#EDEDED',
     primary: '#DE8888',
     text: '#000000',
     textSecondary: '#A8A8A8',
@@ -19,7 +20,8 @@ const themeColors: ColorsObj = {
   },
   dark: {
     screenBackground: '#3d3d3d',
-    headerColor: '#262626',
+    headerBackground: '#262626',
+    headerBorder: '#EDEDED',
     primary: '#66cfff',
     text: '#ededed',
     textSecondary: '#9e9e9e',
@@ -31,12 +33,12 @@ const themeColors: ColorsObj = {
 export const theme = (selectedTheme: 'light' | 'dark'): DefaultTheme => ({
   colors: themeColors[selectedTheme],
   fontSize: {
-    h1: 24,
-    h2: 20,
-    h3: 16,
-    regular: 14,
-    small: 12,
-    xsmall: 10,
+    h1: '24px',
+    h2: '20px',
+    h3: '16px',
+    regular: '14px',
+    small: '12px',
+    xsmall: '10px',
   },
   defaultFontFamily: fonts.montserrat,
   defaultFontStyle: 'regular',

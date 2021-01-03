@@ -1,16 +1,16 @@
 import React from 'react';
 import styled from 'styled-components/native';
+import {Layout} from '../components/common/Layout';
 import {useNavigation} from '@react-navigation/native';
-import {View} from 'react-native';
 
 export const Recipes = () => {
   const {navigate} = useNavigation();
   return (
-    <View>
+    <Layout>
       <Button onPress={() => navigate('Recipe')}>
         <Text>Recipes</Text>
       </Button>
-    </View>
+    </Layout>
   );
 };
 
@@ -20,8 +20,6 @@ const Button = styled.TouchableOpacity`
   border-radius: ${(props) => props.theme.borderRadius};
   border-width: 1px;
   padding: 8px;
-  margin: 4px;
-  margin-top: 12px;
 `;
 
 const Text = styled.Text`
