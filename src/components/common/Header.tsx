@@ -9,7 +9,11 @@ import {
 import {SvgImage} from './SvgImage';
 import {Images} from '../../../assets/images';
 
-export const Header = () => {
+type HeaderProps = {
+  headerRightComponent?: () => JSX.Element;
+};
+
+export const Header = ({headerRightComponent}: HeaderProps) => {
   const {goBack} = useNavigation();
   const route = useRoute();
   const index = useNavigationState((state) => state.index);
@@ -23,6 +27,7 @@ export const Header = () => {
           </TouchableOpacity>
         )}
         <Text>{route.name}</Text>
+        {headerRightComponent && headerRightComponent()}
       </HeaderContent>
     </HeaderContainer>
   );
@@ -43,6 +48,7 @@ const Text = styled.Text`
 `;
 
 const HeaderContent = styled.View`
+  position: relative;
   display: flex;
   flex-direction: row;
   align-items: center;

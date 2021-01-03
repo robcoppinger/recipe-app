@@ -2,9 +2,14 @@ import React from 'react';
 import {Header} from './Header';
 import styled from 'styled-components/native';
 
-export const Layout = ({children}: {children: JSX.Element | JSX.Element[]}) => (
+type LayoutProps = {
+  headerRightComponent?: () => JSX.Element;
+  children: JSX.Element | JSX.Element[];
+};
+
+export const Layout = ({children, headerRightComponent}: LayoutProps) => (
   <>
-    <Header />
+    <Header headerRightComponent={headerRightComponent} />
     <PageContainer>{children}</PageContainer>
   </>
 );

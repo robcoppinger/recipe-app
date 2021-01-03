@@ -2,11 +2,23 @@ import React from 'react';
 import styled from 'styled-components/native';
 import {Layout} from '../components/common/Layout';
 import {useNavigation} from '@react-navigation/native';
+import {TouchableOpacity} from 'react-native';
+import {SvgImage} from '../components/common/SvgImage';
+import {Images} from '../../assets/images';
 
 export const Recipes = () => {
   const {navigate} = useNavigation();
+
+  const HeaderRightComponent = () => (
+    <TouchableOpacity
+      style={{position: 'absolute', right: 12}}
+      onPress={() => navigate('Recipe')}>
+      <SvgImage style={{width: 30, height: 30}} source={Images.add} />
+    </TouchableOpacity>
+  );
+
   return (
-    <Layout>
+    <Layout headerRightComponent={HeaderRightComponent}>
       <Button onPress={() => navigate('Recipe')}>
         <Text>Recipes</Text>
       </Button>
