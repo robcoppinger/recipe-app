@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text} from 'react-native';
+import {Text} from '../components/common/Text';
 import {Layout} from '../components/common/Layout';
 
 export const Recipe = () => (

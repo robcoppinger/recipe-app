@@ -8,6 +8,7 @@ import {
 } from '@react-navigation/native';
 import {SvgImage} from './SvgImage';
 import {Images} from '../../../assets/images';
+import {Text} from './Text';
 
 type HeaderProps = {
   headerRightComponent?: () => JSX.Element;
@@ -26,7 +27,7 @@ export const Header = ({headerRightComponent}: HeaderProps) => {
             <SvgImage style={{width: 35, height: 35}} source={Images.back} />
           </TouchableOpacity>
         )}
-        <Text>{route.name}</Text>
+        <HeaderText variant="h3">{route.name}</HeaderText>
         {headerRightComponent && headerRightComponent()}
       </HeaderContent>
     </HeaderContainer>
@@ -39,11 +40,8 @@ const HeaderContainer = styled.View`
   border-color: ${(props) => props.theme.colors.headerBorder};
 `;
 
-const Text = styled.Text`
+const HeaderText = styled(Text)`
   flex: 1;
-  color: ${(props) => props.theme.colors.text};
-  font-family: ${(props) => props.theme.defaultFontFamily['semiBold']};
-  font-size: ${(props) => props.theme.fontSize.h3};
   text-align: center;
 `;
 

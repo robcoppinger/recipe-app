@@ -5,6 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native';
 import {SvgImage} from '../components/common/SvgImage';
 import {Images} from '../../assets/images';
+import {Text} from '../components/common/Text';
 
 export const Recipes = () => {
   const {navigate} = useNavigation();
@@ -20,7 +21,7 @@ export const Recipes = () => {
   return (
     <Layout headerRightComponent={HeaderRightComponent}>
       <Button onPress={() => navigate('Recipe')}>
-        <Text>Recipes</Text>
+        <Text variant="regular">Recipes</Text>
       </Button>
     </Layout>
   );
@@ -32,9 +33,4 @@ const Button = styled.TouchableOpacity`
   border-radius: ${(props) => props.theme.borderRadius};
   border-width: 1px;
   padding: 8px;
-`;
-
-const Text = styled.Text`
-  color: ${(props) => props.theme.colors.text};
-  font-family: ${(props) => props.theme.defaultFontFamily['regular']};
 `;
