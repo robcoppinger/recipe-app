@@ -4,7 +4,7 @@ import {
   ThemeProvider as StyledThemeProvider,
 } from 'styled-components/native';
 
-import {theme} from '../Themes';
+import {theme} from '../themes';
 
 export function ThemeProvider({
   children,
