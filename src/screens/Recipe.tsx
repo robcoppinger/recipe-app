@@ -36,7 +36,7 @@ export const Recipe = () => {
     <Layout customHeaderComponent={customHeader}>
       <ScrollView>
         {recipe.ingredients.map((id) => (
-          <IngredientItem key={id} recipeId={id} />
+          <IngredientItem key={id} ingredientId={id} recipeId={recipeId} />
         ))}
         <NewIngredient key="newIngredient" recipeId={recipeId} />
       </ScrollView>

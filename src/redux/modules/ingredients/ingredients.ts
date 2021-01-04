@@ -1,8 +1,15 @@
 import produce from 'immer';
 import {RootState, ReduxAction} from '../..';
-import {IngredientsState, Ingredient, AddIngredientAction} from './types';
+import {
+  IngredientsState,
+  Ingredient,
+  AddIngredientAction,
+  IngredientsActions,
+  DeleteIngredientAction,
+} from './types';
 
 export const ADD_INGREDIENT = 'ingredient/ADD';
+export const DELETE_INGREDIENT = 'ingredient/DELETE';
 
 const initialState: IngredientsState = {};
 
@@ -14,6 +21,10 @@ export default function reducer(
     case ADD_INGREDIENT:
       return produce(state, (draft) => {
         draft[action.ingredientId] = action.ingredient;
+      });
+    case DELETE_INGREDIENT:
+      return produce(state, (draft) => {
+        delete draft[action.ingredientId];
       });
     default:
       return state;
@@ -31,9 +42,17 @@ export const actions = {
     recipeId,
     ingredient,
   }),
+  deleteIngredient: (
+    ingredientId: string,
+    recipeId: string,
+  ): DeleteIngredientAction => ({
+    type: DELETE_INGREDIENT,
+    ingredientId,
+    recipeId,
+  }),
 };
 
 export const selectors = {
   ingredient: (state: RootState, ingredientId: string): Ingredient =>
-    state.ingredients[ingredientId],
+    state.ingredients[ingredientId] || {},
 };

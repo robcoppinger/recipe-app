@@ -1,4 +1,4 @@
-import {ADD_INGREDIENT} from './Ingredients';
+import {ADD_INGREDIENT, DELETE_INGREDIENT} from './Ingredients';
 
 export type Ingredient = {
   name: string;
@@ -18,4 +18,10 @@ export type AddIngredientAction = {
   ingredient: Ingredient;
 };
 
-export type IngredientsActions = AddIngredientAction;
+export type DeleteIngredientAction = {
+  type: typeof DELETE_INGREDIENT;
+  ingredientId: string;
+  recipeId: string;
+};
+
+export type IngredientsActions = AddIngredientAction | DeleteIngredientAction;

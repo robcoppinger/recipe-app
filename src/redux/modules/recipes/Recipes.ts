@@ -6,7 +6,7 @@ import {
   AddEmptyRecipeAction,
   EditRecipeTitleAction,
 } from './types';
-import {ADD_INGREDIENT} from '../ingredients/Ingredients';
+import {ADD_INGREDIENT, DELETE_INGREDIENT} from '../ingredients/Ingredients';
 
 export const ADD_EMPTY_RECIPE = 'recipes/ADD_EMPTY';
 export const EDIT_TITLE = 'recipes/EDIT_TITLE';
@@ -31,6 +31,13 @@ export default function reducer(
       if (!state[action.recipeId]) return state;
       return produce(state, (draft) => {
         draft[action.recipeId].title = action.title;
+      });
+    case DELETE_INGREDIENT:
+      if (!state[action.recipeId]) return state;
+      return produce(state, (draft) => {
+        draft[action.recipeId].ingredients = state[
+          action.recipeId
+        ].ingredients.filter((id) => id !== action.ingredientId);
       });
     default:
       return state;
