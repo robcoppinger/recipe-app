@@ -4,12 +4,20 @@ import styled from 'styled-components/native';
 
 type LayoutProps = {
   headerRightComponent?: () => JSX.Element;
+  customHeaderComponent?: () => JSX.Element;
   children: JSX.Element | JSX.Element[];
 };
 
-export const Layout = ({children, headerRightComponent}: LayoutProps) => (
+export const Layout = ({
+  children,
+  headerRightComponent,
+  customHeaderComponent,
+}: LayoutProps) => (
   <>
-    <Header headerRightComponent={headerRightComponent} />
+    <Header
+      headerRightComponent={headerRightComponent}
+      customHeaderComponent={customHeaderComponent}
+    />
     <PageContainer>{children}</PageContainer>
   </>
 );

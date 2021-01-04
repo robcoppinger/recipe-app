@@ -12,24 +12,32 @@ import {Text} from './Text';
 
 type HeaderProps = {
   headerRightComponent?: () => JSX.Element;
+  customHeaderComponent?: () => JSX.Element;
 };
 
-export const Header = ({headerRightComponent}: HeaderProps) => {
+export const Header = ({
+  headerRightComponent,
+  customHeaderComponent,
+}: HeaderProps) => {
   const {goBack} = useNavigation();
   const route = useRoute();
   const index = useNavigationState((state) => state.index);
   return (
     <HeaderContainer>
       <SafeAreaView />
-      <HeaderContent>
-        {index > 0 && (
-          <TouchableOpacity style={{position: 'absolute'}} onPress={goBack}>
-            <SvgImage style={{width: 35, height: 35}} source={Images.back} />
-          </TouchableOpacity>
-        )}
-        <HeaderText variant="h3">{route.name}</HeaderText>
-        {headerRightComponent && headerRightComponent()}
-      </HeaderContent>
+      {customHeaderComponent ? (
+        customHeaderComponent()
+      ) : (
+        <HeaderContent>
+          {index > 0 && (
+            <TouchableOpacity style={{position: 'absolute'}} onPress={goBack}>
+              <SvgImage style={{width: 35, height: 35}} source={Images.back} />
+            </TouchableOpacity>
+          )}
+          <HeaderText variant="h3">{route.name}</HeaderText>
+          {headerRightComponent && headerRightComponent()}
+        </HeaderContent>
+      )}
     </HeaderContainer>
   );
 };
