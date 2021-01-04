@@ -34,6 +34,6 @@ export const actions = {
 };
 
 export const selectors = {
-  ingredient: (state: RootState, ingredientId: string) =>
+  ingredient: (state: RootState, ingredientId: string): Ingredient =>
     state.ingredients[ingredientId],
 };
