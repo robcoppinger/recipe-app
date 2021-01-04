@@ -4,12 +4,13 @@ import {
   IngredientsState,
   Ingredient,
   AddIngredientAction,
-  IngredientsActions,
   DeleteIngredientAction,
+  EditIngredientAction,
 } from './types';
 
 export const ADD_INGREDIENT = 'ingredient/ADD';
 export const DELETE_INGREDIENT = 'ingredient/DELETE';
+export const EDIT_INGREDIENT = 'ingredient/EDIT';
 
 const initialState: IngredientsState = {};
 
@@ -25,6 +26,11 @@ export default function reducer(
     case DELETE_INGREDIENT:
       return produce(state, (draft) => {
         delete draft[action.ingredientId];
+      });
+    case EDIT_INGREDIENT:
+      if (!state[action.ingredientId]) return state;
+      return produce(state, (draft) => {
+        draft[action.ingredientId] = action.ingredient;
       });
     default:
       return state;
@@ -49,6 +55,14 @@ export const actions = {
     type: DELETE_INGREDIENT,
     ingredientId,
     recipeId,
+  }),
+  editIngredient: (
+    ingredientId: string,
+    ingredient: Ingredient,
+  ): EditIngredientAction => ({
+    type: EDIT_INGREDIENT,
+    ingredientId,
+    ingredient,
   }),
 };
 

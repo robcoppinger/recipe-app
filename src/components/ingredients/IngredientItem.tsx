@@ -23,7 +23,13 @@ export const IngredientItem = ({
   const onBlur = () => {
     if (ingredientName === '') {
       dispatch(actions.deleteIngredient(ingredientId, recipeId));
+      return;
     }
+    dispatch(
+      actions.editIngredient(ingredientId, {
+        name: ingredientName,
+      }),
+    );
   };
 
   return (
