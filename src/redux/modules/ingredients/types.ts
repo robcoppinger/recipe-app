@@ -1,4 +1,4 @@
-import {ADD_INGREDIENT} from './ingredients';
+import {ADD_INGREDIENT} from './Ingredients';
 
 export type Ingredient = {
   name: string;
@@ -14,6 +14,7 @@ export type IngredientsState = {
 export type AddIngredientAction = {
   type: typeof ADD_INGREDIENT;
   ingredientId: string;
+  recipeId: string;
   ingredient: Ingredient;
 };
 

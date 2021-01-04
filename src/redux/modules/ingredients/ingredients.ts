@@ -23,10 +23,12 @@ export default function reducer(
 export const actions = {
   addIngredient: (
     ingredientId: string,
+    recipeId: string,
     ingredient: Ingredient,
   ): AddIngredientAction => ({
     type: ADD_INGREDIENT,
     ingredientId,
+    recipeId,
     ingredient,
   }),
 };
