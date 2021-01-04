@@ -1,11 +1,19 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
+import {NavigationContainer, RouteProp} from '@react-navigation/native';
 import {Recipes} from '../screens/Recipes';
 import {Recipe} from '../screens/Recipe';
 import {createStackNavigator} from '@react-navigation/stack';
 
+export type RootStackParamList = {
+  Recipes: undefined;
+  Recipe: {recipeId: string};
+};
+
+export type RecipeScreenRouteProp = RouteProp<RootStackParamList, 'Recipe'>;
+
+const Stack = createStackNavigator<RootStackParamList>();
+
 export const AppNavigator = () => {
-  const Stack = createStackNavigator();
   return (
     <NavigationContainer>
       <Stack.Navigator

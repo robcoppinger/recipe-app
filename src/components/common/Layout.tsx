@@ -5,7 +5,7 @@ import styled from 'styled-components/native';
 type LayoutProps = {
   headerRightComponent?: () => JSX.Element;
   customHeaderComponent?: () => JSX.Element;
-  children: JSX.Element | JSX.Element[];
+  children?: JSX.Element | JSX.Element[];
 };
 
 export const Layout = ({

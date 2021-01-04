@@ -1,9 +1,15 @@
+import React from 'react';
 import produce from 'immer';
 import {RootState, ReduxAction} from '../..';
-import {RecipesState, AddEmptyRecipeAction, Recipe} from './types';
+import {
+  RecipesState,
+  AddEmptyRecipeAction,
+  EditRecipeTitleAction,
+} from './types';
 import {ADD_INGREDIENT} from '../ingredients/Ingredients';
 
-export const ADD_EMPTY_RECIPE = 'ingredient/ADD_EMPTY';
+export const ADD_EMPTY_RECIPE = 'recipes/ADD_EMPTY';
+export const EDIT_TITLE = 'recipes/EDIT_TITLE';
 
 const initialState: RecipesState = {};
 
@@ -21,20 +27,34 @@ export default function reducer(
       return produce(state, (draft) => {
         draft[action.recipeId].ingredients.push(action.ingredientId);
       });
+    case EDIT_TITLE:
+      if (!state[action.recipeId]) return state;
+      return produce(state, (draft) => {
+        draft[action.recipeId].title = action.title;
+      });
     default:
       return state;
   }
 }
 
 export const actions = {
-  addEmptyRecipe: (recipeId: string, recipe: Recipe): AddEmptyRecipeAction => ({
+  addEmptyRecipe: (recipeId: string): AddEmptyRecipeAction => ({
     type: ADD_EMPTY_RECIPE,
     recipeId,
-    recipe,
+    recipe: {
+      title: '',
+      ingredients: [],
+      method: [],
+    },
+  }),
+  editTitle: (recipeId: string, title: string): EditRecipeTitleAction => ({
+    type: EDIT_TITLE,
+    recipeId,
+    title,
   }),
 };
 
 export const selectors = {
-  ingredient: (state: RootState, ingredientId: string) =>
-    state.ingredients[ingredientId],
+  recipe: (state: RootState, recipeId: string) => state.recipes[recipeId],
+  recipes: (state: RootState) => state.recipes,
 };
