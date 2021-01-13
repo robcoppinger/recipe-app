@@ -1,15 +1,16 @@
-import React from 'react';
 import produce from 'immer';
 import {RootState, ReduxAction} from '../..';
 import {
   RecipesState,
   AddEmptyRecipeAction,
   EditRecipeTitleAction,
+  DeleteRecipeAction,
 } from './types';
 import {ADD_INGREDIENT, DELETE_INGREDIENT} from '../ingredients/Ingredients';
 
 export const ADD_EMPTY_RECIPE = 'recipes/ADD_EMPTY';
 export const EDIT_TITLE = 'recipes/EDIT_TITLE';
+export const DELETE_RECIPE = 'recipes/DELETE_RECIPE';
 
 const initialState: RecipesState = {};
 
@@ -21,6 +22,10 @@ export default function reducer(
     case ADD_EMPTY_RECIPE:
       return produce(state, (draft) => {
         draft[action.recipeId] = action.recipe;
+      });
+    case DELETE_RECIPE:
+      return produce(state, (draft) => {
+        delete draft[action.recipeId];
       });
     case ADD_INGREDIENT:
       if (!state[action.recipeId]) return state;
@@ -49,7 +54,7 @@ export const actions = {
     type: ADD_EMPTY_RECIPE,
     recipeId,
     recipe: {
-      title: '',
+      title: 'New Recipe',
       ingredients: [],
       method: [],
     },
@@ -58,6 +63,10 @@ export const actions = {
     type: EDIT_TITLE,
     recipeId,
     title,
+  }),
+  deleteRecipe: (recipeId: string): DeleteRecipeAction => ({
+    type: DELETE_RECIPE,
+    recipeId,
   }),
 };
 

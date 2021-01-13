@@ -1,4 +1,4 @@
-import {ADD_EMPTY_RECIPE, EDIT_TITLE} from './Recipes';
+import {ADD_EMPTY_RECIPE, EDIT_TITLE, DELETE_RECIPE} from './Recipes';
 
 export type Recipe = {
   title: string;
@@ -22,4 +22,12 @@ export type EditRecipeTitleAction = {
   title: string;
 };
 
-export type RecipesActions = AddEmptyRecipeAction | EditRecipeTitleAction;
+export type DeleteRecipeAction = {
+  type: typeof DELETE_RECIPE;
+  recipeId: string;
+};
+
+export type RecipesActions =
+  | AddEmptyRecipeAction
+  | EditRecipeTitleAction
+  | DeleteRecipeAction;

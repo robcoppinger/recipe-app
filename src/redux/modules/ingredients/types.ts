@@ -5,6 +5,7 @@ import {
 } from './Ingredients';
 
 export type Ingredient = {
+  recipeId?: string;
   name: string;
   amount?: number;
   unit?: string;

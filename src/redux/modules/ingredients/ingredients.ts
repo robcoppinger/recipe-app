@@ -7,6 +7,7 @@ import {
   DeleteIngredientAction,
   EditIngredientAction,
 } from './types';
+import {DELETE_RECIPE} from '../recipes/Recipes';
 
 export const ADD_INGREDIENT = 'ingredient/ADD';
 export const DELETE_INGREDIENT = 'ingredient/DELETE';
@@ -21,7 +22,10 @@ export default function reducer(
   switch (action.type) {
     case ADD_INGREDIENT:
       return produce(state, (draft) => {
-        draft[action.ingredientId] = action.ingredient;
+        draft[action.ingredientId] = {
+          recipeId: action.recipeId,
+          ...action.ingredient,
+        };
       });
     case DELETE_INGREDIENT:
       return produce(state, (draft) => {
@@ -30,7 +34,17 @@ export default function reducer(
     case EDIT_INGREDIENT:
       if (!state[action.ingredientId]) return state;
       return produce(state, (draft) => {
-        draft[action.ingredientId] = action.ingredient;
+        draft[action.ingredientId] = {
+          ...draft[action.ingredientId],
+          ...action.ingredient,
+        };
+      });
+    case DELETE_RECIPE:
+      return produce(state, (draft) => {
+        for (const [ingredientId, ingredient] of Object.entries(state)) {
+          if (ingredient.recipeId === action.recipeId)
+            delete draft[ingredientId];
+        }
       });
     default:
       return state;
