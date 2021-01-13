@@ -25,9 +25,10 @@ export const Recipe = () => {
     <HeaderContent>
       <HeaderTitle
         value={title}
+        selectTextOnFocus
         onChangeText={(value) => setTitle(value)}
         onBlur={() => dispatch(actions.editTitle(recipeId, title))}
-        autoFocus={title === ''}
+        autoFocus={title === 'New Recipe'}
         placeholder="New Recipe"
       />
     </HeaderContent>
