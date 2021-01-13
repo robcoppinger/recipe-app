@@ -20,8 +20,9 @@ declare module 'styled-components' {
     primary: string;
     text: string;
     textSecondary: string;
-    fill: string;
+    paper: string;
     iconColor: string;
+    iconSubtleColor: string;
   };
 
   export type FontSize = {

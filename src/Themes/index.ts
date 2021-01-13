@@ -15,8 +15,9 @@ const themeColors: ColorsObj = {
     primary: '#DE8888',
     text: '#000000',
     textSecondary: '#A8A8A8',
-    fill: '#FFFFFF',
+    paper: '#FFFFFF',
     iconColor: '#000000',
+    iconSubtleColor: '#d1d1d1',
   },
   dark: {
     screenBackground: '#3d3d3d',
@@ -25,8 +26,9 @@ const themeColors: ColorsObj = {
     primary: '#66cfff',
     text: '#ededed',
     textSecondary: '#9e9e9e',
-    fill: '#262626',
+    paper: '#262626',
     iconColor: '#ededed',
+    iconSubtleColor: '#d1d1d1',
   },
 };
 
@@ -42,6 +44,6 @@ export const theme = (selectedTheme: 'light' | 'dark'): DefaultTheme => ({
   },
   defaultFontFamily: fonts.montserrat,
   defaultFontStyle: 'regular',
-  borderRadius: '6px',
+  borderRadius: '8px',
   shadow: '0px 1px 3px rgba(0, 0, 0, 0.1);',
 });

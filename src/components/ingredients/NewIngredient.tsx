@@ -35,7 +35,7 @@ export const NewIngredient = ({recipeId}: NewIngredientProps) => {
 
 const NewIngredientItem = styled(TextInput)`
   margin-bottom: 8px;
-  padding: 12px;
+  padding: 16px;
   background-color: transparent;
   border-color: #bebebf;
   border-bottom-width: 1px;

@@ -40,10 +40,10 @@ export const Recipes = () => {
 
 const Button = styled.TouchableOpacity`
   border-color: ${(props) => props.theme.colors.headerBorder};
-  background-color: ${(props) => props.theme.colors.fill};
+  background-color: ${(props) => props.theme.colors.paper};
   border-radius: ${(props) => props.theme.borderRadius};
   border-width: 1px;
-  padding: 12px;
+  padding: 16px;
   margin-bottom: 8px;
   box-shadow: ${(props) => props.theme.shadow};
 `;
