@@ -7,7 +7,7 @@ import {
 export type Ingredient = {
   recipeId?: string;
   name: string;
-  amount?: number;
+  amount?: string;
   unit?: string;
   price?: number;
 };
