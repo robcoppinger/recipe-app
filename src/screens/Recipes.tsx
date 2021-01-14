@@ -8,11 +8,13 @@ import {useSelector, useDispatch} from 'react-redux';
 import {selectors, actions} from '../redux/modules/recipes/Recipes';
 import {v4 as uuidV4} from 'uuid';
 import {RecipeItem} from '../components/recipes/RecipeItem';
+import {useTheme} from '../context/ThemeContext';
 
 export const Recipes = () => {
   const recipes = useSelector(selectors.recipes);
   const dispatch = useDispatch();
   const {navigate} = useNavigation();
+  const theme = useTheme();
 
   const HeaderRightComponent = () => (
     <TouchableOpacity
@@ -22,7 +24,10 @@ export const Recipes = () => {
         dispatch(actions.addEmptyRecipe(recipeId));
         navigate('Recipe', {recipeId});
       }}>
-      <SvgImage style={{width: 30, height: 30}} source={Images.add} />
+      <SvgImage
+        style={{width: 30, height: 30, fill: theme.colors.primary}}
+        source={Images.add}
+      />
     </TouchableOpacity>
   );
 

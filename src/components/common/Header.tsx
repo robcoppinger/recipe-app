@@ -29,11 +29,11 @@ export const Header = ({
         customHeaderComponent()
       ) : (
         <HeaderContent>
-          {index > 0 && (
+          {/* {index > 0 && (
             <TouchableOpacity style={{position: 'absolute'}} onPress={goBack}>
               <SvgImage style={{width: 35, height: 35}} source={Images.back} />
             </TouchableOpacity>
-          )}
+          )} */}
           <HeaderText variant="h3">{route.name}</HeaderText>
           {headerRightComponent && headerRightComponent()}
         </HeaderContent>

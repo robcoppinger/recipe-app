@@ -1,4 +1,4 @@
-import React, {createRef, useEffect, useReducer} from 'react';
+import React, {createRef, useEffect} from 'react';
 import styled from 'styled-components/native';
 import {useDispatch} from 'react-redux';
 import {actions} from '../../redux/modules/ingredients/Ingredients';
@@ -55,7 +55,7 @@ export const NewIngredient = ({recipeId}: NewIngredientProps) => {
           dispatchIngredient({type: 'setAmount', amount: value})
         }
         ref={amountRef}
-        placeholder="20"
+        placeholder="Amt."
         returnKeyType="next"
         onSubmitEditing={() => unitRef.current?.focus()}
       />
@@ -65,7 +65,7 @@ export const NewIngredient = ({recipeId}: NewIngredientProps) => {
           dispatchIngredient({type: 'setUnit', unit: value})
         }
         ref={unitRef}
-        placeholder="g"
+        placeholder="unit"
         returnKeyType="done"
         onSubmitEditing={addIngredient}
         autoCapitalize="none"
