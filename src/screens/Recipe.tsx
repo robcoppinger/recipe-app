@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/native';
 import {Layout} from '../components/common/Layout';
-import {ScrollView} from 'react-native';
+import {ScrollView, KeyboardAvoidingView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {selectors, actions} from '../redux/modules/recipes/Recipes';
 import {useRoute} from '@react-navigation/native';
@@ -35,12 +35,17 @@ export const Recipe = () => {
   );
   return (
     <Layout customHeaderComponent={customHeader}>
-      <ScrollView>
-        {recipe.ingredients.map((id) => (
-          <IngredientItem key={id} ingredientId={id} recipeId={recipeId} />
-        ))}
-        <NewIngredient key="newIngredient" recipeId={recipeId} />
-      </ScrollView>
+      <KeyboardAvoidingView
+        style={{flex: 1}}
+        behavior="padding"
+        keyboardVerticalOffset={100}>
+        <ScrollView>
+          {recipe.ingredients.map((id) => (
+            <IngredientItem key={id} ingredientId={id} recipeId={recipeId} />
+          ))}
+          <NewIngredient key="newIngredient" recipeId={recipeId} />
+        </ScrollView>
+      </KeyboardAvoidingView>
     </Layout>
   );
 };

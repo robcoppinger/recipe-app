@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components/native';
 import {Layout} from '../components/common/Layout';
 import {useNavigation} from '@react-navigation/native';
 import {TouchableOpacity} from 'react-native';
@@ -30,7 +29,7 @@ export const Recipes = () => {
   return (
     <Layout headerRightComponent={HeaderRightComponent}>
       {Object.keys(recipes).map((recipeId, index) => (
-        <RecipeItem recipeId={recipeId} />
+        <RecipeItem key={recipeId} recipeId={recipeId} />
       ))}
     </Layout>
   );
