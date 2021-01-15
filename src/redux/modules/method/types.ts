@@ -1,4 +1,4 @@
-import {ADD_STEP} from './method';
+import {ADD_STEP, EDIT_STEP} from './method';
 
 export type MethodStep = {
   recipeId?: string;
@@ -16,4 +16,10 @@ export type AddMethodStepAction = {
   step: MethodStep;
 };
 
-export type MethodActions = AddMethodStepAction;
+type EditMethodStepAction = {
+  type: typeof EDIT_STEP;
+  stepId: string;
+  step: MethodStep;
+};
+
+export type MethodActions = AddMethodStepAction | EditMethodStepAction;

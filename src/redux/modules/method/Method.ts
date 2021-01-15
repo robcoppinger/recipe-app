@@ -4,6 +4,7 @@ import {DELETE_RECIPE} from '../recipes/Recipes';
 import {MethodStep, MethodState, AddMethodStepAction} from './types';
 
 export const ADD_STEP = 'method/ADD_STEP';
+export const EDIT_STEP = 'method/EDIT_STEP';
 
 const initialState: MethodState = {};
 
@@ -19,7 +20,11 @@ export default function reducer(
           ...action.step,
         };
       });
-
+    case EDIT_STEP:
+      if (!state[action.stepId]) return state;
+      return produce(state, (draft) => {
+        draft[action.stepId] = {...state[action.stepId], ...action.step};
+      });
     case DELETE_RECIPE:
       return state;
     default:
@@ -36,6 +41,11 @@ export const actions = {
     type: ADD_STEP,
     stepId,
     recipeId,
+    step,
+  }),
+  editStep: (stepId: string, step: MethodStep) => ({
+    type: EDIT_STEP,
+    stepId,
     step,
   }),
 };

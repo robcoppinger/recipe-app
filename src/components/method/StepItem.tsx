@@ -7,10 +7,9 @@ import {selectors} from '../../redux/modules/method/Method';
 
 type StepItemProps = {
   stepId: string;
-  mode: 'default' | 'edit';
 };
 
-export const StepItem = ({stepId, mode}: StepItemProps) => {
+export const StepItem = ({stepId}: StepItemProps) => {
   const step = useSelector((st: RootState) => selectors.step(st, stepId));
   return (
     <StepItemContainer>
