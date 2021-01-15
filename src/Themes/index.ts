@@ -9,7 +9,7 @@ type ColorsObj = {
 
 const themeColors: ColorsObj = {
   light: {
-    screenBackground: '#F2F2F2',
+    screenBackground: '#f5f5f5',
     headerBackground: '#FFFFFF',
     headerBorder: '#EDEDED',
     primary: '#DE8888',

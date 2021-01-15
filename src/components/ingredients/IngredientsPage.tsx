@@ -9,7 +9,7 @@ import {NewIngredient} from './NewIngredient';
 import styled from 'styled-components/native';
 
 type IngredientsPageProps = {
-  title?: string;
+  title?: string; // For TabView Title only
   recipeId: string;
   mode: 'default' | 'edit';
 };

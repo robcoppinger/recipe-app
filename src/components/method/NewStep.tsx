@@ -21,6 +21,7 @@ export const NewStep = ({recipeId}: NewStepProps) => {
   }, [step]);
 
   const addStep = () => {
+    if (step === '') return;
     dispatch(actions.addStep(uuidV4(), recipeId, {text: step}));
     setStep('');
   };

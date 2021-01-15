@@ -7,6 +7,7 @@ import {useSelector} from 'react-redux';
 import {selectors} from '../../redux/modules/recipes/Recipes';
 import {RootState} from '../../redux';
 import {StepItem} from './StepItem';
+import {EditStep} from './EditStep';
 
 type MethodPageProps = {
   title?: string; // For TabView Title only
@@ -23,9 +24,13 @@ export const MethodPage = ({recipeId, mode}: MethodPageProps) => {
       keyboardVerticalOffset={100}>
       <ScrollView style={{flex: 1}}>
         <PageContainer>
-          {recipe.method.map((stepId) => (
-            <StepItem key={stepId} {...{stepId, mode}} />
-          ))}
+          {recipe.method.map((stepId, index) =>
+            mode === 'default' ? (
+              <StepItem key={stepId} {...{stepId}} />
+            ) : (
+              <EditStep key={stepId} {...{stepId}} />
+            ),
+          )}
           {mode === 'edit' && <NewStep {...{recipeId}} />}
         </PageContainer>
       </ScrollView>

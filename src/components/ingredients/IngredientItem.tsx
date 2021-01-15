@@ -33,6 +33,7 @@ const IngredientContainer = styled.View`
   border-radius: ${(props) => props.theme.borderRadius};
   margin-bottom: 8px;
   padding: 16px;
+  box-shadow: ${(props) => props.theme.shadow};
 `;
 
 const IngredientText = styled(Text)`
