@@ -64,8 +64,8 @@ export const Recipe = () => {
   return (
     <Layout customHeaderComponent={customHeader}>
       <TabView>
-        <IngredientsPage title="Ingredients" recipeId={recipeId} mode={mode} />
         <MethodPage title="Method" recipeId={recipeId} mode={mode} />
+        <IngredientsPage title="Ingredients" recipeId={recipeId} mode={mode} />
       </TabView>
     </Layout>
   );
