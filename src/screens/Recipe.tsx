@@ -1,20 +1,19 @@
 import React, {useState} from 'react';
 import styled from 'styled-components/native';
 import {Layout} from '../components/common/Layout';
-import {ScrollView, KeyboardAvoidingView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {selectors, actions} from '../redux/modules/recipes/Recipes';
 import {useRoute, useNavigation} from '@react-navigation/native';
 import {RecipeScreenRouteProp} from '../navigators/AppNavigator';
 import {RootState} from '../redux';
-import {IngredientItem} from '../components/ingredients/IngredientItem';
-import {EditIngredientItem} from '../components/ingredients/EditIngredientItem';
-import {NewIngredient} from '../components/ingredients/NewIngredient';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Text} from '../components/common/Text';
 import {SvgImage} from '../components/common/SvgImage';
 import {Images} from '../../assets/images';
 import {useTheme} from '../context/ThemeContext';
+import {IngredientsPage} from '../components/ingredients/IngredientsPage';
+import {MethodPage} from '../components/method/MethodPage';
+import {TabView} from '../components/common/TabView';
 
 export const Recipe = () => {
   const route = useRoute<RecipeScreenRouteProp>();
@@ -61,29 +60,13 @@ export const Recipe = () => {
       </TouchableOpacity>
     </HeaderContent>
   );
+
   return (
     <Layout customHeaderComponent={customHeader}>
-      <KeyboardAvoidingView
-        style={{flex: 1}}
-        behavior="padding"
-        keyboardVerticalOffset={100}>
-        <ScrollView>
-          {recipe.ingredients.map((id) =>
-            mode === 'default' ? (
-              <IngredientItem key={id} ingredientId={id} recipeId={recipeId} />
-            ) : (
-              <EditIngredientItem
-                key={id}
-                ingredientId={id}
-                recipeId={recipeId}
-              />
-            ),
-          )}
-          {mode === 'edit' && (
-            <NewIngredient key="newIngredient" recipeId={recipeId} />
-          )}
-        </ScrollView>
-      </KeyboardAvoidingView>
+      <TabView>
+        <IngredientsPage title="Ingredients" recipeId={recipeId} mode={mode} />
+        <MethodPage title="Method" recipeId={recipeId} mode={mode} />
+      </TabView>
     </Layout>
   );
 };
@@ -98,7 +81,6 @@ const HeaderTitle = styled.TextInput`
   margin-right: 12px;
   padding-top: 4px;
   padding-bottom: 4px;
-  border-color: ${(props) => props.theme.colors.iconSubtleColor};
 `;
 
 const HeaderContent = styled.View`
