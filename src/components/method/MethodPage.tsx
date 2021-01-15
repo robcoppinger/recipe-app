@@ -28,7 +28,7 @@ export const MethodPage = ({recipeId, mode}: MethodPageProps) => {
             mode === 'default' ? (
               <StepItem key={stepId} {...{stepId}} />
             ) : (
-              <EditStep key={stepId} {...{stepId}} />
+              <EditStep key={stepId} {...{stepId, recipeId}} />
             ),
           )}
           {mode === 'edit' && <NewStep {...{recipeId}} />}
