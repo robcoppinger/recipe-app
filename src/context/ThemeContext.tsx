@@ -5,6 +5,7 @@ import {
 } from 'styled-components/native';
 
 import {theme} from '../themes';
+import {StatusBar} from 'react-native';
 
 export function ThemeProvider({
   children,
@@ -14,6 +15,9 @@ export function ThemeProvider({
   const selectedTheme = 'light';
   return (
     <StyledThemeProvider theme={theme(selectedTheme)}>
+      <StatusBar
+        barStyle={selectedTheme === 'light' ? 'dark-content' : 'light-content'}
+      />
       {children}
     </StyledThemeProvider>
   );

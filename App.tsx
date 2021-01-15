@@ -26,7 +26,6 @@ const App = () => {
     <ReduxProvider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider>
-          <StatusBar barStyle="dark-content" />
           <AppNavigator />
         </ThemeProvider>
       </PersistGate>
