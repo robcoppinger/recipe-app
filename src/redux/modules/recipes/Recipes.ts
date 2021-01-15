@@ -7,6 +7,7 @@ import {
   DeleteRecipeAction,
 } from './types';
 import {ADD_INGREDIENT, DELETE_INGREDIENT} from '../ingredients/Ingredients';
+import {ADD_STEP} from '../method/Method';
 
 export const ADD_EMPTY_RECIPE = 'recipes/ADD_EMPTY';
 export const EDIT_TITLE = 'recipes/EDIT_TITLE';
@@ -31,6 +32,11 @@ export default function reducer(
       if (!state[action.recipeId]) return state;
       return produce(state, (draft) => {
         draft[action.recipeId].ingredients.push(action.ingredientId);
+      });
+    case ADD_STEP:
+      if (!state[action.recipeId]) return state;
+      return produce(state, (draft) => {
+        draft[action.recipeId].method.push(action.stepId);
       });
     case EDIT_TITLE:
       if (!state[action.recipeId]) return state;
