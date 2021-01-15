@@ -23,7 +23,6 @@ export const Layout = ({
 );
 
 const PageContainer = styled.View`
-  padding: 8px;
   background-color: ${(props) => props.theme.colors.screenBackground};
   flex: 1;
 `;

@@ -33,6 +33,7 @@ const themeColors: ColorsObj = {
 };
 
 export const theme = (selectedTheme: 'light' | 'dark'): DefaultTheme => ({
+  pagePadding: '8px',
   colors: themeColors[selectedTheme],
   fontSize: {
     h1: '24px',

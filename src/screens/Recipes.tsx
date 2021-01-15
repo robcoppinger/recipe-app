@@ -9,6 +9,7 @@ import {selectors, actions} from '../redux/modules/recipes/Recipes';
 import {v4 as uuidV4} from 'uuid';
 import {RecipeItem} from '../components/recipes/RecipeItem';
 import {useTheme} from '../context/ThemeContext';
+import styled from 'styled-components/native';
 
 export const Recipes = () => {
   const recipes = useSelector(selectors.recipes);
@@ -33,9 +34,15 @@ export const Recipes = () => {
 
   return (
     <Layout headerRightComponent={HeaderRightComponent}>
-      {Object.keys(recipes).map((recipeId, index) => (
-        <RecipeItem key={recipeId} recipeId={recipeId} />
-      ))}
+      <PageContainer>
+        {Object.keys(recipes).map((recipeId, index) => (
+          <RecipeItem key={recipeId} recipeId={recipeId} />
+        ))}
+      </PageContainer>
     </Layout>
   );
 };
+
+const PageContainer = styled.View`
+  padding: ${(props) => props.theme.pagePadding};
+`;

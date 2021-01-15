@@ -35,6 +35,7 @@ declare module 'styled-components' {
   };
 
   export interface DefaultTheme {
+    pagePadding: string;
     colors: ThemeColors;
     fontSize: FontSize;
     defaultFontFamily: FontFamily;
