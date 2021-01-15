@@ -5,6 +5,7 @@ import {MethodStep, MethodState, AddMethodStepAction} from './types';
 
 export const ADD_STEP = 'method/ADD_STEP';
 export const EDIT_STEP = 'method/EDIT_STEP';
+export const DELETE_STEP = 'method/DELETE_STEP';
 
 const initialState: MethodState = {};
 
@@ -25,6 +26,10 @@ export default function reducer(
       return produce(state, (draft) => {
         draft[action.stepId] = {...state[action.stepId], ...action.step};
       });
+    case DELETE_STEP:
+      return produce(state, draft => {
+        delete draft[action.stepId]
+      })
     case DELETE_RECIPE:
       return state;
     default:
@@ -48,6 +53,11 @@ export const actions = {
     stepId,
     step,
   }),
+  deleteStep: (stepId: string, recipeId: string) => ({
+    type: DELETE_STEP,
+    stepId,
+    recipeId
+  })
 };
 
 export const selectors = {
