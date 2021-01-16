@@ -1,7 +1,7 @@
 import React from 'react';
 import {Layout} from '../components/common/Layout';
 import {useNavigation} from '@react-navigation/native';
-import {TouchableOpacity} from 'react-native';
+import {FlatList, TouchableOpacity} from 'react-native';
 import {SvgImage} from '../components/common/SvgImage';
 import {Images} from '../../assets/images';
 import {useSelector, useDispatch} from 'react-redux';
@@ -35,9 +35,12 @@ export const Recipes = () => {
   return (
     <Layout headerRightComponent={HeaderRightComponent}>
       <PageContainer>
-        {Object.keys(recipes).map((recipeId, index) => (
-          <RecipeItem key={recipeId} recipeId={recipeId} />
-        ))}
+        <FlatList
+          contentContainerStyle={{flex: 1}}
+          keyExtractor={(item) => item}
+          data={Object.keys(recipes)}
+          renderItem={({item}) => <RecipeItem key={item} recipeId={item} />}
+        />
       </PageContainer>
     </Layout>
   );
@@ -45,4 +48,5 @@ export const Recipes = () => {
 
 const PageContainer = styled.View`
   padding: ${(props) => props.theme.pagePadding};
+  flex: 1;
 `;
