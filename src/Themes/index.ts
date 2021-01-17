@@ -1,5 +1,4 @@
 import {fonts} from './Fonts';
-
 import {DefaultTheme, ThemeColors} from 'styled-components';
 
 type ColorsObj = {
@@ -15,20 +14,26 @@ const themeColors: ColorsObj = {
     primary: '#DE8888',
     text: '#000000',
     textSecondary: '#A8A8A8',
-    paper: '#FFFFFF',
+    paper: '#fcfcfc',
+    itemSeparator: '#EDEDED',
     iconColor: '#000000',
-    iconSubtleColor: '#d1d1d1',
+    iconSubtleColor: '#D1D1D1',
+    textInputBorder: '#e0e0e0',
+    placeholder: 'rgba(0,0,0.1, 0.2)'
   },
   dark: {
-    screenBackground: '#3d3d3d',
+    screenBackground: '#303030',
     headerBackground: '#262626',
-    headerBorder: '#EDEDED',
+    headerBorder: '#141414',
     primary: '#66cfff',
-    text: '#ededed',
-    textSecondary: '#9e9e9e',
-    paper: '#262626',
-    iconColor: '#ededed',
-    iconSubtleColor: '#d1d1d1',
+    text: '#EDEDED',
+    textSecondary: '#9E9E9E',
+    paper: '#292929',
+    itemSeparator: '#212121',
+    iconColor: '#EDEDED',
+    iconSubtleColor: '#828282',
+    textInputBorder: '#828282',
+    placeholder: 'rgba(0,0,0.1, 0.2)'
   },
 };
 
@@ -47,4 +52,5 @@ export const theme = (selectedTheme: 'light' | 'dark'): DefaultTheme => ({
   defaultFontStyle: 'regular',
   borderRadius: '8px',
   shadow: '0px 1px 3px rgba(0, 0, 0, 0.1);',
+  itemPadding: '20px'
 });

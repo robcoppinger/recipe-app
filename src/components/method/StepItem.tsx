@@ -19,12 +19,11 @@ export const StepItem = ({stepId}: StepItemProps) => {
 };
 
 const StepItemContainer = styled.View`
+  padding: ${(props) => props.theme.itemPadding};
   flex-direction: row;
   background-color: ${(props) => props.theme.colors.paper};
-  border-radius: ${(props) => props.theme.borderRadius};
-  margin-bottom: 8px;
-  padding: 16px;
-  box-shadow: ${(props) => props.theme.shadow};
+  border-color: ${(props) => props.theme.colors.itemSeparator};
+  border-bottom-width: 1px;
 `;
 
 const StepText = styled(Text)`

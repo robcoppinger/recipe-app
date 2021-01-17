@@ -21,8 +21,11 @@ declare module 'styled-components' {
     text: string;
     textSecondary: string;
     paper: string;
+    itemSeparator: string;
     iconColor: string;
     iconSubtleColor: string;
+    textInputBorder: string;
+    placeholder: string;
   };
 
   export type FontSize = {
@@ -42,5 +45,6 @@ declare module 'styled-components' {
     defaultFontStyle: FontStyle;
     borderRadius: string;
     shadow: string;
+    itemPadding: string;
   }
 }

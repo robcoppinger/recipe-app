@@ -6,7 +6,6 @@ import {RootState} from '../../redux';
 import {IngredientItem} from './IngredientItem';
 import {EditIngredientItem} from './EditIngredientItem';
 import {NewIngredient} from './NewIngredient';
-import styled from 'styled-components/native';
 
 type IngredientsPageProps = {
   title?: string; // For TabView Title only
@@ -24,30 +23,23 @@ export const IngredientsPage = ({
     <KeyboardAvoidingView
       style={{flex: 1}}
       behavior="padding"
-      keyboardVerticalOffset={100}>
-      <PageContainer>
-        <ScrollView>
-          {recipe.ingredients.map((id) =>
-            mode === 'default' ? (
-              <IngredientItem key={id} ingredientId={id} recipeId={recipeId} />
-            ) : (
-              <EditIngredientItem
-                key={id}
-                ingredientId={id}
-                recipeId={recipeId}
-              />
-            ),
-          )}
-          {mode === 'edit' && (
-            <NewIngredient key="newIngredient" recipeId={recipeId} />
-          )}
-        </ScrollView>
-      </PageContainer>
+      keyboardVerticalOffset={170}>
+      <ScrollView>
+        {recipe.ingredients.map((id) =>
+          mode === 'default' ? (
+            <IngredientItem key={id} ingredientId={id} recipeId={recipeId} />
+          ) : (
+            <EditIngredientItem
+              key={id}
+              ingredientId={id}
+              recipeId={recipeId}
+            />
+          ),
+        )}
+        {mode === 'edit' && (
+          <NewIngredient key="newIngredient" recipeId={recipeId} />
+        )}
+      </ScrollView>
     </KeyboardAvoidingView>
   );
 };
-
-const PageContainer = styled.View`
-    flex: 1
-    margin: ${(props) => props.theme.pagePadding}
-`;

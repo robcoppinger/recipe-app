@@ -18,6 +18,7 @@ import Animated, {
 import {useDispatch, useSelector} from 'react-redux';
 import styled from 'styled-components/native';
 import {Images} from '../../../assets/images';
+import {useTheme} from '../../context/ThemeContext';
 import {RootState} from '../../redux';
 import {actions, selectors} from '../../redux/modules/recipes/Recipes';
 import {SvgImage} from '../common/SvgImage';
@@ -41,6 +42,7 @@ export const RecipeItem = ({recipeId}: RecipeItemProps) => {
   const dispatch = useDispatch();
   const recipe = useSelector((st: RootState) => selectors.recipe(st, recipeId));
   const {navigate} = useNavigation();
+  const theme = useTheme();
 
   const deleteItem = () => {
     dispatch(actions.deleteRecipe(recipeId));
@@ -102,7 +104,8 @@ export const RecipeItem = ({recipeId}: RecipeItemProps) => {
     return {
       position: 'relative',
       height: height.value,
-      marginBottom: 1,
+      borderBottomWidth: 1,
+      borderColor: theme.colors.itemSeparator,
       overflow: 'hidden',
     };
   });
@@ -166,6 +169,7 @@ const RecipeItemContainer = styled.TouchableOpacity`
   background-color: ${(props) => props.theme.colors.paper};
   height: 100%;
   padding: 20px;
+  padding-left: 32px
   justify-content: center;
   align-items: center;
   box-shadow: ${(props) => props.theme.shadow};

@@ -22,7 +22,7 @@ export const IngredientItem = ({
   return (
     <IngredientContainer>
       <IngredientText>{name}</IngredientText>
-      <Text>{`${amount || ''} ${unit || ''}`}</Text>
+      <AmountText>{`${amount || ''} ${unit || ''}`}</AmountText>
     </IngredientContainer>
   );
 };
@@ -30,13 +30,16 @@ export const IngredientItem = ({
 const IngredientContainer = styled.View`
   flex-direction: row;
   background-color: ${(props) => props.theme.colors.paper};
-  border-radius: ${(props) => props.theme.borderRadius};
-  margin-bottom: 8px;
-  padding: 16px;
-  box-shadow: ${(props) => props.theme.shadow};
+  padding: ${(props) => props.theme.itemPadding};
+  border-bottom-width: 1px;
+  border-color: ${(props) => props.theme.colors.itemSeparator};
 `;
 
 const IngredientText = styled(Text)`
   flex: 1;
   font-weight: 500;
+`;
+
+const AmountText = styled(Text)`
+  color: ${(props) => props.theme.colors.textSecondary};
 `;

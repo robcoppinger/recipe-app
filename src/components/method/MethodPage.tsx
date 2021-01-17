@@ -21,23 +21,17 @@ export const MethodPage = ({recipeId, mode}: MethodPageProps) => {
     <KeyboardAvoidingView
       style={{flex: 1}}
       behavior="padding"
-      keyboardVerticalOffset={100}>
+      keyboardVerticalOffset={170}>
       <ScrollView style={{flex: 1}}>
-        <PageContainer>
-          {recipe.method.map((stepId, index) =>
-            mode === 'default' ? (
-              <StepItem key={stepId} {...{stepId}} />
-            ) : (
-              <EditStep key={stepId} {...{stepId, recipeId}} />
-            ),
-          )}
-          {mode === 'edit' && <NewStep {...{recipeId}} />}
-        </PageContainer>
+        {recipe.method.map((stepId, index) =>
+          mode === 'default' ? (
+            <StepItem key={stepId} {...{stepId}} />
+          ) : (
+            <EditStep key={stepId} {...{stepId, recipeId}} />
+          ),
+        )}
+        {mode === 'edit' && <NewStep {...{recipeId}} />}
       </ScrollView>
     </KeyboardAvoidingView>
   );
 };
-
-const PageContainer = styled.View`
-  padding: ${(props) => props.theme.pagePadding};
-`;

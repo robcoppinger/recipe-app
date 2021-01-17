@@ -32,7 +32,7 @@ export const TabView = ({children}: {children: JSX.Element[]}) => {
             <TabBarOption
               key={child.props.title}
               onPress={() => scrollToInterval(index)}>
-              <Text variant="h3">{child.props.title}</Text>
+              <TabText variant="h3">{child.props.title}</TabText>
             </TabBarOption>
           );
         })}
@@ -77,8 +77,10 @@ export const TabView = ({children}: {children: JSX.Element[]}) => {
 
 const TabBarContainer = styled.View`
   position: relative;
-  background-color: #e5e5e5;
+  background-color: ${(props) => props.theme.colors.headerBackground};
   flex-direction: row;
+  border-bottom-width: 1px;
+  border-color: ${(props) => props.theme.colors.headerBorder};
 `;
 
 const TabBarOption = styled.TouchableOpacity`
@@ -86,6 +88,10 @@ const TabBarOption = styled.TouchableOpacity`
   flex: 1;
   justify-content: center;
   align-items: center;
+`;
+
+const TabText = styled(Text)`
+  color: ${(props) => props.theme.colors.primary};
 `;
 
 const ActiveIndicatorContainer = styled(Animated.View)`

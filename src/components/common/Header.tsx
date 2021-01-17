@@ -13,17 +13,19 @@ import {Text} from './Text';
 type HeaderProps = {
   headerRightComponent?: () => JSX.Element;
   customHeaderComponent?: () => JSX.Element;
+  hideHeaderBorder?: boolean;
 };
 
 export const Header = ({
   headerRightComponent,
   customHeaderComponent,
+  hideHeaderBorder,
 }: HeaderProps) => {
   const {goBack} = useNavigation();
   const route = useRoute();
   const index = useNavigationState((state) => state.index);
   return (
-    <HeaderContainer>
+    <HeaderContainer style={hideHeaderBorder && {borderBottomWidth: 0}}>
       <SafeAreaView />
       {customHeaderComponent ? (
         customHeaderComponent()

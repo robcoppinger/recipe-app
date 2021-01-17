@@ -12,6 +12,7 @@ import {SvgImage} from '../common/SvgImage';
 import {Images} from '../../../assets/images';
 import {useTheme} from '../../context/ThemeContext';
 import {useIngredientState} from './useIngredientState';
+import {TextInput} from '../common/TextInput';
 
 type NewIngredientProps = {
   recipeId: string;
@@ -22,6 +23,7 @@ export const NewIngredient = ({recipeId}: NewIngredientProps) => {
   const dispatch = useDispatch();
   const theme = useTheme();
 
+  const ingredientInputRef = createRef<RNTextInput>();
   const amountRef = createRef<RNTextInput>();
   const unitRef = createRef<RNTextInput>();
 
@@ -36,11 +38,13 @@ export const NewIngredient = ({recipeId}: NewIngredientProps) => {
     if (ingredient.name.length < 1) return;
     dispatch(actions.addIngredient(uuidV4(), recipeId, ingredient));
     dispatchIngredient({type: 'resetAll'});
+    ingredientInputRef.current?.focus();
   };
 
   return (
     <NewIngredientContainer>
       <NewIngredientItem
+        ref={ingredientInputRef}
         value={ingredient.name}
         onChangeText={(value) =>
           dispatchIngredient({type: 'setName', name: value})
@@ -94,10 +98,11 @@ const NewIngredientContainer = styled.View`
   flex-direction: row;
   background-color: transparent;
   margin-bottom: 8px;
-  padding: 16px 8px;
+  padding: ${(props) => props.theme.itemPadding};
+  padding-right: 12px;
 `;
 
-const TextInput = styled.TextInput`
+const Input = styled(TextInput)`
   font-family: ${(props) => props.theme.defaultFontFamily['regular']};
   font-size: ${(props) => props.theme.fontSize.regular};
   font-weight: 500;
@@ -108,19 +113,18 @@ const TextInput = styled.TextInput`
   padding-bottom: 12px;
 `;
 
-const NewIngredientItem = styled(TextInput)`
+const NewIngredientItem = styled(Input)`
   flex: 1;
-  border-color: #bebebf;
   border-bottom-width: 1px;
   padding-left: 8px;
 `;
 
-const Amount = styled(TextInput)`
+const Amount = styled(Input)`
   width: 44px;
   text-align: center;
 `;
 
-const Unit = styled(TextInput)`
+const Unit = styled(Input)`
   width: 36px;
   text-align: center;
 `;

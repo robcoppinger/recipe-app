@@ -5,6 +5,7 @@ import styled from 'styled-components/native';
 type LayoutProps = {
   headerRightComponent?: () => JSX.Element;
   customHeaderComponent?: () => JSX.Element;
+  hideHeaderBorder?: boolean;
   children?: JSX.Element | JSX.Element[];
 };
 
@@ -12,11 +13,11 @@ export const Layout = ({
   children,
   headerRightComponent,
   customHeaderComponent,
+  hideHeaderBorder,
 }: LayoutProps) => (
   <>
     <Header
-      headerRightComponent={headerRightComponent}
-      customHeaderComponent={customHeaderComponent}
+      {...{headerRightComponent, customHeaderComponent, hideHeaderBorder}}
     />
     <PageContainer>{children}</PageContainer>
   </>

@@ -14,6 +14,7 @@ import {useTheme} from '../context/ThemeContext';
 import {IngredientsPage} from '../components/ingredients/IngredientsPage';
 import {MethodPage} from '../components/method/MethodPage';
 import {TabView} from '../components/common/TabView';
+import {TextInput} from '../components/common/TextInput';
 
 export const Recipe = () => {
   const route = useRoute<RecipeScreenRouteProp>();
@@ -53,16 +54,16 @@ export const Recipe = () => {
         autoFocus={title === 'New Recipe'}
         placeholder="New Recipe"
       />
-      <TouchableOpacity onPress={toggleMode}>
+      <HeaderActionButton onPress={toggleMode}>
         <HeaderActionText>
           {mode === 'default' ? 'Edit' : 'Done'}
         </HeaderActionText>
-      </TouchableOpacity>
+      </HeaderActionButton>
     </HeaderContent>
   );
 
   return (
-    <Layout customHeaderComponent={customHeader}>
+    <Layout customHeaderComponent={customHeader} hideHeaderBorder>
       <TabView>
         <MethodPage title="Method" recipeId={recipeId} mode={mode} />
         <IngredientsPage title="Ingredients" recipeId={recipeId} mode={mode} />
@@ -71,10 +72,9 @@ export const Recipe = () => {
   );
 };
 
-const HeaderTitle = styled.TextInput`
+const HeaderTitle = styled(TextInput)`
   flex: 1;
   text-align: left;
-  color: ${(props) => props.theme.colors.text};
   font-family: ${(props) => props.theme.defaultFontFamily.semiBold};
   font-size: ${(props) => props.theme.fontSize.h3};
   margin-left: 8px;
@@ -91,6 +91,12 @@ const HeaderContent = styled.View`
   padding: 12px;
   padding-left: 8px;
   padding-right: 24px;
+`;
+
+const HeaderActionButton = styled.TouchableOpacity`
+  height: 30px;
+  padding: 8px;
+  justify-content: center;
 `;
 
 const HeaderActionText = styled(Text)`
