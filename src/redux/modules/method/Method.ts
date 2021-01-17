@@ -31,7 +31,12 @@ export default function reducer(
         delete draft[action.stepId]
       })
     case DELETE_RECIPE:
-      return state;
+      return produce(state, (draft) => {
+        for (const [stepId, step] of Object.entries(state)) {
+          if (step.recipeId === action.recipeId)
+            delete draft[stepId];
+        }
+      });
     default:
       return state;
   }
