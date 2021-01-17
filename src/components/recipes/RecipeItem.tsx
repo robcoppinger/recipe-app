@@ -123,20 +123,25 @@ export const RecipeItem = ({recipeId}: RecipeItemProps) => {
 
   const DeleteButton = () => (
     <Animated.View style={deleteContainerStyle}>
-      <Animated.View style={imageStyle}>
-        <TouchableOpacity
-          style={{width: '100%', height: '100%'}}
-          onPress={() => {
-            height.value = withTiming(0, animationConfig, () =>
-              runOnJS(deleteItem)(),
-            );
-          }}>
+      <TouchableOpacity
+        style={{
+          width: '100%',
+          height: '100%',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+        onPress={() => {
+          height.value = withTiming(0, animationConfig, () =>
+            runOnJS(deleteItem)(),
+          );
+        }}>
+        <Animated.View style={imageStyle}>
           <SvgImage
             source={Images.deleteFilled}
             style={{fill: '#FFF', width: '100%', height: '100%'}}
           />
-        </TouchableOpacity>
-      </Animated.View>
+        </Animated.View>
+      </TouchableOpacity>
     </Animated.View>
   );
 

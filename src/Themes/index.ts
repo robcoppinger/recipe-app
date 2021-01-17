@@ -51,6 +51,6 @@ export const theme = (selectedTheme: 'light' | 'dark'): DefaultTheme => ({
   defaultFontFamily: fonts.montserrat,
   defaultFontStyle: 'regular',
   borderRadius: '8px',
-  shadow: '0px 1px 3px rgba(0, 0, 0, 0.1);',
+  shadow: '0px 1px 3px rgba(0, 0, 0, 0.1)',
   itemPadding: '20px'
 });
