@@ -34,7 +34,7 @@ export const Recipes = () => {
   return (
     <Layout headerRightComponent={HeaderRightComponent}>
       <FlatList
-        contentContainerStyle={{flex: 1}}
+        style={{flex: 1}}
         keyExtractor={(item) => item}
         data={Object.keys(recipes)}
         renderItem={({item}) => <RecipeItem key={item} recipeId={item} />}
