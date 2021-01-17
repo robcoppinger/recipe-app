@@ -8,24 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* recipesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* recipesTests.m */; };
+		062ECFF2B922442C80F1C12E /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4DE154695EB14AC1A36FFF7A /* Montserrat-Bold.ttf */; };
 		0D67CC6D845828FFC889FEDD /* libPods-recipes-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 588968DA59AB07F0ACEFDDCE /* libPods-recipes-tvOS.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		1B7A023C796A4B3CB3805D43 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3010C5B10A424164A4BCD9B4 /* Montserrat-Regular.ttf */; };
+		1CEEC88967F249A5B875181D /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EEA3341ADDF46AC878361AC /* Montserrat-SemiBold.ttf */; };
+		2B8590B0428D4C4A930D4C69 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9505F799A7864B14B7F9A69B /* Montserrat-Light.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2DCD954D1E0B4F2C00145EB5 /* recipesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* recipesTests.m */; };
+		62C872655B394E2C85B7E4F3 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A807602837D54DF5A0DEF61A /* Montserrat-Thin.ttf */; };
 		7C6FF70D1F049AA734B4D53B /* libPods-recipes-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BE8BC6D5D0D723A7CFE8B737 /* libPods-recipes-tvOSTests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		A4EDCFC345A610F0F5D10608 /* libPods-recipes-recipesTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A6742EB54482437FBDDD7D76 /* libPods-recipes-recipesTests.a */; };
-		B5F6147C4B68FD5B5AC7426D /* libPods-recipes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B82FD7EB7ABCF29D62A78FDC /* libPods-recipes.a */; };
-		062ECFF2B922442C80F1C12E /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4DE154695EB14AC1A36FFF7A /* Montserrat-Bold.ttf */; };
-		2B8590B0428D4C4A930D4C69 /* Montserrat-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 9505F799A7864B14B7F9A69B /* Montserrat-Light.ttf */; };
 		A8ABBFC2827A4216B938D4AB /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 096A79AE69DC42508305D178 /* Montserrat-Medium.ttf */; };
-		1B7A023C796A4B3CB3805D43 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3010C5B10A424164A4BCD9B4 /* Montserrat-Regular.ttf */; };
-		1CEEC88967F249A5B875181D /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5EEA3341ADDF46AC878361AC /* Montserrat-SemiBold.ttf */; };
-		62C872655B394E2C85B7E4F3 /* Montserrat-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A807602837D54DF5A0DEF61A /* Montserrat-Thin.ttf */; };
+		B5F6147C4B68FD5B5AC7426D /* libPods-recipes.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B82FD7EB7ABCF29D62A78FDC /* libPods-recipes.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +50,7 @@
 		00E356EE1AD99517003FC87E /* recipesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = recipesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* recipesTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = recipesTests.m; sourceTree = "<group>"; };
+		096A79AE69DC42508305D178 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Medium.ttf"; path = "../assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* recipes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = recipes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = recipes/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = recipes/AppDelegate.m; sourceTree = "<group>"; };
@@ -60,11 +61,16 @@
 		2D02E47B1E0B4A5D006451C7 /* recipes-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "recipes-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* recipes-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "recipes-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D5844D0CB398351B15631CB /* Pods-recipes-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recipes-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-recipes-tvOSTests/Pods-recipes-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		3010C5B10A424164A4BCD9B4 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Regular.ttf"; path = "../assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		4DE154695EB14AC1A36FFF7A /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		588968DA59AB07F0ACEFDDCE /* libPods-recipes-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-recipes-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5EEA3341ADDF46AC878361AC /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = recipes/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		93BBD2066CB578CB7728238D /* Pods-recipes.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recipes.debug.xcconfig"; path = "Target Support Files/Pods-recipes/Pods-recipes.debug.xcconfig"; sourceTree = "<group>"; };
+		9505F799A7864B14B7F9A69B /* Montserrat-Light.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Light.ttf"; path = "../assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; };
 		A053783CFA3F3B9489EC289C /* Pods-recipes-recipesTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recipes-recipesTests.debug.xcconfig"; path = "Target Support Files/Pods-recipes-recipesTests/Pods-recipes-recipesTests.debug.xcconfig"; sourceTree = "<group>"; };
 		A6742EB54482437FBDDD7D76 /* libPods-recipes-recipesTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-recipes-recipesTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A807602837D54DF5A0DEF61A /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Thin.ttf"; path = "../assets/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; };
 		AAACC30FFD6DCFFE260E211C /* Pods-recipes-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recipes-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-recipes-tvOS/Pods-recipes-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		B697A953909D93865E42D4B4 /* Pods-recipes-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recipes-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-recipes-tvOSTests/Pods-recipes-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B82FD7EB7ABCF29D62A78FDC /* libPods-recipes.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-recipes.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,12 +79,6 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		EEC94973B27EC69FEE19BF6B /* Pods-recipes.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-recipes.release.xcconfig"; path = "Target Support Files/Pods-recipes/Pods-recipes.release.xcconfig"; sourceTree = "<group>"; };
-		4DE154695EB14AC1A36FFF7A /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		9505F799A7864B14B7F9A69B /* Montserrat-Light.ttf */ = {isa = PBXFileReference; name = "Montserrat-Light.ttf"; path = "../assets/fonts/Montserrat-Light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		096A79AE69DC42508305D178 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; name = "Montserrat-Medium.ttf"; path = "../assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		3010C5B10A424164A4BCD9B4 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; name = "Montserrat-Regular.ttf"; path = "../assets/fonts/Montserrat-Regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		5EEA3341ADDF46AC878361AC /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; name = "Montserrat-SemiBold.ttf"; path = "../assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
-		A807602837D54DF5A0DEF61A /* Montserrat-Thin.ttf */ = {isa = PBXFileReference; name = "Montserrat-Thin.ttf"; path = "../assets/fonts/Montserrat-Thin.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,7 +160,6 @@
 				B697A953909D93865E42D4B4 /* Pods-recipes-tvOSTests.debug.xcconfig */,
 				2D5844D0CB398351B15631CB /* Pods-recipes-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -212,7 +211,7 @@
 			sourceTree = "<group>";
 		};
 		F20704BF1D34426CA987C383 /* Resources */ = {
-			isa = "PBXGroup";
+			isa = PBXGroup;
 			children = (
 				4DE154695EB14AC1A36FFF7A /* Montserrat-Bold.ttf */,
 				9505F799A7864B14B7F9A69B /* Montserrat-Light.ttf */,
@@ -223,7 +222,6 @@
 			);
 			name = Resources;
 			sourceTree = "<group>";
-			path = "";
 		};
 /* End PBXGroup section */
 
@@ -321,6 +319,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
+						DevelopmentTeam = A39BN794B5;
 						LastSwiftMigration = 1120;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
@@ -689,6 +688,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A39BN794B5;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = recipes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -697,7 +697,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = robcop.recipes;
 				PRODUCT_NAME = recipes;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -712,6 +712,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = A39BN794B5;
 				INFOPLIST_FILE = recipes/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -719,7 +720,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = robcop.recipes;
 				PRODUCT_NAME = recipes;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
