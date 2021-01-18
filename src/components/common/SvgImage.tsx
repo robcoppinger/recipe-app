@@ -8,5 +8,9 @@ type SvgImageProps = {
 export const SvgImage = ({source, style = {}}: SvgImageProps) => {
   const theme = useTheme();
   if (typeof source !== 'function') return null;
-  return source({fill: theme.colors.iconColor, ...style});
+  return source({
+    fill: theme.colors.iconColor,
+    color: theme.colors.iconColor,
+    ...style,
+  });
 };
