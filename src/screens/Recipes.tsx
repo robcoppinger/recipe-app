@@ -17,18 +17,31 @@ export const Recipes = () => {
   const theme = useTheme();
 
   const HeaderRightComponent = () => (
-    <TouchableOpacity
-      style={{position: 'absolute', right: 12}}
-      onPress={() => {
-        const recipeId = uuidV4();
-        dispatch(actions.addEmptyRecipe(recipeId));
-        navigate('Recipe', {recipeId});
-      }}>
-      <SvgImage
-        style={{width: 30, height: 30, fill: theme.colors.primary}}
-        source={Images.add}
-      />
-    </TouchableOpacity>
+    <>
+      <TouchableOpacity
+        style={{position: 'absolute', right: 60}}
+        onPress={() => {
+          const recipeId = uuidV4();
+          navigate('ShoppingList', {recipeId});
+        }}>
+        <SvgImage
+          style={{width: 25, height: 25, fill: theme.colors.primary}}
+          source={Images.cart}
+        />
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={{position: 'absolute', right: 12}}
+        onPress={() => {
+          const recipeId = uuidV4();
+          dispatch(actions.addEmptyRecipe(recipeId));
+          navigate('Recipe', {recipeId});
+        }}>
+        <SvgImage
+          style={{width: 30, height: 30, fill: theme.colors.primary}}
+          source={Images.add}
+        />
+      </TouchableOpacity>
+    </>
   );
 
   return (
