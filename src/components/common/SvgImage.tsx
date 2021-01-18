@@ -10,7 +10,7 @@ export const SvgImage = ({source, style = {}}: SvgImageProps) => {
   if (typeof source !== 'function') return null;
   return source({
     fill: theme.colors.iconColor,
-    color: theme.colors.iconColor,
+    color: style.fill || theme.colors.iconColor,
     ...style,
   });
 };

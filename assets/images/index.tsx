@@ -8,6 +8,7 @@ import DeleteFilled from './trash.svg';
 import Unchecked from './ellipse-outline.svg';
 import CheckedFilled from './checkmark-circle.svg';
 import Reorder from './reorder-two.svg';
+import Cart from './cart-outline.svg';
 
 type SvgProps = {
   width?: number;
@@ -38,4 +39,5 @@ export const Images = {
   reorder: (props: SvgProps) => (
     <Reorder fill="#000000" color="#000000" {...props} />
   ),
+  cart: (props: SvgProps) => <Cart fill="#000000" color="#000000" {...props} />,
 };
