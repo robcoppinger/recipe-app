@@ -21,6 +21,7 @@ declare module 'styled-components' {
     text: string;
     textSecondary: string;
     paper: string;
+    paperSecondary: string;
     itemSeparator: string;
     iconColor: string;
     iconSubtleColor: string;

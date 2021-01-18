@@ -281,7 +281,10 @@ export const ShoppingListItem = ({
 
   return (
     <ShoppingListItemContainer
-      style={[containerStyle, item.found && {backgroundColor: '#f9f9f9'}]}>
+      style={[
+        containerStyle,
+        item.found && {backgroundColor: theme.colors.paperSecondary},
+      ]}>
       <DeleteButton />
       <Animated.View style={swipeableContainerStyle}>
         <PanGestureHandler
