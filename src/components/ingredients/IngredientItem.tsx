@@ -6,7 +6,7 @@ import {actions, selectors} from '../../redux/modules/ingredients/Ingredients';
 import {Text} from '../common/Text';
 import {Deleteable} from '../common/Deleteable';
 
-const INGREDIENT_ITEM_HEIGHT = 60;
+export const INGREDIENT_ITEM_HEIGHT = 60;
 
 type IngredientItemProps = {
   ingredientId: string;

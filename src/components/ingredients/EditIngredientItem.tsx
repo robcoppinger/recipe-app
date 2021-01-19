@@ -9,6 +9,7 @@ import {TouchableOpacity, TextInput as RNTextInput} from 'react-native';
 import {useTheme} from '../../context/ThemeContext';
 import {useIngredientState} from './useIngredientState';
 import {TextInput} from '../common/TextInput';
+import {INGREDIENT_ITEM_HEIGHT} from './IngredientItem';
 
 type EditIngredientItemProps = {
   ingredientId: string;
@@ -84,6 +85,7 @@ export const EditIngredientItem = ({
 };
 
 const IngredientContainer = styled.View`
+  height: ${INGREDIENT_ITEM_HEIGHT}px;
   flex-direction: row;
   background-color: ${(props) => props.theme.colors.paper};
   padding: ${(props) => props.theme.itemPadding};
