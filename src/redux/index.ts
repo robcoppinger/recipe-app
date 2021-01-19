@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux';
+import application from './modules/application/Application';
 import ingredients from './modules/ingredients/Ingredients';
 import recipes from './modules/recipes/Recipes';
 import method from './modules/method/Method';
@@ -9,8 +10,10 @@ import {RecipesActions} from './modules/recipes/types';
 import {MethodActions} from './modules/method/types';
 import {ShoppingListItemActions} from './modules/shoppingListItems/types';
 import {ShoppingListActions} from './modules/shoppingLists/types';
+import {ApplicationActions} from './modules/application/types';
 
 const reducer = combineReducers({
+  application,
   recipes,
   ingredients,
   method,
@@ -23,6 +26,7 @@ export const rootReducer = (state: any, action: any) => {
 };
 
 export type ReduxAction =
+  | ApplicationActions
   | IngredientsActions
   | RecipesActions
   | MethodActions
