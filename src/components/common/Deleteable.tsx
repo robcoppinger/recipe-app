@@ -5,6 +5,7 @@ import {
   PanGestureHandlerGestureEvent,
 } from 'react-native-gesture-handler';
 import Animated, {
+  Easing,
   Extrapolate,
   interpolate,
   runOnJS,
@@ -16,7 +17,6 @@ import Animated, {
 import styled from 'styled-components/native';
 import {Images} from '../../../assets/images';
 import {useTheme} from '../../context/ThemeContext';
-import {animationConfig} from '../shoppingList/ShoppingListItem';
 import {SvgImage} from './SvgImage';
 
 type DeleteableProps = {
@@ -158,3 +158,8 @@ const DeleteButton = styled.TouchableOpacity`
   justify-content: center;
   align-items: center;
 `;
+
+const animationConfig = {
+  easing: Easing.inOut(Easing.ease),
+  duration: 350,
+};
