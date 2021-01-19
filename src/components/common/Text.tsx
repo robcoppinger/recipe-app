@@ -1,12 +1,12 @@
 import React, {FunctionComponent} from 'react';
 import styled from 'styled-components/native';
-import {TextProperties} from 'react-native';
+import {TextProps} from 'react-native';
 
-interface TextProps extends TextProperties {
+interface CustomTextProps extends TextProps {
   variant?: 'h1' | 'h2' | 'h3' | 'regular' | 'small' | 'xsmall';
 }
 
-export const Text: FunctionComponent<TextProps> = ({
+export const Text: FunctionComponent<CustomTextProps> = ({
   variant = 'regular',
   ...rest
 }) => {
