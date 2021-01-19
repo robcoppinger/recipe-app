@@ -6,13 +6,15 @@ import {
 
 import {theme} from '../themes';
 import {StatusBar} from 'react-native';
+import {useSelector} from 'react-redux';
+import {selectors} from '../redux/modules/application/Application';
 
 export function ThemeProvider({
   children,
 }: {
   children: JSX.Element | JSX.Element[];
 }) {
-  const selectedTheme = 'light';
+  const selectedTheme = useSelector(selectors.theme);
   return (
     <StyledThemeProvider theme={theme(selectedTheme)}>
       <StatusBar

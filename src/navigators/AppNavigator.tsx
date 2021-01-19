@@ -13,10 +13,14 @@ const Drawer = createDrawerNavigator();
 export const AppNavigator = () => {
   const theme = useTheme();
 
-  const icon = (image: any) => (
+  const icon = (image: any, color: string) => (
     <SvgImage
       source={image}
-      style={{fill: theme.colors.primary, width: 30, height: 30}}
+      style={{
+        fill: color,
+        width: 30,
+        height: 30,
+      }}
     />
   );
 
@@ -24,11 +28,11 @@ export const AppNavigator = () => {
     <NavigationContainer>
       <Drawer.Navigator
         drawerContentOptions={{
-          activeTintColor: theme.colors.drawerActiveTintColor,
+          activeTintColor: theme.colors.primary,
+          inactiveTintColor: theme.colors.text,
           labelStyle: {
             fontFamily: theme.defaultFontFamily.regular,
             fontWeight: '600',
-            color: theme.colors.primary,
           },
         }}
         drawerContent={(props) => <DrawerContent {...props} />}
@@ -37,14 +41,14 @@ export const AppNavigator = () => {
           name="Recipes"
           component={RecipeNavigator}
           options={{
-            drawerIcon: () => icon(Images.list),
+            drawerIcon: ({color}) => icon(Images.list, color),
           }}
         />
         <Drawer.Screen
           name="Shopping List"
           component={ShoppingListNavigator}
           options={{
-            drawerIcon: () => icon(Images.cart),
+            drawerIcon: ({color}) => icon(Images.cart, color),
           }}
         />
       </Drawer.Navigator>
