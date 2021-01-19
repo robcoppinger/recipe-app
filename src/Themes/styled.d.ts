@@ -27,6 +27,7 @@ declare module 'styled-components' {
     iconSubtleColor: string;
     textInputBorder: string;
     placeholder: string;
+    danger: string;
   };
 
   export type FontSize = {

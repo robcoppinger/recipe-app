@@ -280,7 +280,7 @@ export const ShoppingListItem = ({
       justifyContent: 'center',
       alignItems: 'center',
       position: 'absolute',
-      backgroundColor: '#de2626',
+      backgroundColor: theme.colors.danger,
       right: 0,
       zIndex,
       width: Math.abs(translateX.value),

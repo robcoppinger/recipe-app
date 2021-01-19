@@ -75,7 +75,7 @@ export const RecipeItem = ({recipeId}: RecipeItemProps) => {
       justifyContent: 'center',
       alignItems: 'center',
       position: 'absolute',
-      backgroundColor: '#de2626',
+      backgroundColor: theme.colors.danger,
       right: 0,
       width: Math.abs(translateX.value),
       height: height.value,

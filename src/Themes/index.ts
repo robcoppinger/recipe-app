@@ -20,7 +20,8 @@ const themeColors: ColorsObj = {
     iconColor: '#000000',
     iconSubtleColor: '#D1D1D1',
     textInputBorder: '#e0e0e0',
-    placeholder: 'rgba(0,0,0.1, 0.2)'
+    placeholder: 'rgba(0,0,0.1, 0.2)',
+    danger: '#DB302A',
   },
   dark: {
     screenBackground: '#303030',
@@ -35,7 +36,8 @@ const themeColors: ColorsObj = {
     iconColor: '#EDEDED',
     iconSubtleColor: '#828282',
     textInputBorder: '#828282',
-    placeholder: 'rgba(0,0,0.1, 0.2)'
+    placeholder: 'rgba(0,0,0.1, 0.2)',
+    danger: '#DB302A',
   },
 };
 
@@ -54,5 +56,5 @@ export const theme = (selectedTheme: 'light' | 'dark'): DefaultTheme => ({
   defaultFontStyle: 'regular',
   borderRadius: '8px',
   shadow: '0px 1px 3px rgba(0, 0, 0, 0.1)',
-  itemPadding: '20px'
+  itemPadding: '20px',
 });
