@@ -8,10 +8,14 @@ import {ShoppingList} from '../screens/ShoppingList';
 export type RootStackParamList = {
   Recipes: undefined;
   Recipe: {recipeId: string};
-  ShoppingList: undefined;
+  ShoppingList: {shoppingListId: string};
 };
 
 export type RecipeScreenRouteProp = RouteProp<RootStackParamList, 'Recipe'>;
+export type ShoppingListScreenRouteProp = RouteProp<
+  RootStackParamList,
+  'ShoppingList'
+>;
 
 const Stack = createStackNavigator<RootStackParamList>();
 

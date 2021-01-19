@@ -21,8 +21,7 @@ export const Recipes = () => {
       <TouchableOpacity
         style={{position: 'absolute', right: 60}}
         onPress={() => {
-          const recipeId = uuidV4();
-          navigate('ShoppingList', {recipeId});
+          navigate('ShoppingList', {shoppingListId: 'fruha-reahrb'});
         }}>
         <SvgImage
           style={{width: 25, height: 25, fill: theme.colors.primary}}
