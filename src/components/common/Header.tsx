@@ -11,6 +11,7 @@ type HeaderProps = {
   headerLabel?: string;
   headerRightComponent?: () => JSX.Element;
   showDrawer?: boolean;
+  showGoBack?: boolean;
   customHeaderComponent?: () => JSX.Element;
   hideHeaderBorder?: boolean;
 };
@@ -19,6 +20,7 @@ export const Header = ({
   headerLabel,
   headerRightComponent,
   showDrawer = false,
+  showGoBack = false,
   customHeaderComponent,
   hideHeaderBorder,
 }: HeaderProps) => {
@@ -39,6 +41,16 @@ export const Header = ({
               <SvgImage
                 style={{width: 30, height: 30, fill: theme.colors.primary}}
                 source={Images.menu}
+              />
+            </TouchableOpacity>
+          )}
+          {showGoBack && !showDrawer && (
+            <TouchableOpacity
+              style={{position: 'absolute', left: 16}}
+              onPress={navigation.goBack}>
+              <SvgImage
+                style={{width: 30, height: 30, fill: theme.colors.primary}}
+                source={Images.back}
               />
             </TouchableOpacity>
           )}

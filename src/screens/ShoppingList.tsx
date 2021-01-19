@@ -35,7 +35,7 @@ export const ShoppingList = () => {
   const newItemOffset = order.length * SHOPPING_LIST_ITEM_HEIGHT;
 
   return (
-    <Layout>
+    <Layout headerLabel={shoppingList.name} showGoBack>
       <View style={{flex: 1}}>
         <ScrollView
           scrollIndicatorInsets={{right: 1}}

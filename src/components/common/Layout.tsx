@@ -4,6 +4,7 @@ import styled from 'styled-components/native';
 
 type LayoutProps = {
   showDrawer?: boolean;
+  showGoBack?: boolean;
   headerLabel?: string;
   headerRightComponent?: () => JSX.Element;
   customHeaderComponent?: () => JSX.Element;
@@ -15,6 +16,7 @@ export const Layout = ({
   children,
   headerRightComponent,
   showDrawer,
+  showGoBack,
   headerLabel,
   customHeaderComponent,
   hideHeaderBorder,
@@ -22,6 +24,7 @@ export const Layout = ({
   <>
     <Header
       {...{
+        showGoBack,
         headerLabel,
         headerRightComponent,
         showDrawer,
