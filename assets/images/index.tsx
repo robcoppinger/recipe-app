@@ -9,6 +9,8 @@ import Unchecked from './ellipse-outline.svg';
 import CheckedFilled from './checkmark-circle.svg';
 import Reorder from './reorder-two.svg';
 import Cart from './cart-outline.svg';
+import List from './list-outline.svg';
+import Menu from './menu-outline.svg';
 
 type SvgProps = {
   width?: number;
@@ -40,4 +42,6 @@ export const Images = {
     <Reorder fill="#000000" color="#000000" {...props} />
   ),
   cart: (props: SvgProps) => <Cart fill="#000000" color="#000000" {...props} />,
+  list: (props: SvgProps) => <List fill="#000000" color="#000000" {...props} />,
+  menu: (props: SvgProps) => <Menu fill="#000000" color="#000000" {...props} />,
 };
