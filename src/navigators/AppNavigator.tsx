@@ -1,36 +1,53 @@
 import React from 'react';
-import {NavigationContainer, RouteProp} from '@react-navigation/native';
-import {Recipes} from '../screens/Recipes';
-import {Recipe} from '../screens/Recipe';
-import {createStackNavigator} from '@react-navigation/stack';
-import {ShoppingList} from '../screens/ShoppingList';
+import {NavigationContainer} from '@react-navigation/native';
+import {createDrawerNavigator} from '@react-navigation/drawer';
+import {useTheme} from '../context/ThemeContext';
+import {DrawerContent} from './DrawerContent';
+import {Images} from '../../assets/images';
+import {SvgImage} from '../components/common/SvgImage';
+import {RecipeNavigator} from './RecipeNavigator';
+import {ShoppingListNavigator} from './ShoppingListNavigator';
 
-export type RootStackParamList = {
-  Recipes: undefined;
-  Recipe: {recipeId: string};
-  ShoppingList: {shoppingListId: string};
-};
-
-export type RecipeScreenRouteProp = RouteProp<RootStackParamList, 'Recipe'>;
-export type ShoppingListScreenRouteProp = RouteProp<
-  RootStackParamList,
-  'ShoppingList'
->;
-
-const Stack = createStackNavigator<RootStackParamList>();
+const Drawer = createDrawerNavigator();
 
 export const AppNavigator = () => {
+  const theme = useTheme();
+
+  const icon = (image: any) => (
+    <SvgImage
+      source={image}
+      style={{fill: theme.colors.primary, width: 30, height: 30}}
+    />
+  );
+
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
+      <Drawer.Navigator
+        drawerContentOptions={{
+          activeTintColor: theme.colors.drawerActiveTintColor,
+          labelStyle: {
+            fontFamily: theme.defaultFontFamily.regular,
+            fontWeight: '600',
+            color: theme.colors.primary,
+          },
         }}
+        drawerContent={(props) => <DrawerContent {...props} />}
         initialRouteName="Recipes">
-        <Stack.Screen name="Recipes" component={Recipes} />
-        <Stack.Screen name="Recipe" component={Recipe} />
-        <Stack.Screen name="ShoppingList" component={ShoppingList} />
-      </Stack.Navigator>
+        <Drawer.Screen
+          name="Recipes"
+          component={RecipeNavigator}
+          options={{
+            drawerIcon: () => icon(Images.list),
+          }}
+        />
+        <Drawer.Screen
+          name="Shopping List"
+          component={ShoppingListNavigator}
+          options={{
+            drawerIcon: () => icon(Images.cart),
+          }}
+        />
+      </Drawer.Navigator>
     </NavigationContainer>
   );
 };

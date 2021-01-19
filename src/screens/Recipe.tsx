@@ -4,7 +4,6 @@ import {Layout} from '../components/common/Layout';
 import {useDispatch, useSelector} from 'react-redux';
 import {selectors, actions} from '../redux/modules/recipes/Recipes';
 import {useRoute, useNavigation} from '@react-navigation/native';
-import {RecipeScreenRouteProp} from '../navigators/AppNavigator';
 import {RootState} from '../redux';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Text} from '../components/common/Text';
@@ -15,6 +14,7 @@ import {IngredientsPage} from '../components/ingredients/IngredientsPage';
 import {MethodPage} from '../components/method/MethodPage';
 import {TabView} from '../components/common/TabView';
 import {TextInput} from '../components/common/TextInput';
+import {RecipeScreenRouteProp} from '../navigators/RecipeNavigator';
 
 export const Recipe = () => {
   const route = useRoute<RecipeScreenRouteProp>();

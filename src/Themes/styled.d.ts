@@ -28,6 +28,7 @@ declare module 'styled-components' {
     textInputBorder: string;
     placeholder: string;
     danger: string;
+    drawerActiveTintColor: string;
   };
 
   export type FontSize = {

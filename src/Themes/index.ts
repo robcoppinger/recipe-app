@@ -22,6 +22,7 @@ const themeColors: ColorsObj = {
     textInputBorder: '#e0e0e0',
     placeholder: 'rgba(0,0,0.1, 0.2)',
     danger: '#DB302A',
+    drawerActiveTintColor: '#F5C5BC',
   },
   dark: {
     screenBackground: '#303030',
@@ -38,6 +39,7 @@ const themeColors: ColorsObj = {
     textInputBorder: '#828282',
     placeholder: 'rgba(0,0,0.1, 0.2)',
     danger: '#DB302A',
+    drawerActiveTintColor: '#E0FDFF',
   },
 };
 

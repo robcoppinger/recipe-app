@@ -17,34 +17,22 @@ export const Recipes = () => {
   const theme = useTheme();
 
   const HeaderRightComponent = () => (
-    <>
-      <TouchableOpacity
-        style={{position: 'absolute', right: 60}}
-        onPress={() => {
-          navigate('ShoppingList', {shoppingListId: 'fruha-reahrb'});
-        }}>
-        <SvgImage
-          style={{width: 25, height: 25, fill: theme.colors.primary}}
-          source={Images.cart}
-        />
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={{position: 'absolute', right: 12}}
-        onPress={() => {
-          const recipeId = uuidV4();
-          dispatch(actions.addEmptyRecipe(recipeId));
-          navigate('Recipe', {recipeId});
-        }}>
-        <SvgImage
-          style={{width: 30, height: 30, fill: theme.colors.primary}}
-          source={Images.add}
-        />
-      </TouchableOpacity>
-    </>
+    <TouchableOpacity
+      style={{position: 'absolute', right: 12}}
+      onPress={() => {
+        const recipeId = uuidV4();
+        dispatch(actions.addEmptyRecipe(recipeId));
+        navigate('Recipe', {recipeId});
+      }}>
+      <SvgImage
+        style={{width: 30, height: 30, fill: theme.colors.primary}}
+        source={Images.add}
+      />
+    </TouchableOpacity>
   );
 
   return (
-    <Layout headerRightComponent={HeaderRightComponent}>
+    <Layout headerRightComponent={HeaderRightComponent} showDrawer>
       <FlatList
         style={{flex: 1}}
         keyExtractor={(item) => item}

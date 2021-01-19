@@ -1,29 +1,30 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import {SafeAreaView, TouchableOpacity} from 'react-native';
-import {
-  useNavigation,
-  useRoute,
-  useNavigationState,
-} from '@react-navigation/native';
+import {useNavigation, useRoute, DrawerActions} from '@react-navigation/native';
 import {SvgImage} from './SvgImage';
 import {Images} from '../../../assets/images';
 import {Text} from './Text';
+import {useTheme} from '../../context/ThemeContext';
 
 type HeaderProps = {
+  headerLabel?: string;
   headerRightComponent?: () => JSX.Element;
+  showDrawer?: boolean;
   customHeaderComponent?: () => JSX.Element;
   hideHeaderBorder?: boolean;
 };
 
 export const Header = ({
+  headerLabel,
   headerRightComponent,
+  showDrawer = false,
   customHeaderComponent,
   hideHeaderBorder,
 }: HeaderProps) => {
-  const {goBack} = useNavigation();
+  const navigation = useNavigation();
   const route = useRoute();
-  const index = useNavigationState((state) => state.index);
+  const theme = useTheme();
   return (
     <HeaderContainer style={hideHeaderBorder && {borderBottomWidth: 0}}>
       <SafeAreaView />
@@ -31,12 +32,17 @@ export const Header = ({
         customHeaderComponent()
       ) : (
         <HeaderContent>
-          {/* {index > 0 && (
-            <TouchableOpacity style={{position: 'absolute'}} onPress={goBack}>
-              <SvgImage style={{width: 35, height: 35}} source={Images.back} />
+          {showDrawer && (
+            <TouchableOpacity
+              style={{position: 'absolute', left: 16}}
+              onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
+              <SvgImage
+                style={{width: 30, height: 30, fill: theme.colors.primary}}
+                source={Images.menu}
+              />
             </TouchableOpacity>
-          )} */}
-          <HeaderText variant="h3">{route.name}</HeaderText>
+          )}
+          <HeaderText variant="h3">{headerLabel || route.name}</HeaderText>
           {headerRightComponent && headerRightComponent()}
         </HeaderContent>
       )}

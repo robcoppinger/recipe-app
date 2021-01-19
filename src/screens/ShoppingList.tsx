@@ -8,7 +8,7 @@ import {
   ShoppingListItem,
   SHOPPING_LIST_ITEM_HEIGHT,
 } from '../components/shoppingList/ShoppingListItem';
-import {ShoppingListScreenRouteProp} from '../navigators/AppNavigator';
+import {ShoppingListScreenRouteProp} from '../navigators/ShoppingListNavigator';
 import {selectors} from '../redux/modules/shoppingLists/ShoppingLists';
 import {RootState} from '../redux';
 import {
