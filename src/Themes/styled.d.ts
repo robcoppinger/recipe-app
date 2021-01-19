@@ -18,6 +18,7 @@ declare module 'styled-components' {
     headerBackground: string;
     headerBorder: string;
     primary: string;
+    primaryFaded: string;
     text: string;
     textSecondary: string;
     paper: string;

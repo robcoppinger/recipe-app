@@ -37,9 +37,7 @@ export const DrawerContent = (props: any) => {
               false: '#2F3D43',
               true: '#F8EEEE',
             }}
-            ios_backgroundColor={
-              selectedTheme === 'light' ? '#F8EEEE' : '#2F3D43'
-            }
+            ios_backgroundColor={theme.colors.primaryFaded}
             thumbColor={theme.colors.primary}
             onValueChange={() => dispatch(actions.toggleTheme())}
             value={selectedTheme === 'light'}
