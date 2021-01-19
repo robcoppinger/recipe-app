@@ -360,7 +360,9 @@ export const ShoppingListItem = ({
           </ReorderContainer>
         </PanGestureHandler>
 
-        <PanGestureHandler onGestureEvent={onSwipeGestureEvent}>
+        <PanGestureHandler
+          activeOffsetX={[-10, 10]}
+          onGestureEvent={onSwipeGestureEvent}>
           <Animated.View
             style={{height: '100%', flex: 1, flexDirection: 'row'}}>
             <TextContainer onPress={resetSwipeAnim}>
@@ -380,7 +382,6 @@ export const ShoppingListItem = ({
                 style={{
                   width: 30,
                   height: 30,
-                  color: theme.colors.primary,
                   fill: theme.colors.primary,
                 }}
               />

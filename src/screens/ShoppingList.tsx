@@ -1,6 +1,6 @@
 import {useRoute} from '@react-navigation/native';
 import React from 'react';
-import {View} from 'react-native';
+import {ScrollView, View} from 'react-native';
 import {useSharedValue} from 'react-native-reanimated';
 import {useSelector} from 'react-redux';
 import {Layout} from '../components/common/Layout';
@@ -11,7 +11,10 @@ import {
 import {ShoppingListScreenRouteProp} from '../navigators/AppNavigator';
 import {selectors} from '../redux/modules/shoppingLists/ShoppingLists';
 import {RootState} from '../redux';
-import {NewShoppingListItem} from '../components/shoppingList/NewShoppingListItem';
+import {
+  NewShoppingListItem,
+  NEW_SHOPPINGLIST_ITEM_HEIGHT,
+} from '../components/shoppingList/NewShoppingListItem';
 
 export const ShoppingList = () => {
   const route = useRoute<ShoppingListScreenRouteProp>();
@@ -23,15 +26,24 @@ export const ShoppingList = () => {
     selectors.shoppingList(s, shoppingListId),
   );
   const {unfoundItems, foundItems} = shoppingList;
-  const order = unfoundItems.concat(foundItems);
+  const order = unfoundItems
+    .concat(foundItems)
+    .filter((value, index, self) => self.indexOf(value) === index);
   const positions = useSharedValue<Positions>(
     Object.assign({}, ...order.map((id, index) => ({[id]: index}))),
   );
+  const newItemOffset = order.length * SHOPPING_LIST_ITEM_HEIGHT;
 
   return (
     <Layout>
       <View style={{flex: 1}}>
-        <View style={{height: order.length * SHOPPING_LIST_ITEM_HEIGHT}}>
+        <ScrollView
+          scrollIndicatorInsets={{right: 1}}
+          contentContainerStyle={{
+            height:
+              order.length * SHOPPING_LIST_ITEM_HEIGHT +
+              NEW_SHOPPINGLIST_ITEM_HEIGHT,
+          }}>
           {order.map((shoppingListItemId) => (
             <ShoppingListItem
               key={shoppingListItemId}
@@ -43,8 +55,12 @@ export const ShoppingList = () => {
               }}
             />
           ))}
-        </View>
-        <NewShoppingListItem shoppingListId={shoppingListId} />
+          <NewShoppingListItem
+            shoppingListId={shoppingListId}
+            offset={newItemOffset}
+            deletingId={deletingId}
+          />
+        </ScrollView>
       </View>
     </Layout>
   );
