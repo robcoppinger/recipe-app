@@ -7,6 +7,7 @@ import Delete from './trash-outline.svg';
 import DeleteFilled from './trash.svg';
 import Unchecked from './ellipse-outline.svg';
 import CheckedFilled from './checkmark-circle.svg';
+import Checked from './checkmark-circle-outline.svg';
 import Reorder from './reorder-two.svg';
 import Cart from './cart-outline.svg';
 import List from './list-outline.svg';
@@ -37,6 +38,9 @@ export const Images = {
   ),
   checkedFilled: (props: SvgProps) => (
     <CheckedFilled fill="#000000" color="#000000" {...props} />
+  ),
+  checked: (props: SvgProps) => (
+    <Checked fill="#000000" color="#000000" {...props} />
   ),
   reorder: (props: SvgProps) => (
     <Reorder fill="#000000" color="#000000" {...props} />
