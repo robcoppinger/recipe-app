@@ -366,7 +366,7 @@ export const ShoppingListItem = ({
           <Animated.View
             style={{height: '100%', flex: 1, flexDirection: 'row'}}>
             <TextContainer onPress={resetSwipeAnim}>
-              <ShoppingListText
+              <ItemText
                 style={
                   item.isFound && {
                     textDecorationLine: 'line-through',
@@ -374,7 +374,10 @@ export const ShoppingListItem = ({
                   }
                 }>
                 {item.name}
-              </ShoppingListText>
+              </ItemText>
+              <AmountText style={{paddingLeft: 4}}>
+                {`${item.amount || ''} ${item.unit || ''}`}
+              </AmountText>
             </TextContainer>
             <CheckboxButton onPress={checkboxPress}>
               <SvgImage
@@ -402,7 +405,8 @@ const ShoppingListItemContainer = styled(Animated.View)`
   border-color: ${(props) => props.theme.colors.itemSeparator};
 `;
 
-const ShoppingListText = styled(Text)`
+const ItemText = styled(Text)`
+  flex: 1;
   font-weight: 500;
 `;
 
@@ -414,7 +418,9 @@ const ReorderContainer = styled(Animated.View)`
 `;
 
 const TextContainer = styled.TouchableOpacity`
+  flex-direction: row;
   padding: ${(props) => props.theme.itemPadding};
+  padding-right: 0;
   flex: 1;
   justify-content: center;
 `;
@@ -424,6 +430,10 @@ const CheckboxButton = styled.TouchableOpacity`
   aspect-ratio: 1;
   align-items: center;
   justify-content: center;
+`;
+
+const AmountText = styled(Text)`
+  color: ${(props) => props.theme.colors.textSecondary};
 `;
 
 export const animationConfig = {
