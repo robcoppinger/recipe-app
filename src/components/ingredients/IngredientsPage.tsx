@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {KeyboardAvoidingView, ScrollView} from 'react-native';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {selectors} from '../../redux/modules/recipes/Recipes';
 import {RootState} from '../../redux';
 import {IngredientItem} from './IngredientItem';
@@ -21,6 +21,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import {actions} from '../../redux/modules/shoppingLists/ShoppingLists';
 
 type IngredientsPageProps = {
   title?: string; // For TabView Title only
@@ -38,6 +39,7 @@ export const IngredientsPage = ({
   setMode,
 }: IngredientsPageProps) => {
   const theme = useTheme();
+  const dispatch = useDispatch();
   const insets = useSafeAreaInsets();
   const recipe = useSelector((st: RootState) => selectors.recipe(st, recipeId));
 
@@ -150,7 +152,16 @@ export const IngredientsPage = ({
                 style={{width: 30, height: 30, fill: theme.colors.primary}}
               />
             </IconButton>
-            <IconButton>
+            <IconButton
+              onPress={() => {
+                dispatch(
+                  actions.prepareIngredientsImport(
+                    'fruha-reahrb',
+                    selectedIngredients,
+                  ),
+                );
+                setMode('default');
+              }}>
               <SvgImage
                 source={Images.cart}
                 style={{width: 30, height: 30, fill: theme.colors.primary}}

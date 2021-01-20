@@ -15,6 +15,7 @@ import {
 export const UPDATE_UNFOUND_ORDER = 'shoppingList/UPDATE_UNFOUND_ORDER';
 export const PREPARE_INGREDIENTS_IMPORT =
   'shoppingList/PREPARE_INGREDIENTS_IMPORT';
+export const IMPORT_INGREDIENTS = 'shoppingList/IMPORT_INGREDIENTS';
 
 const initialState: ShoppingListState = {
   'fruha-reahrb': {
@@ -102,7 +103,7 @@ export const actions = {
     shoppingListId,
     newOrder,
   }),
-  importIngredients: (
+  prepareIngredientsImport: (
     shoppingListId: string,
     ingredientIds: string[],
   ): PrepareIngredientsImportAction => ({
