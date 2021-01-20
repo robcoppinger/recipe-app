@@ -6,9 +6,15 @@ import {
   MARK_FOUND,
   MARK_UNFOUND,
 } from '../shoppingListItems/ShoppingListItems';
-import {ShoppingListState, UpdateUnfoundOrderAction} from './types';
+import {
+  PrepareIngredientsImportAction,
+  ShoppingListState,
+  UpdateUnfoundOrderAction,
+} from './types';
 
 export const UPDATE_UNFOUND_ORDER = 'shoppingList/UPDATE_UNFOUND_ORDER';
+export const PREPARE_INGREDIENTS_IMPORT =
+  'shoppingList/PREPARE_INGREDIENTS_IMPORT';
 
 const initialState: ShoppingListState = {
   'fruha-reahrb': {
@@ -95,6 +101,14 @@ export const actions = {
     type: UPDATE_UNFOUND_ORDER,
     shoppingListId,
     newOrder,
+  }),
+  importIngredients: (
+    shoppingListId: string,
+    ingredientIds: string[],
+  ): PrepareIngredientsImportAction => ({
+    type: PREPARE_INGREDIENTS_IMPORT,
+    shoppingListId,
+    ingredientIds,
   }),
 };
 

@@ -1,9 +1,11 @@
 import {applyMiddleware, createStore} from 'redux';
 import {persistReducer, persistStore} from 'redux-persist';
 import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import {composeWithDevTools} from 'remote-redux-devtools';
 import {rootReducer} from './index';
 import AsyncStorage from '@react-native-community/async-storage';
+import rootSaga from './sagas';
 
 export const version = -1;
 
@@ -24,12 +26,16 @@ export function configureStore(key = 'primary') {
     realtime: true,
   });
 
+  const sagaMiddleware = createSagaMiddleware();
+
   const store = createStore(
     persistedReducer,
-    composeEnhancers(applyMiddleware(thunk)),
+    composeEnhancers(applyMiddleware(thunk, sagaMiddleware)),
   );
 
   const persistor = persistStore(store);
+
+  sagaMiddleware.run(rootSaga);
 
   return {store, persistor};
 }
