@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import styled from 'styled-components/native';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../redux';
@@ -10,8 +10,16 @@ import {useTheme} from '../../context/ThemeContext';
 import {SvgImage} from '../common/SvgImage';
 import {Images} from '../../../assets/images';
 import {RecipeMode} from '../../screens/Recipe';
+import Animated, {
+  Easing,
+  runOnJS,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated';
 
 export const INGREDIENT_ITEM_HEIGHT = 60;
+export const CHECKBOX_CONTAINER_WIDTH = 40;
 
 type IngredientItemProps = {
   ingredientId: string;
@@ -35,10 +43,30 @@ export const IngredientItem = ({
   const isSelectMode = mode === 'select';
   const dispatch = useDispatch();
   const theme = useTheme();
+
   const ingredient = useSelector((st: RootState) =>
     selectors.ingredient(st, ingredientId),
   );
   const {name, amount, unit} = ingredient;
+
+  const [isCheckboxVisible, setIsCheckboxVisible] = useState(false);
+  const setCheckboxHidden = () => setIsCheckboxVisible(false); // needed for anim callbak
+  const checkboxContainerWidth = useSharedValue(0);
+
+  useEffect(() => {
+    if (isSelectMode && !isCheckboxVisible) {
+      setIsCheckboxVisible(true);
+      checkboxContainerWidth.value = withTiming(
+        CHECKBOX_CONTAINER_WIDTH,
+        animationConfig,
+      );
+    }
+    if (!isSelectMode && isCheckboxVisible) {
+      checkboxContainerWidth.value = withTiming(0, animationConfig, () =>
+        runOnJS(setCheckboxHidden)(),
+      );
+    }
+  }, [isSelectMode]);
 
   const deleteItem = () =>
     dispatch(actions.deleteIngredient(ingredientId, recipeId));
@@ -51,6 +79,10 @@ export const IngredientItem = ({
       ? removeSelectedItem(ingredientId)
       : addSelectedItem(ingredientId);
   };
+
+  const checkboxContainerStyle = useAnimatedStyle(() => ({
+    width: checkboxContainerWidth.value,
+  }));
 
   return (
     <Deleteable
@@ -71,10 +103,14 @@ export const IngredientItem = ({
               if (isSelectMode) selectItem();
             })
           }>
-          <IngredientText numberOfLines={1}>{name}</IngredientText>
-          <AmountText>{`${amount || ''} ${unit || ''}`}</AmountText>
-          {isSelectMode && (
-            <CheckboxContainer>
+          <TextContainer>
+            <IngredientText numberOfLines={1}>{name}</IngredientText>
+            <AmountText style={{paddingLeft: 4}}>{`${amount || ''} ${
+              unit || ''
+            }`}</AmountText>
+          </TextContainer>
+          {isCheckboxVisible && (
+            <CheckboxContainer style={checkboxContainerStyle}>
               <SvgImage
                 source={isSelected ? Images.checkedFilled : Images.unchecked}
                 style={{
@@ -95,9 +131,16 @@ const IngredientContainer = styled.TouchableOpacity`
   height: 100%;
   flex-direction: row;
   background-color: ${(props) => props.theme.colors.paper};
-  padding: ${(props) => props.theme.itemPadding};
+  padding-left: ${(props) => props.theme.itemPadding};
+  align-items: center;
   border-bottom-width: 1px;
   border-color: ${(props) => props.theme.colors.itemSeparator};
+`;
+
+const TextContainer = styled.View`
+  flex-direction: row;
+  padding-right: 16px;
+  flex: 1;
 `;
 
 const IngredientText = styled(Text)`
@@ -109,10 +152,15 @@ const AmountText = styled(Text)`
   color: ${(props) => props.theme.colors.textSecondary};
 `;
 
-const CheckboxContainer = styled.View`
-  margin-left: 16px;
+const CheckboxContainer = styled(Animated.View)`
+  overflow: hidden;
+  width: ${CHECKBOX_CONTAINER_WIDTH}px;
   height: 100%;
-  aspect-ratio: 1;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
 `;
+
+const animationConfig = {
+  easing: Easing.inOut(Easing.ease),
+  duration: 200,
+};
