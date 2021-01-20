@@ -7,11 +7,12 @@ import {selectors} from '../../redux/modules/recipes/Recipes';
 import {RootState} from '../../redux';
 import {StepItem} from './StepItem';
 import {EditStep} from './EditStep';
+import {RecipeMode} from '../../screens/Recipe';
 
 type MethodPageProps = {
   title?: string; // For TabView Title only
   recipeId: string;
-  mode: 'default' | 'edit';
+  mode: RecipeMode;
 };
 
 export const MethodPage = ({recipeId, mode}: MethodPageProps) => {
@@ -23,7 +24,7 @@ export const MethodPage = ({recipeId, mode}: MethodPageProps) => {
       keyboardVerticalOffset={170}>
       <ScrollView style={{flex: 1}}>
         {recipe.method.map((stepId, index) =>
-          mode === 'default' ? (
+          mode === 'default' || mode === 'select' ? (
             <StepItem key={stepId} {...{stepId}} />
           ) : (
             <EditStep key={stepId} {...{stepId, recipeId}} />

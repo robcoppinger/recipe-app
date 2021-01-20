@@ -16,6 +16,8 @@ import {TabView} from '../components/common/TabView';
 import {TextInput} from '../components/common/TextInput';
 import {RecipeScreenRouteProp} from '../navigators/RecipeNavigator';
 
+export type RecipeMode = 'edit' | 'default' | 'select';
+
 export const Recipe = () => {
   const route = useRoute<RecipeScreenRouteProp>();
   const dispatch = useDispatch();
@@ -28,7 +30,7 @@ export const Recipe = () => {
   if (!recipe) return <Layout />;
 
   const [title, setTitle] = useState(recipe.title);
-  const [mode, setMode] = useState<'edit' | 'default'>(
+  const [mode, setMode] = useState<RecipeMode>(
     recipe.ingredients.length > 0 ? 'default' : 'edit',
   );
 
@@ -66,7 +68,12 @@ export const Recipe = () => {
     <Layout customHeaderComponent={customHeader} hideHeaderBorder>
       <TabView>
         <MethodPage title="Method" recipeId={recipeId} mode={mode} />
-        <IngredientsPage title="Ingredients" recipeId={recipeId} mode={mode} />
+        <IngredientsPage
+          title="Ingredients"
+          recipeId={recipeId}
+          mode={mode}
+          setMode={setMode}
+        />
       </TabView>
     </Layout>
   );
