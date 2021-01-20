@@ -1,17 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {KeyboardAvoidingView, ScrollView} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {selectors} from '../../redux/modules/recipes/Recipes';
-import {RootState} from '../../redux';
-import {IngredientItem} from './IngredientItem';
-import {EditIngredientItem} from './EditIngredientItem';
-import {NewIngredient} from './NewIngredient';
-import {RecipeMode} from '../../screens/Recipe';
 import styled from 'styled-components/native';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {SvgImage} from '../common/SvgImage';
-import {Images} from '../../../assets/images';
-import {useTheme} from '../../context/ThemeContext';
 import Animated, {
   Easing,
   Extrapolate,
@@ -21,7 +11,18 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import {actions} from '../../redux/modules/shoppingLists/ShoppingLists';
+import {actions as shoppingListActions} from '../../redux/modules/shoppingLists/ShoppingLists';
+import {actions as ingredientsActions} from '../../redux/modules/ingredients/Ingredients';
+import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import {selectors} from '../../redux/modules/recipes/Recipes';
+import {RootState} from '../../redux';
+import {IngredientItem} from './IngredientItem';
+import {EditIngredientItem} from './EditIngredientItem';
+import {NewIngredient} from './NewIngredient';
+import {RecipeMode} from '../../screens/Recipe';
+import {SvgImage} from '../common/SvgImage';
+import {Images} from '../../../assets/images';
+import {useTheme} from '../../context/ThemeContext';
 
 type IngredientsPageProps = {
   title?: string; // For TabView Title only
@@ -146,7 +147,16 @@ export const IngredientsPage = ({
                 style={{width: 30, height: 30, fill: theme.colors.primary}}
               />
             </IconButton>
-            <IconButton>
+            <IconButton
+              onPress={() => {
+                dispatch(
+                  ingredientsActions.deleteBulkIngredients(
+                    recipeId,
+                    selectedIngredients,
+                  ),
+                );
+                setMode('default');
+              }}>
               <SvgImage
                 source={Images.delete}
                 style={{width: 30, height: 30, fill: theme.colors.primary}}
@@ -155,7 +165,7 @@ export const IngredientsPage = ({
             <IconButton
               onPress={() => {
                 dispatch(
-                  actions.prepareIngredientsImport(
+                  shoppingListActions.prepareIngredientsImport(
                     'fruha-reahrb',
                     selectedIngredients,
                   ),

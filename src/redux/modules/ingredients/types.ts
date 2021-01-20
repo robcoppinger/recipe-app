@@ -1,5 +1,6 @@
 import {
   ADD_INGREDIENT,
+  DELETE_BULK_INGREDIENTS,
   DELETE_INGREDIENT,
   EDIT_INGREDIENT,
 } from './Ingredients';
@@ -35,7 +36,14 @@ export type EditIngredientAction = {
   ingredient: Ingredient;
 };
 
+export type DeleteBulkIngredientsAction = {
+  type: typeof DELETE_BULK_INGREDIENTS;
+  recipeId: string;
+  ingredientIds: string[];
+};
+
 export type IngredientsActions =
   | AddIngredientAction
   | DeleteIngredientAction
-  | EditIngredientAction;
+  | EditIngredientAction
+  | DeleteBulkIngredientsAction;

@@ -6,7 +6,11 @@ import {
   EditRecipeTitleAction,
   DeleteRecipeAction,
 } from './types';
-import {ADD_INGREDIENT, DELETE_INGREDIENT} from '../ingredients/Ingredients';
+import {
+  ADD_INGREDIENT,
+  DELETE_BULK_INGREDIENTS,
+  DELETE_INGREDIENT,
+} from '../ingredients/Ingredients';
 import {ADD_STEP, DELETE_STEP} from '../method/Method';
 
 export const ADD_EMPTY_RECIPE = 'recipes/ADD_EMPTY';
@@ -50,12 +54,19 @@ export default function reducer(
           action.recipeId
         ].ingredients.filter((id) => id !== action.ingredientId);
       });
+    case DELETE_BULK_INGREDIENTS:
+      if (!state[action.recipeId]) return state;
+      return produce(state, (draft) => {
+        draft[action.recipeId].ingredients = state[
+          action.recipeId
+        ].ingredients.filter((id) => !action.ingredientIds.includes(id));
+      });
     case DELETE_STEP:
       if (!state[action.recipeId]) return state;
       return produce(state, (draft) => {
-        draft[action.recipeId].method = state[
-          action.recipeId
-        ].method.filter((id) => id !== action.stepId);
+        draft[action.recipeId].method = state[action.recipeId].method.filter(
+          (id) => id !== action.stepId,
+        );
       });
     default:
       return state;

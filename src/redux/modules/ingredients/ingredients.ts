@@ -6,12 +6,14 @@ import {
   AddIngredientAction,
   DeleteIngredientAction,
   EditIngredientAction,
+  DeleteBulkIngredientsAction,
 } from './types';
 import {DELETE_RECIPE} from '../recipes/Recipes';
 
 export const ADD_INGREDIENT = 'ingredient/ADD';
 export const DELETE_INGREDIENT = 'ingredient/DELETE';
 export const EDIT_INGREDIENT = 'ingredient/EDIT';
+export const DELETE_BULK_INGREDIENTS = 'ingredient/DELETE_BULK';
 
 const initialState: IngredientsState = {};
 
@@ -46,6 +48,12 @@ export default function reducer(
             delete draft[ingredientId];
         }
       });
+    case DELETE_BULK_INGREDIENTS:
+      return produce(state, (draft) => {
+        action.ingredientIds.map((ingredientId) => {
+          delete draft[ingredientId];
+        });
+      });
     default:
       return state;
   }
@@ -77,6 +85,14 @@ export const actions = {
     type: EDIT_INGREDIENT,
     ingredientId,
     ingredient,
+  }),
+  deleteBulkIngredients: (
+    recipeId: string,
+    ingredientIds: string[],
+  ): DeleteBulkIngredientsAction => ({
+    type: DELETE_BULK_INGREDIENTS,
+    recipeId,
+    ingredientIds,
   }),
 };
 
