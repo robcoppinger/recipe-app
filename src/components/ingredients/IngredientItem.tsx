@@ -66,7 +66,7 @@ export const IngredientItem = ({
               if (isSelectMode) selectItem();
             })
           }>
-          <IngredientText>{name}</IngredientText>
+          <IngredientText numberOfLines={1}>{name}</IngredientText>
           <AmountText>{`${amount || ''} ${unit || ''}`}</AmountText>
           {isSelectMode && (
             <CheckboxContainer>
