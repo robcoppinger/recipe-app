@@ -20,6 +20,7 @@ import {useTheme} from '../../context/ThemeContext';
 import {SvgImage} from './SvgImage';
 
 type DeleteableProps = {
+  enabled?: boolean;
   children: (props: {interceptPress: (cb: () => void) => void}) => JSX.Element;
   containerHeight: number;
   onDeleteAnimationStarted?: () => void;
@@ -31,6 +32,7 @@ const SNAP_THRESHOLD = -70;
 const WIDTH = Dimensions.get('window').width;
 
 export const Deleteable = ({
+  enabled = true,
   children,
   containerHeight,
   onDeleteAnimationStarted,
@@ -141,6 +143,7 @@ export const Deleteable = ({
       <DeleteElement />
       <Animated.View style={swipeableContainerStyle}>
         <PanGestureHandler
+          enabled={enabled}
           activeOffsetX={[-10]}
           onGestureEvent={onSwipeGestureEvent}>
           <Animated.View style={{flex: 1, height: '100%'}}>
