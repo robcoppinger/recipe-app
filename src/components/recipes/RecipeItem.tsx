@@ -7,7 +7,7 @@ import {actions, selectors} from '../../redux/modules/recipes/Recipes';
 import {Deleteable} from '../common/Deleteable';
 import {Text} from '../common/Text';
 
-const HEIGHT = 60;
+const HEIGHT = 64;
 
 type RecipeItemProps = {
   recipeId: string;

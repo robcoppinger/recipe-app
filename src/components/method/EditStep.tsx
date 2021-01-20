@@ -34,6 +34,7 @@ export const EditStep = ({stepId, recipeId}: EditStepProps) => {
         value={step}
         onChangeText={setStep}
         multiline
+        scrollEnabled={false}
         blurOnSubmit
         onBlur={onBlur}
       />

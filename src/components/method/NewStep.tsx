@@ -39,6 +39,7 @@ export const NewStep = ({recipeId}: NewStepProps) => {
   return (
     <ItemContainer>
       <StepText
+        scrollEnabled={false}
         ref={inputRef}
         value={step}
         onChangeText={setStep}
