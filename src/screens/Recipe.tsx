@@ -38,6 +38,16 @@ export const Recipe = () => {
     setMode(mode === 'default' ? 'edit' : 'default');
   };
 
+  const headerActionText = () => {
+    switch (mode) {
+      case 'default':
+        return 'Edit';
+      case 'edit':
+        return 'Done';
+      case 'select':
+        return 'Cancel';
+    }
+  };
   const customHeader = () => (
     <HeaderContent>
       <TouchableOpacity onPress={goBack}>
@@ -57,9 +67,7 @@ export const Recipe = () => {
         placeholder="New Recipe"
       />
       <HeaderActionButton onPress={toggleMode}>
-        <HeaderActionText>
-          {mode === 'default' ? 'Edit' : 'Done'}
-        </HeaderActionText>
+        <HeaderActionText>{headerActionText()}</HeaderActionText>
       </HeaderActionButton>
     </HeaderContent>
   );
