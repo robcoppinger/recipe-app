@@ -18,6 +18,7 @@ import styled from 'styled-components/native';
 import {Images} from '../../../assets/images';
 import {useTheme} from '../../context/ThemeContext';
 import {SvgImage} from './SvgImage';
+import * as Haptic from 'expo-haptics';
 
 type DeleteableProps = {
   enabled?: boolean;
@@ -42,6 +43,10 @@ export const Deleteable = ({
   const theme = useTheme();
   const translateX = useSharedValue(0); // changed on swipe to delete
   const height = useSharedValue(containerHeight);
+  const hasPassedThreshold = useSharedValue(false);
+
+  const triggerHaptic = () =>
+    Haptic.impactAsync(Haptic.ImpactFeedbackStyle.Light);
 
   // ====================== Gesture Handler ======================
   // swipe to delete gesture handler
@@ -55,10 +60,18 @@ export const Deleteable = ({
     onActive: ({translationX}, ctx) => {
       let dest = ctx.x + translationX;
       translateX.value = dest <= 0 ? dest : 0;
+      if (
+        Math.abs(dest) > Math.abs(SNAP_THRESHOLD) &&
+        !hasPassedThreshold.value
+      ) {
+        hasPassedThreshold.value = true;
+        runOnJS(triggerHaptic)();
+      }
     },
     onEnd: () => {
       const destination = translateX.value < SNAP_THRESHOLD ? SNAP_INTERVAL : 0;
       translateX.value = withTiming(destination, animationConfig);
+      hasPassedThreshold.value = false;
     },
   });
 

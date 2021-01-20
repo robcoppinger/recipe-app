@@ -31,6 +31,7 @@ import {
   actions,
   selectors as itemSelectors,
 } from '../../redux/modules/shoppingListItems/ShoppingListItems';
+import * as Haptic from 'expo-haptics';
 
 type ShoppingListItemProps = {
   shoppingListId: string;
@@ -106,6 +107,8 @@ export const ShoppingListItem = ({
   );
 
   // ========= Gesture SideEffects and General Functions =========
+
+  const triggerHaptic = () => Haptic.selectionAsync();
 
   // set swipe to default position
   const resetSwipeAnim = () => {
@@ -192,6 +195,7 @@ export const ShoppingListItem = ({
   };
 
   const checkboxPress = () => {
+    triggerHaptic();
     if (Math.abs(translateX.value) > 20) return resetSwipeAnim();
     if (item.isFound) return unfoundAnimation();
     foundAnimation();
@@ -206,6 +210,7 @@ export const ShoppingListItem = ({
     onStart: (_, ctx) => {
       isReorderGestureActive.value = true;
       ctx.y = translateY.value;
+      runOnJS(triggerHaptic)();
     },
     onActive: ({translationY}, ctx) => {
       // update the position of the active item on drag

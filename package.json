@@ -20,6 +20,7 @@
     "@types/styled-components": "^5.1.7",
     "@types/styled-components-react-native": "^5.1.0",
     "@types/uuid": "^8.3.0",
+    "expo-haptics": "^8.4.0",
     "immer": "^8.0.0",
     "react": "16.13.1",
     "react-native": "0.63.3",

@@ -17,6 +17,7 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
+import * as Haptics from 'expo-haptics';
 
 export const INGREDIENT_ITEM_HEIGHT = 60;
 export const CHECKBOX_CONTAINER_WIDTH = 40;
@@ -73,6 +74,7 @@ export const IngredientItem = ({
 
   const selectItem = () => {
     if (!isSelectMode) {
+      Haptics.impactAsync();
       setMode('select');
     }
     isSelected
