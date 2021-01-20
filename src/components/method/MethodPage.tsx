@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from 'styled-components/native';
 import {NewStep} from './NewStep';
 import {ScrollView} from 'react-native-gesture-handler';
 import {KeyboardAvoidingView} from 'react-native';
