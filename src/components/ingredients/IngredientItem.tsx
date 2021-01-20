@@ -59,6 +59,11 @@ export const IngredientItem = ({
       onDeleteAnimationComplete={deleteItem}>
       {({interceptPress}) => (
         <IngredientContainer
+          style={
+            isSelected && {
+              backgroundColor: theme.colors.primaryFaded,
+            }
+          }
           activeOpacity={isSelectMode ? 0.5 : 1}
           onLongPress={selectItem}
           onPress={() =>
@@ -73,8 +78,8 @@ export const IngredientItem = ({
               <SvgImage
                 source={isSelected ? Images.checkedFilled : Images.unchecked}
                 style={{
-                  width: 25,
-                  height: 25,
+                  width: 30,
+                  height: 30,
                   fill: theme.colors.primary,
                 }}
               />
