@@ -17,6 +17,8 @@ type NewIngredientProps = {
   recipeId: string;
 };
 
+export const NEW_INGREDIENT_HEIGHT = 60;
+
 export const NewIngredient = ({recipeId}: NewIngredientProps) => {
   const [ingredient, dispatchIngredient] = useIngredientState();
   const dispatch = useDispatch();
@@ -74,7 +76,7 @@ export const NewIngredient = ({recipeId}: NewIngredientProps) => {
         autoCapitalize="none"
       />
       <TouchableOpacity
-        style={{marginRight: 8}}
+        style={{marginRight: 8, paddingBottom: 8}}
         onPress={addIngredient}
         disabled={ingredient.name === ''}>
         <SvgImage
@@ -92,10 +94,14 @@ export const NewIngredient = ({recipeId}: NewIngredientProps) => {
 };
 
 const NewIngredientContainer = styled.View`
+  height: ${NEW_INGREDIENT_HEIGHT}px;
+  justify-content: center;
+  align-items: center;
   flex-direction: row;
   background-color: transparent;
   margin-bottom: 8px;
-  padding: ${(props) => props.theme.itemPadding};
+  padding-top: 12px;
+  padding-left: ${(props) => props.theme.itemPadding};
   padding-right: 12px;
 `;
 

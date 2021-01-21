@@ -16,9 +16,9 @@ import {actions as ingredientsActions} from '../../redux/modules/ingredients/Ing
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import {selectors} from '../../redux/modules/recipes/Recipes';
 import {RootState} from '../../redux';
-import {IngredientItem} from './IngredientItem';
+import {IngredientItem, INGREDIENT_ITEM_HEIGHT} from './IngredientItem';
 import {EditIngredientItem} from './EditIngredientItem';
-import {NewIngredient} from './NewIngredient';
+import {NewIngredient, NEW_INGREDIENT_HEIGHT} from './NewIngredient';
 import {RecipeMode} from '../../screens/Recipe';
 import {SvgImage} from '../common/SvgImage';
 import {useTheme} from '../../context/ThemeContext';
@@ -51,6 +51,14 @@ export const IngredientsPage = ({
   const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
   const [isOptionsVisible, setOptionsVisble] = useState(false);
   const setOptionsHidden = () => setOptionsVisble(false); // for animation callback
+  const deletingId = useSharedValue<undefined | string>(undefined);
+
+  const positions = useSharedValue<Positions>(
+    Object.assign(
+      {},
+      ...recipe.ingredients.map((id, index) => ({[id]: index})),
+    ),
+  );
 
   useEffect(() => {
     if (mode !== 'select' && selectedIngredients.length > 0)
@@ -97,7 +105,13 @@ export const IngredientsPage = ({
       style={{flex: 1}}
       behavior="padding"
       keyboardVerticalOffset={170}>
-      <ScrollView>
+      <ScrollView
+        scrollIndicatorInsets={{right: 1}}
+        contentContainerStyle={{
+          height:
+            recipe.ingredients.length * INGREDIENT_ITEM_HEIGHT +
+            NEW_INGREDIENT_HEIGHT,
+        }}>
         {recipe.ingredients.map((id) => {
           switch (mode) {
             case 'edit':
@@ -120,6 +134,8 @@ export const IngredientsPage = ({
                   setMode={setMode}
                   addSelectedItem={addSelectedItem}
                   removeSelectedItem={removeSelectedItem}
+                  positions={positions}
+                  deletingId={deletingId}
                 />
               );
           }
@@ -203,3 +219,7 @@ const animationConfig = {
   easing: Easing.inOut(Easing.ease),
   duration: 200,
 };
+
+export interface Positions {
+  [id: string]: number;
+}

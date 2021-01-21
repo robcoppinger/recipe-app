@@ -1,4 +1,9 @@
-import {ADD_EMPTY_RECIPE, EDIT_TITLE, DELETE_RECIPE} from './Recipes';
+import {
+  ADD_EMPTY_RECIPE,
+  EDIT_TITLE,
+  DELETE_RECIPE,
+  UPDATE_INGREDIENTS_ORDER,
+} from './Recipes';
 
 export type Recipe = {
   title: string;
@@ -27,7 +32,14 @@ export type DeleteRecipeAction = {
   recipeId: string;
 };
 
+export type UpdateIngredientsOrderAction = {
+  type: typeof UPDATE_INGREDIENTS_ORDER;
+  recipeId: string;
+  ingredientIds: string[];
+};
+
 export type RecipesActions =
   | AddEmptyRecipeAction
   | EditRecipeTitleAction
-  | DeleteRecipeAction;
+  | DeleteRecipeAction
+  | UpdateIngredientsOrderAction;

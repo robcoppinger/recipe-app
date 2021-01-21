@@ -5,6 +5,7 @@ import {
   AddEmptyRecipeAction,
   EditRecipeTitleAction,
   DeleteRecipeAction,
+  UpdateIngredientsOrderAction,
 } from './types';
 import {
   ADD_INGREDIENT,
@@ -16,6 +17,7 @@ import {ADD_STEP, DELETE_STEP} from '../method/Method';
 export const ADD_EMPTY_RECIPE = 'recipes/ADD_EMPTY';
 export const EDIT_TITLE = 'recipes/EDIT_TITLE';
 export const DELETE_RECIPE = 'recipes/DELETE_RECIPE';
+export const UPDATE_INGREDIENTS_ORDER = 'recipes/UPDATE_INGREDIENTS_ORDER';
 
 const initialState: RecipesState = {};
 
@@ -68,6 +70,11 @@ export default function reducer(
           (id) => id !== action.stepId,
         );
       });
+    case UPDATE_INGREDIENTS_ORDER:
+      if (!state[action.recipeId]) return state;
+      return produce(state, (draft) => {
+        draft[action.recipeId].ingredients = action.ingredientIds;
+      });
     default:
       return state;
   }
@@ -91,6 +98,14 @@ export const actions = {
   deleteRecipe: (recipeId: string): DeleteRecipeAction => ({
     type: DELETE_RECIPE,
     recipeId,
+  }),
+  updateIngredientsOrder: (
+    recipeId: string,
+    ingredientIds: string[],
+  ): UpdateIngredientsOrderAction => ({
+    type: UPDATE_INGREDIENTS_ORDER,
+    recipeId,
+    ingredientIds,
   }),
 };
 
