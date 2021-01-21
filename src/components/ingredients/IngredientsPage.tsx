@@ -23,6 +23,7 @@ import {RecipeMode} from '../../screens/Recipe';
 import {SvgImage} from '../common/SvgImage';
 import {Images} from '../../../assets/images';
 import {useTheme} from '../../context/ThemeContext';
+import {useSnack} from '../../context/SnackContext';
 
 type IngredientsPageProps = {
   title?: string; // For TabView Title only
@@ -41,6 +42,7 @@ export const IngredientsPage = ({
 }: IngredientsPageProps) => {
   const theme = useTheme();
   const dispatch = useDispatch();
+  const snack = useSnack();
   const insets = useSafeAreaInsets();
   const recipe = useSelector((st: RootState) => selectors.recipe(st, recipeId));
 
@@ -170,6 +172,7 @@ export const IngredientsPage = ({
                     selectedIngredients,
                   ),
                 );
+                snack.showSnack('Added to shopping list', 'cart');
                 setMode('default');
               }}>
               <SvgImage
@@ -202,7 +205,7 @@ const OptionsRow = styled.View`
 const IconButton = styled.TouchableOpacity`
   padding-horizontal: 12px;
   padding-bottom: 0px;
-  justify-content: flex-end;
+  justify-content: center;
 `;
 
 const animationConfig = {

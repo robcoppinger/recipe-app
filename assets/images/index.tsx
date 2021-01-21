@@ -50,4 +50,4 @@ export const Images = {
   menu: (props: SvgProps) => <Menu fill="#000000" color="#000000" {...props} />,
 };
 
-export type ImageKeys = keyof typeof Images;
+export type SvgIcons = keyof typeof Images;
