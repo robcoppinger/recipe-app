@@ -88,7 +88,7 @@ export const Deleteable = ({
     translateX.value = withTiming(0, animationConfig);
   };
 
-  const interceptPress = (cb: () => void) => {
+  const interceptPress = (cb?: () => void) => {
     if (Math.abs(translateX.value) > 20) return resetSwipeAnim();
     cb && cb();
   };
