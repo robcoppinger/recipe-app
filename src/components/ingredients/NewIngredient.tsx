@@ -113,7 +113,6 @@ const Input = styled(TextInput)`
 const NewIngredientItem = styled(Input)`
   flex: 1;
   border-bottom-width: 1px;
-  padding-left: 8px;
 `;
 
 const Amount = styled(Input)`
