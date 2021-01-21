@@ -6,8 +6,6 @@ import {Text} from '../common/Text';
 import {getOrder, getPosition, Positions} from '../../screens/ShoppingList';
 import Animated, {
   Easing,
-  Extrapolate,
-  interpolate,
   runOnJS,
   useAnimatedGestureHandler,
   useAnimatedReaction,
@@ -19,7 +17,6 @@ import {
   PanGestureHandler,
   PanGestureHandlerGestureEvent,
 } from 'react-native-gesture-handler';
-import {Dimensions, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {RootState} from '../../redux';
 import {
@@ -31,6 +28,7 @@ import {
   selectors as itemSelectors,
 } from '../../redux/modules/shoppingListItems/ShoppingListItems';
 import * as Haptic from 'expo-haptics';
+import {Deleteable} from '../common/Deleteable';
 
 type ShoppingListItemProps = {
   shoppingListId: string;
@@ -40,9 +38,6 @@ type ShoppingListItemProps = {
 };
 
 export const SHOPPING_LIST_ITEM_HEIGHT = 60;
-const SNAP_INTERVAL = -80;
-const SNAP_THRESHOLD = -70;
-const WIDTH = Dimensions.get('window').width;
 
 export const ShoppingListItem = ({
   shoppingListId,
@@ -55,9 +50,7 @@ export const ShoppingListItem = ({
   const theme = useTheme();
   const position = getPosition(positions.value[itemId]);
   const translateY = useSharedValue(position.y); // changed on reorder
-  const translateX = useSharedValue(0); // changed on swipe to delete
   const isReorderGestureActive = useSharedValue(false);
-  const height = useSharedValue(SHOPPING_LIST_ITEM_HEIGHT); // height of the item. Changes on delete animation
 
   const item = useSelector((s: RootState) =>
     itemSelectors.shoppingListItem(s, itemId),
@@ -109,11 +102,6 @@ export const ShoppingListItem = ({
 
   const triggerHaptic = () => Haptic.selectionAsync();
 
-  // set swipe to default position
-  const resetSwipeAnim = () => {
-    translateX.value = withTiming(0, animationConfig);
-  };
-
   // After repositioning animations, dispatch the new order to save in redux
   const updatePositions = () => {
     let newOrder = Object.keys(positions.value).sort((a: string, b: string) => {
@@ -132,15 +120,11 @@ export const ShoppingListItem = ({
     dispatch(listActions.updateUnfoundOrder(shoppingListId, newOrder));
   };
 
+  const deleteItemAnimation = () => (deletingId.value = itemId);
+
   const deleteItem = () => {
     deletingId.value = undefined;
     dispatch(actions.deleteItem(shoppingListId, itemId));
-  };
-
-  const deleteItemAnimation = () => {
-    deletingId.value = itemId;
-    translateX.value = withTiming(-WIDTH, animationConfig);
-    height.value = withTiming(0, animationConfig, () => runOnJS(deleteItem)());
   };
 
   const assignNewPositions = (order: string[]) => {
@@ -195,12 +179,11 @@ export const ShoppingListItem = ({
 
   const checkboxPress = () => {
     triggerHaptic();
-    if (Math.abs(translateX.value) > 20) return resetSwipeAnim();
     if (item.isFound) return unfoundAnimation();
     foundAnimation();
   };
 
-  // ====================== Gesture Handlers ======================
+  // ====================== Gesture Handler ======================
   // Reordering gesture handler
   const onReOrderGestureEvent = useAnimatedGestureHandler<
     PanGestureHandlerGestureEvent,
@@ -244,30 +227,11 @@ export const ShoppingListItem = ({
     },
   });
 
-  // swipe to delete gesture handler
-  const onSwipeGestureEvent = useAnimatedGestureHandler<
-    PanGestureHandlerGestureEvent,
-    {x: number; y: number}
-  >({
-    onStart: (_, ctx) => {
-      ctx.x = translateX.value;
-    },
-    onActive: ({translationX}, ctx) => {
-      let dest = ctx.x + translationX;
-      translateX.value = dest <= 0 ? dest : 0;
-    },
-    onEnd: () => {
-      const destination = translateX.value < SNAP_THRESHOLD ? SNAP_INTERVAL : 0;
-      translateX.value = withTiming(destination, animationConfig);
-    },
-  });
-
   // ====================== Animated Styles ======================
   const containerStyle = useAnimatedStyle(() => {
     const zIndex = isReorderGestureActive.value ? 100 : 1;
     const scale = isReorderGestureActive.value ? 1.03 : 1;
     return {
-      height: height.value,
       position: 'absolute',
       top: 0,
       left: 0,
@@ -277,95 +241,36 @@ export const ShoppingListItem = ({
     };
   });
 
-  const deleteContainerStyle = useAnimatedStyle(() => {
-    const zIndex = deletingId.value === itemId ? 100 : 1;
-    return {
-      alignSelf: 'center',
-      justifyContent: 'center',
-      alignItems: 'center',
-      position: 'absolute',
-      backgroundColor: theme.colors.danger,
-      right: 0,
-      zIndex,
-      width: Math.abs(translateX.value),
-      height: height.value,
-    };
-  });
-
-  const imageStyle = useAnimatedStyle(() => {
-    return {
-      width: 25,
-      height: 25,
-      opacity: interpolate(translateX.value, [0, SNAP_INTERVAL], [0, 1]),
-      transform: [
-        {
-          scale: interpolate(
-            translateX.value,
-            [0, SNAP_INTERVAL],
-            [0.001, 1],
-            Extrapolate.CLAMP,
-          ),
-        },
-      ],
-    };
-  });
-  const swipeableContainerStyle = useAnimatedStyle(() => {
-    return {
-      flex: 1,
-      flexDirection: 'row',
-      transform: [{translateX: translateX.value}],
-    };
-  });
-
   // ====================== Rendered content ======================
 
-  const DeleteButton = () => (
-    <Animated.View style={deleteContainerStyle}>
-      <TouchableOpacity
-        style={{
-          width: '100%',
-          height: '100%',
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}
-        onPress={deleteItemAnimation}>
-        <Animated.View style={imageStyle}>
-          <SvgImage icon="deleteFilled" size="100%" fill="#FFF" />
-        </Animated.View>
-      </TouchableOpacity>
-    </Animated.View>
-  );
-
   return (
-    <ShoppingListItemContainer
-      style={[
-        containerStyle,
-        item.isFound && {backgroundColor: theme.colors.paperSecondary},
-      ]}>
-      <DeleteButton />
-      <Animated.View style={swipeableContainerStyle}>
-        <PanGestureHandler
-          enabled={!item.isFound}
-          onGestureEvent={onReOrderGestureEvent}>
-          <ReorderContainer>
-            <SvgImage
-              icon="reorder"
-              size={25}
-              fill={
-                item.isFound
-                  ? theme.colors.iconSubtleColor
-                  : theme.colors.primary
-              }
-            />
-          </ReorderContainer>
-        </PanGestureHandler>
+    <Animated.View style={containerStyle}>
+      <Deleteable
+        containerHeight={SHOPPING_LIST_ITEM_HEIGHT}
+        onDeleteAnimationStarted={deleteItemAnimation}
+        onDeleteAnimationComplete={deleteItem}>
+        {({interceptPress}) => (
+          <ShoppingListItemContainer
+            style={
+              item.isFound && {backgroundColor: theme.colors.paperSecondary}
+            }>
+            <PanGestureHandler
+              enabled={!item.isFound}
+              onGestureEvent={onReOrderGestureEvent}>
+              <ReorderContainer>
+                <SvgImage
+                  icon="reorder"
+                  size={25}
+                  fill={
+                    item.isFound
+                      ? theme.colors.iconSubtleColor
+                      : theme.colors.primary
+                  }
+                />
+              </ReorderContainer>
+            </PanGestureHandler>
 
-        <PanGestureHandler
-          activeOffsetX={[-10, 10]}
-          onGestureEvent={onSwipeGestureEvent}>
-          <Animated.View
-            style={{height: '100%', flex: 1, flexDirection: 'row'}}>
-            <TextContainer onPress={resetSwipeAnim}>
+            <TextContainer onPress={() => interceptPress()}>
               <ItemText
                 style={
                   item.isFound && {
@@ -379,22 +284,24 @@ export const ShoppingListItem = ({
                 {`${item.amount || ''} ${item.unit || ''}`}
               </AmountText>
             </TextContainer>
-            <CheckboxButton onPress={checkboxPress}>
+            <CheckboxButton onPress={() => interceptPress(checkboxPress)}>
               <SvgImage
                 icon={item.isFound ? 'checkedFilled' : 'unchecked'}
                 size={30}
                 fill={theme.colors.primary}
               />
             </CheckboxButton>
-          </Animated.View>
-        </PanGestureHandler>
-      </Animated.View>
-    </ShoppingListItemContainer>
+          </ShoppingListItemContainer>
+        )}
+      </Deleteable>
+    </Animated.View>
   );
 };
 
 const ShoppingListItemContainer = styled(Animated.View)`
+  height: 100%;
   overflow: hidden;
+  flex-direction: row;
   align-items: center;
   width: 100%;
   background-color: ${(props) => props.theme.colors.paper};

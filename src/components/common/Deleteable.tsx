@@ -21,7 +21,7 @@ import * as Haptic from 'expo-haptics';
 
 type DeleteableProps = {
   enabled?: boolean;
-  children: (props: {interceptPress: (cb: () => void) => void}) => JSX.Element;
+  children: (props: {interceptPress: (cb?: () => void) => void}) => JSX.Element;
   containerHeight: number;
   onDeleteAnimationStarted?: () => void;
   onDeleteAnimationComplete?: () => void;
