@@ -90,7 +90,7 @@ export const Deleteable = ({
 
   const interceptPress = (cb: () => void) => {
     if (Math.abs(translateX.value) > 20) return resetSwipeAnim();
-    cb();
+    cb && cb();
   };
 
   // ====================== Animation styles ======================

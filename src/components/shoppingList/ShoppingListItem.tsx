@@ -270,7 +270,7 @@ export const ShoppingListItem = ({
               </ReorderContainer>
             </PanGestureHandler>
 
-            <TextContainer onPress={() => interceptPress()}>
+            <TextContainer activeOpacity={1} onPress={() => interceptPress()}>
               <ItemText
                 style={
                   item.isFound && {
