@@ -8,7 +8,7 @@ import Animated, {
 } from 'react-native-reanimated';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import {Images, SvgIcons} from '../../assets/images';
+import {SvgIcons} from '../../assets/images';
 import {SvgImage} from '../components/common/SvgImage';
 import {Text} from '../components/common/Text';
 import {useTheme} from './ThemeContext';
@@ -82,8 +82,9 @@ export function SnackContextProvider({children}: SnackContextProviderProps) {
           <Snack>
             {snack?.icon && (
               <SvgImage
-                source={Images[snack.icon]}
-                style={{width: 25, height: 25, fill: theme.colors.primary}}
+                icon={snack.icon}
+                size={25}
+                fill={theme.colors.primary}
               />
             )}
             <SnackText variant="h3">{snack?.text}</SnackText>

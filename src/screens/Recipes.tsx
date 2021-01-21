@@ -3,7 +3,6 @@ import {Layout} from '../components/common/Layout';
 import {useNavigation} from '@react-navigation/native';
 import {FlatList, TouchableOpacity} from 'react-native';
 import {SvgImage} from '../components/common/SvgImage';
-import {Images} from '../../assets/images';
 import {useSelector, useDispatch} from 'react-redux';
 import {selectors, actions} from '../redux/modules/recipes/Recipes';
 import {v4 as uuidV4} from 'uuid';
@@ -24,10 +23,7 @@ export const Recipes = () => {
         dispatch(actions.addEmptyRecipe(recipeId));
         navigate('Recipe', {recipeId});
       }}>
-      <SvgImage
-        style={{width: 30, height: 30, fill: theme.colors.primary}}
-        source={Images.add}
-      />
+      <SvgImage icon="add" size={30} fill={theme.colors.primary} />
     </TouchableOpacity>
   );
 

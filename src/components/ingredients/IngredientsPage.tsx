@@ -21,7 +21,6 @@ import {EditIngredientItem} from './EditIngredientItem';
 import {NewIngredient} from './NewIngredient';
 import {RecipeMode} from '../../screens/Recipe';
 import {SvgImage} from '../common/SvgImage';
-import {Images} from '../../../assets/images';
 import {useTheme} from '../../context/ThemeContext';
 import {useSnack} from '../../context/SnackContext';
 
@@ -134,10 +133,7 @@ export const IngredientsPage = ({
           <OptionsRow>
             <IconButton
               onPress={() => setSelectedIngredients(recipe.ingredients)}>
-              <SvgImage
-                source={Images.checked}
-                style={{width: 30, height: 30, fill: theme.colors.primary}}
-              />
+              <SvgImage icon="checked" size={30} fill={theme.colors.primary} />
             </IconButton>
             <IconButton
               onPress={() => {
@@ -145,8 +141,9 @@ export const IngredientsPage = ({
                 setMode('default');
               }}>
               <SvgImage
-                source={Images.unchecked}
-                style={{width: 30, height: 30, fill: theme.colors.primary}}
+                icon="unchecked"
+                size={30}
+                fill={theme.colors.primary}
               />
             </IconButton>
             <IconButton
@@ -159,10 +156,7 @@ export const IngredientsPage = ({
                 );
                 setMode('default');
               }}>
-              <SvgImage
-                source={Images.delete}
-                style={{width: 30, height: 30, fill: theme.colors.primary}}
-              />
+              <SvgImage icon="delete" size={30} fill={theme.colors.primary} />
             </IconButton>
             <IconButton
               onPress={() => {
@@ -175,10 +169,7 @@ export const IngredientsPage = ({
                 snack.showSnack('Added to shopping list', 'cart');
                 setMode('default');
               }}>
-              <SvgImage
-                source={Images.cart}
-                style={{width: 30, height: 30, fill: theme.colors.primary}}
-              />
+              <SvgImage icon="cart" size={30} fill={theme.colors.primary} />
             </IconButton>
           </OptionsRow>
         </OptionsContainer>

@@ -8,7 +8,6 @@ import {Deleteable} from '../common/Deleteable';
 import {IngredientMode} from './IngredientsPage';
 import {useTheme} from '../../context/ThemeContext';
 import {SvgImage} from '../common/SvgImage';
-import {Images} from '../../../assets/images';
 import {RecipeMode} from '../../screens/Recipe';
 import Animated, {
   Easing,
@@ -114,12 +113,9 @@ export const IngredientItem = ({
           {isCheckboxVisible && (
             <CheckboxContainer style={checkboxContainerStyle}>
               <SvgImage
-                source={isSelected ? Images.checkedFilled : Images.unchecked}
-                style={{
-                  width: 30,
-                  height: 30,
-                  fill: theme.colors.primary,
-                }}
+                icon={isSelected ? 'checkedFilled' : 'unchecked'}
+                size={30}
+                fill={theme.colors.primary}
               />
             </CheckboxContainer>
           )}

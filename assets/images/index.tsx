@@ -14,8 +14,10 @@ import List from './list-outline.svg';
 import Menu from './menu-outline.svg';
 
 type SvgProps = {
-  width?: number;
-  height?: number;
+  width?: number | string;
+  height?: number | string;
+  fill?: string;
+  color?: string;
 };
 
 export const Images = {

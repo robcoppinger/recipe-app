@@ -8,7 +8,6 @@ import {RootState} from '../redux';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Text} from '../components/common/Text';
 import {SvgImage} from '../components/common/SvgImage';
-import {Images} from '../../assets/images';
 import {useTheme} from '../context/ThemeContext';
 import {IngredientsPage} from '../components/ingredients/IngredientsPage';
 import {MethodPage} from '../components/method/MethodPage';
@@ -51,10 +50,7 @@ export const Recipe = () => {
   const customHeader = () => (
     <HeaderContent>
       <TouchableOpacity onPress={goBack}>
-        <SvgImage
-          source={Images.back}
-          style={{width: 30, height: 30, fill: theme.colors.primary}}
-        />
+        <SvgImage icon="back" size={30} fill={theme.colors.primary} />
       </TouchableOpacity>
       <HeaderTitle
         editable={mode === 'edit'}

@@ -4,7 +4,6 @@ import {useSelector, useDispatch} from 'react-redux';
 import {RootState} from '../../redux';
 import {selectors, actions} from '../../redux/modules/ingredients/Ingredients';
 import {SvgImage} from '../common/SvgImage';
-import {Images} from '../../../assets/images';
 import {TouchableOpacity, TextInput as RNTextInput} from 'react-native';
 import {useTheme} from '../../context/ThemeContext';
 import {useIngredientState} from './useIngredientState';
@@ -76,8 +75,9 @@ export const EditIngredientItem = ({
           dispatch(actions.deleteIngredient(ingredientId, recipeId))
         }>
         <SvgImage
-          style={{width: 25, height: 25, fill: theme.colors.iconSubtleColor}}
-          source={Images.closeFilled}
+          size={25}
+          icon="closeFilled"
+          fill={theme.colors.iconSubtleColor}
         />
       </TouchableOpacity>
     </IngredientContainer>

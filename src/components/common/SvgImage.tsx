@@ -1,16 +1,21 @@
 import {useTheme} from 'styled-components';
+import {Images, SvgIcons} from '../../../assets/images';
 
 type SvgImageProps = {
-  source: any;
-  style?: any;
+  icon: SvgIcons;
+  size?: number | string;
+  fill?: string;
 };
 
-export const SvgImage = ({source, style = {}}: SvgImageProps) => {
+export const SvgImage = ({icon, size = 25, fill}: SvgImageProps) => {
   const theme = useTheme();
-  if (typeof source !== 'function') return null;
+  if (!icon) return null;
+  const source = Images[icon];
+  if (!source) return null;
   return source({
-    fill: theme.colors.iconColor,
-    color: style.fill || theme.colors.iconColor,
-    ...style,
+    width: size,
+    height: size,
+    fill: fill || theme.colors.iconColor,
+    color: fill || theme.colors.iconColor,
   });
 };

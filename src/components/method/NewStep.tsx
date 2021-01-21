@@ -11,7 +11,6 @@ import {v4 as uuidV4} from 'uuid';
 import {TextInput} from '../common/TextInput';
 import {SvgImage} from '../common/SvgImage';
 import {useTheme} from '../../context/ThemeContext';
-import {Images} from '../../../assets/images';
 
 type NewStepProps = {
   recipeId: string;
@@ -53,13 +52,11 @@ export const NewStep = ({recipeId}: NewStepProps) => {
         onPress={addStep}
         disabled={step === ''}>
         <SvgImage
-          style={{
-            width: 25,
-            height: 25,
-            fill:
-              step === '' ? theme.colors.iconSubtleColor : theme.colors.primary,
-          }}
-          source={Images.addFilled}
+          icon="addFilled"
+          size={25}
+          fill={
+            step === '' ? theme.colors.iconSubtleColor : theme.colors.primary
+          }
         />
       </TouchableOpacity>
     </ItemContainer>

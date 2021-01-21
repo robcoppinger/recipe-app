@@ -1,6 +1,5 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {Images} from '../../../assets/images';
 import {useTheme} from '../../context/ThemeContext';
 import {SvgImage} from '../common/SvgImage';
 import {Text} from '../common/Text';
@@ -331,10 +330,7 @@ export const ShoppingListItem = ({
         }}
         onPress={deleteItemAnimation}>
         <Animated.View style={imageStyle}>
-          <SvgImage
-            source={Images.deleteFilled}
-            style={{fill: '#FFF', width: '100%', height: '100%'}}
-          />
+          <SvgImage icon="deleteFilled" size="100%" fill="#FFF" />
         </Animated.View>
       </TouchableOpacity>
     </Animated.View>
@@ -353,14 +349,13 @@ export const ShoppingListItem = ({
           onGestureEvent={onReOrderGestureEvent}>
           <ReorderContainer>
             <SvgImage
-              source={Images.reorder}
-              style={{
-                width: 25,
-                height: 25,
-                color: item.isFound
+              icon="reorder"
+              size={25}
+              fill={
+                item.isFound
                   ? theme.colors.iconSubtleColor
-                  : theme.colors.primary,
-              }}
+                  : theme.colors.primary
+              }
             />
           </ReorderContainer>
         </PanGestureHandler>
@@ -386,12 +381,9 @@ export const ShoppingListItem = ({
             </TextContainer>
             <CheckboxButton onPress={checkboxPress}>
               <SvgImage
-                source={item.isFound ? Images.checkedFilled : Images.unchecked}
-                style={{
-                  width: 30,
-                  height: 30,
-                  fill: theme.colors.primary,
-                }}
+                icon={item.isFound ? 'checkedFilled' : 'unchecked'}
+                size={30}
+                fill={theme.colors.primary}
               />
             </CheckboxButton>
           </Animated.View>

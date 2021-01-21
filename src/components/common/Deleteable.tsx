@@ -15,7 +15,6 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import styled from 'styled-components/native';
-import {Images} from '../../../assets/images';
 import {useTheme} from '../../context/ThemeContext';
 import {SvgImage} from './SvgImage';
 import * as Haptic from 'expo-haptics';
@@ -142,10 +141,7 @@ export const Deleteable = ({
     <Animated.View style={deleteContainerStyle}>
       <DeleteButton onPress={deleteItemAnimation}>
         <Animated.View style={imageStyle}>
-          <SvgImage
-            source={Images.deleteFilled}
-            style={{fill: '#FFF', width: '100%', height: '100%'}}
-          />
+          <SvgImage icon="deleteFilled" fill="#FFF" size="100%" />
         </Animated.View>
       </DeleteButton>
     </Animated.View>

@@ -3,7 +3,6 @@ import styled from 'styled-components/native';
 import {SafeAreaView, TouchableOpacity} from 'react-native';
 import {useNavigation, useRoute, DrawerActions} from '@react-navigation/native';
 import {SvgImage} from './SvgImage';
-import {Images} from '../../../assets/images';
 import {Text} from './Text';
 import {useTheme} from '../../context/ThemeContext';
 
@@ -38,20 +37,14 @@ export const Header = ({
             <TouchableOpacity
               style={{position: 'absolute', left: 16}}
               onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
-              <SvgImage
-                style={{width: 30, height: 30, fill: theme.colors.primary}}
-                source={Images.menu}
-              />
+              <SvgImage size={30} icon="menu" fill={theme.colors.primary} />
             </TouchableOpacity>
           )}
           {showGoBack && !showDrawer && (
             <TouchableOpacity
               style={{position: 'absolute', left: 16}}
               onPress={navigation.goBack}>
-              <SvgImage
-                style={{width: 30, height: 30, fill: theme.colors.primary}}
-                source={Images.back}
-              />
+              <SvgImage size={30} icon="back" fill={theme.colors.primary} />
             </TouchableOpacity>
           )}
           <HeaderText variant="h3">{headerLabel || route.name}</HeaderText>

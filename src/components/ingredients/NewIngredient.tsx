@@ -9,7 +9,6 @@ import {
   Keyboard,
 } from 'react-native';
 import {SvgImage} from '../common/SvgImage';
-import {Images} from '../../../assets/images';
 import {useTheme} from '../../context/ThemeContext';
 import {useIngredientState} from './useIngredientState';
 import {TextInput} from '../common/TextInput';
@@ -79,15 +78,13 @@ export const NewIngredient = ({recipeId}: NewIngredientProps) => {
         onPress={addIngredient}
         disabled={ingredient.name === ''}>
         <SvgImage
-          style={{
-            width: 25,
-            height: 25,
-            fill:
-              ingredient.name === ''
-                ? theme.colors.iconSubtleColor
-                : theme.colors.primary,
-          }}
-          source={Images.addFilled}
+          icon="addFilled"
+          size={25}
+          fill={
+            ingredient.name === ''
+              ? theme.colors.iconSubtleColor
+              : theme.colors.primary
+          }
         />
       </TouchableOpacity>
     </NewIngredientContainer>

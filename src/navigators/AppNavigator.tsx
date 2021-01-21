@@ -3,7 +3,6 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {useTheme} from '../context/ThemeContext';
 import {DrawerContent} from './DrawerContent';
-import {Images} from '../../assets/images';
 import {SvgImage} from '../components/common/SvgImage';
 import {RecipeNavigator} from './RecipeNavigator';
 import {ShoppingListNavigator} from './ShoppingListNavigator';
@@ -12,17 +11,6 @@ const Drawer = createDrawerNavigator();
 
 export const AppNavigator = () => {
   const theme = useTheme();
-
-  const icon = (image: any, color: string) => (
-    <SvgImage
-      source={image}
-      style={{
-        fill: color,
-        width: 30,
-        height: 30,
-      }}
-    />
-  );
 
   return (
     <NavigationContainer>
@@ -41,14 +29,18 @@ export const AppNavigator = () => {
           name="Recipes"
           component={RecipeNavigator}
           options={{
-            drawerIcon: ({color}) => icon(Images.list, color),
+            drawerIcon: ({color}) => (
+              <SvgImage icon="list" fill={color} size={30} />
+            ),
           }}
         />
         <Drawer.Screen
           name="Shopping List"
           component={ShoppingListNavigator}
           options={{
-            drawerIcon: ({color}) => icon(Images.cart, color),
+            drawerIcon: ({color}) => (
+              <SvgImage icon="cart" fill={color} size={30} />
+            ),
           }}
         />
       </Drawer.Navigator>

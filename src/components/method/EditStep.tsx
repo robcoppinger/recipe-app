@@ -6,7 +6,6 @@ import styled from 'styled-components/native';
 import {TouchableOpacity} from 'react-native';
 import {SvgImage} from '../common/SvgImage';
 import {useTheme} from '../../context/ThemeContext';
-import {Images} from '../../../assets/images';
 import {TextInput} from '../common/TextInput';
 
 type EditStepProps = {
@@ -41,8 +40,9 @@ export const EditStep = ({stepId, recipeId}: EditStepProps) => {
       <TouchableOpacity
         onPress={() => dispatch(actions.deleteStep(stepId, recipeId))}>
         <SvgImage
-          style={{width: 25, height: 25, fill: theme.colors.iconSubtleColor}}
-          source={Images.closeFilled}
+          icon="closeFilled"
+          size={25}
+          fill={theme.colors.iconSubtleColor}
         />
       </TouchableOpacity>
     </StepContainer>
