@@ -10,12 +10,13 @@
 import 'react-native-gesture-handler';
 import React from 'react';
 import 'react-native-get-random-values';
-import {StatusBar} from 'react-native';
 import {ThemeProvider} from './src/context/ThemeContext';
 import {Provider as ReduxProvider} from 'react-redux';
 import {PersistGate} from 'redux-persist/integration/react';
 import {configureStore} from './src/redux/store';
 import {AppNavigator} from './src/navigators/AppNavigator';
+import {SafeAreaProvider} from 'react-native-safe-area-context';
+import {SnackContextProvider} from './src/context/SnackContext';
 
 const {persistor, store} = configureStore();
 
@@ -26,7 +27,11 @@ const App = () => {
     <ReduxProvider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider>
-          <AppNavigator />
+          <SafeAreaProvider>
+            <SnackContextProvider>
+              <AppNavigator />
+            </SnackContextProvider>
+          </SafeAreaProvider>
         </ThemeProvider>
       </PersistGate>
     </ReduxProvider>

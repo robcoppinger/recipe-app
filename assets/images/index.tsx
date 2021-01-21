@@ -49,3 +49,5 @@ export const Images = {
   list: (props: SvgProps) => <List fill="#000000" color="#000000" {...props} />,
   menu: (props: SvgProps) => <Menu fill="#000000" color="#000000" {...props} />,
 };
+
+export type ImageKeys = keyof typeof Images;
