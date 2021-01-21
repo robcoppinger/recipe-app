@@ -71,13 +71,13 @@ export const Recipe = () => {
   return (
     <Layout customHeaderComponent={customHeader} hideHeaderBorder>
       <TabView>
-        <MethodPage title="Method" recipeId={recipeId} mode={mode} />
         <IngredientsPage
           title="Ingredients"
           recipeId={recipeId}
           mode={mode}
           setMode={setMode}
         />
+        <MethodPage title="Method" recipeId={recipeId} mode={mode} />
       </TabView>
     </Layout>
   );
