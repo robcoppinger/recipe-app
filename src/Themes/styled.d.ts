@@ -24,6 +24,7 @@ declare module 'styled-components' {
     paper: string;
     paperSecondary: string;
     itemSeparator: string;
+    itemSeparatorSecondary: string;
     iconColor: string;
     iconSubtleColor: string;
     textInputBorder: string;
