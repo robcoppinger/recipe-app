@@ -6,6 +6,7 @@ import {DrawerContent} from './DrawerContent';
 import {SvgImage} from '../components/common/SvgImage';
 import {RecipeNavigator} from './RecipeNavigator';
 import {ShoppingListNavigator} from './ShoppingListNavigator';
+import {RoadmapNavigator} from './RoadmapNavigator';
 
 const Drawer = createDrawerNavigator();
 
@@ -40,6 +41,15 @@ export const AppNavigator = () => {
           options={{
             drawerIcon: ({color}) => (
               <SvgImage icon="cart" fill={color} size={30} />
+            ),
+          }}
+        />
+        <Drawer.Screen
+          name="Roadmap"
+          component={RoadmapNavigator}
+          options={{
+            drawerIcon: ({color}) => (
+              <SvgImage icon="info" fill={color} size={30} />
             ),
           }}
         />

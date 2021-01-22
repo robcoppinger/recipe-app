@@ -8,7 +8,7 @@ type ColorsObj = {
 
 const themeColors: ColorsObj = {
   light: {
-    screenBackground: '#f5f5f5',
+    screenBackground: '#f0f0f0',
     headerBackground: '#FFFFFF',
     headerBorder: '#EDEDED',
     primary: '#DE8888',
@@ -18,6 +18,7 @@ const themeColors: ColorsObj = {
     paper: '#fcfcfc',
     paperSecondary: '#f9f9f9',
     itemSeparator: '#EDEDED',
+    itemSeparatorSecondary: '#E3E3E3',
     iconColor: '#000000',
     iconSubtleColor: '#D1D1D1',
     textInputBorder: '#e0e0e0',
@@ -36,6 +37,7 @@ const themeColors: ColorsObj = {
     paper: '#292929',
     paperSecondary: '#2c2c2c',
     itemSeparator: '#212121',
+    itemSeparatorSecondary: '#E3E3E3',
     iconColor: '#EDEDED',
     iconSubtleColor: '#828282',
     textInputBorder: '#828282',
