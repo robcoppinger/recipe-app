@@ -12,6 +12,8 @@ import Reorder from './reorder-two.svg';
 import Cart from './cart-outline.svg';
 import List from './list-outline.svg';
 import Menu from './menu-outline.svg';
+import Info from './information-circle-outline.svg';
+import ChevronRight from './chevron-forward-outline.svg.svg';
 
 type SvgProps = {
   width?: number | string;
@@ -50,6 +52,10 @@ export const Images = {
   cart: (props: SvgProps) => <Cart fill="#000000" color="#000000" {...props} />,
   list: (props: SvgProps) => <List fill="#000000" color="#000000" {...props} />,
   menu: (props: SvgProps) => <Menu fill="#000000" color="#000000" {...props} />,
+  info: (props: SvgProps) => <Info fill="#000000" color="#000000" {...props} />,
+  chevronRight: (props: SvgProps) => (
+    <ChevronRight fill="#000000" color="#000000" {...props} />
+  ),
 };
 
 export type SvgIcons = keyof typeof Images;
