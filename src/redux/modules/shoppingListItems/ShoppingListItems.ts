@@ -1,5 +1,6 @@
 import produce from 'immer';
 import {RootState, ReduxAction} from '../..';
+import {IMPORT_INGREDIENTS} from '../shoppingLists/ShoppingLists';
 import {
   AddShoppingListItemAction,
   DeleteShoppingListItemAction,
@@ -39,7 +40,12 @@ export default function reducer(
       return produce(state, (draft) => {
         draft[action.shoppingListItemId].isFound = action.type === MARK_FOUND;
       });
-
+    case IMPORT_INGREDIENTS:
+      return produce(state, (draft) => {
+        Object.keys(action.ingredients).map((id) => {
+          draft[id] = action.ingredients[id];
+        });
+      });
     default:
       return state;
   }

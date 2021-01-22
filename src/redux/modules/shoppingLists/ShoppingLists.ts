@@ -6,7 +6,9 @@ import {
   MARK_FOUND,
   MARK_UNFOUND,
 } from '../shoppingListItems/ShoppingListItems';
+import {ShoppingListItem} from '../shoppingListItems/types';
 import {
+  ImportIngredientsAction,
   PrepareIngredientsImportAction,
   ShoppingListState,
   UpdateUnfoundOrderAction,
@@ -89,6 +91,13 @@ export default function reducer(
       return produce(state, (draft) => {
         draft[action.shoppingListId].unfoundItems = action.newOrder;
       });
+    case IMPORT_INGREDIENTS:
+      if (!state[action.shoppingListId]) return state;
+      return produce(state, (draft) => {
+        draft[action.shoppingListId].unfoundItems = state[
+          action.shoppingListId
+        ].unfoundItems.concat(Object.keys(action.ingredients));
+      });
     default:
       return state;
   }
@@ -110,6 +119,14 @@ export const actions = {
     type: PREPARE_INGREDIENTS_IMPORT,
     shoppingListId,
     ingredientIds,
+  }),
+  importIngredients: (
+    shoppingListId: string,
+    ingredients: {[key: string]: ShoppingListItem},
+  ): ImportIngredientsAction => ({
+    type: IMPORT_INGREDIENTS,
+    shoppingListId,
+    ingredients,
   }),
 };
 

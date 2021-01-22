@@ -1,4 +1,6 @@
+import {ShoppingListItem} from '../shoppingListItems/types';
 import {
+  IMPORT_INGREDIENTS,
   PREPARE_INGREDIENTS_IMPORT,
   UPDATE_UNFOUND_ORDER,
 } from './ShoppingLists';
@@ -25,6 +27,13 @@ export type PrepareIngredientsImportAction = {
   ingredientIds: string[];
 };
 
+export type ImportIngredientsAction = {
+  type: typeof IMPORT_INGREDIENTS;
+  shoppingListId: string;
+  ingredients: {[key: string]: ShoppingListItem};
+};
+
 export type ShoppingListActions =
   | UpdateUnfoundOrderAction
-  | PrepareIngredientsImportAction;
+  | PrepareIngredientsImportAction
+  | ImportIngredientsAction;

@@ -2,8 +2,7 @@ import {takeLatest, select, put} from 'redux-saga/effects';
 import {v4 as uuidV4} from 'uuid';
 import {RootState} from '..';
 import {selectors as ingredientSelectors} from '../modules/ingredients/Ingredients';
-import {Ingredient} from '../modules/ingredients/types';
-import {actions} from '../modules/shoppingListItems/ShoppingListItems';
+import {actions} from '../modules/shoppingLists/ShoppingLists';
 import {ShoppingListItem} from '../modules/shoppingListItems/types';
 import {PREPARE_INGREDIENTS_IMPORT} from '../modules/shoppingLists/ShoppingLists';
 import {PrepareIngredientsImportAction} from '../modules/shoppingLists/types';
@@ -11,8 +10,10 @@ import {PrepareIngredientsImportAction} from '../modules/shoppingLists/types';
 function* importIngredients(action: PrepareIngredientsImportAction) {
   const {ingredientIds, shoppingListId} = action;
 
+  const ingredients: {[key: string]: ShoppingListItem} = {};
+
   for (var ingredientId of ingredientIds) {
-    const ingredient: Ingredient = yield select((s: RootState) =>
+    const ingredient: ShoppingListItem = yield select((s: RootState) =>
       ingredientSelectors.ingredient(s, ingredientId),
     );
     if (!ingredient) continue;
@@ -24,9 +25,9 @@ function* importIngredients(action: PrepareIngredientsImportAction) {
       amount: ingredient.amount,
       unit: ingredient.unit,
     };
-
-    yield put(actions.addItem(shoppingListId, uuidV4(), newItem));
+    ingredients[uuidV4()] = newItem;
   }
+  yield put(actions.importIngredients(shoppingListId, ingredients));
 }
 
 export default function* applicationSaga() {
