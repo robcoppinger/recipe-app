@@ -13,7 +13,8 @@ import Cart from './cart-outline.svg';
 import List from './list-outline.svg';
 import Menu from './menu-outline.svg';
 import Info from './information-circle-outline.svg';
-import ChevronRight from './chevron-forward-outline.svg.svg';
+import ChevronRight from './chevron-forward-outline.svg';
+import AddOutline from './add-circle-outline.svg';
 
 type SvgProps = {
   width?: number | string;
@@ -55,6 +56,9 @@ export const Images = {
   info: (props: SvgProps) => <Info fill="#000000" color="#000000" {...props} />,
   chevronRight: (props: SvgProps) => (
     <ChevronRight fill="#000000" color="#000000" {...props} />
+  ),
+  addOutline: (props: SvgProps) => (
+    <AddOutline fill="#000000" color="#000000" {...props} />
   ),
 };
 
