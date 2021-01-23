@@ -28,6 +28,7 @@ export const SelectNewShoppingListItem = ({
         fill={isSelected ? theme.colors.primary : theme.colors.textSecondary}
       />
       <NameText
+        returnKeyType="done"
         onFocus={() => setSelectedId('new')}
         placeholder="New Shopping List"
         value={newName}
