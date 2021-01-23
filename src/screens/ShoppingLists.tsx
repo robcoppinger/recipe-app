@@ -1,14 +1,38 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
+import {TouchableOpacity} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import {Layout} from '../components/common/Layout';
 import {ShoppingListsItem} from '../components/shoppingLists/ShoppingListsItem';
-import {selectors} from '../redux/modules/shoppingLists/ShoppingLists';
+import {actions, selectors} from '../redux/modules/shoppingLists/ShoppingLists';
+import {v4 as uuidV4} from 'uuid';
+import {useNavigation} from '@react-navigation/native';
+import {SvgImage} from '../components/common/SvgImage';
+import {useTheme} from '../context/ThemeContext';
 
 export const ShoppingLists = () => {
+  const dispatch = useDispatch();
+  const {navigate} = useNavigation();
+  const theme = useTheme();
+
   const shoppingLists = useSelector(selectors.shoppingLists);
 
+  const HeaderRightComponent = () => (
+    <TouchableOpacity
+      style={{position: 'absolute', right: 12}}
+      onPress={() => {
+        const shoppingListId = uuidV4();
+        dispatch(actions.addEmptyShoppingList(shoppingListId));
+        navigate('ShoppingList', {shoppingListId});
+      }}>
+      <SvgImage icon="add" size={30} fill={theme.colors.primary} />
+    </TouchableOpacity>
+  );
+
   return (
-    <Layout showDrawer headerLabel="Shopping Lists">
+    <Layout
+      showDrawer
+      headerLabel="Shopping Lists"
+      headerRightComponent={HeaderRightComponent}>
       <>
         {Object.keys(shoppingLists).map((id) => (
           <ShoppingListsItem key={id} shoppingListId={id} />
