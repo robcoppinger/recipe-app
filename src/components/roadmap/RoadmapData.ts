@@ -24,13 +24,6 @@ export const roadmap: RoadMapEntry[] = [
         ],
       },
       {
-        title: 'Add new Shopping lists',
-        moreInfo: [
-          'Allow users to create multiple shopping lists',
-          'Allow users to select which shopping list they want to use when adding Ingredient to the shopping list from the ingredients section',
-        ],
-      },
-      {
         title: 'Recipe Options',
         moreInfo: [
           'A user will be able to long press on a recipe which will show options "Add all ingredients to shopping list", and "Delete Recipe"',
@@ -83,7 +76,7 @@ export const roadmap: RoadMapEntry[] = [
       {
         title: 'Smart add to shopping list',
         moreInfo: [
-          'When you add ites (either individually or through a recipe), items that already exist in a shopping list will not get re-added. Rather, it will adjust the amounts of those ingredients.',
+          'When you add items (either individually or through a recipe), items that already exist in a shopping list will not get re-added. Rather, it will adjust the amounts of those ingredients.',
           'There will be a setting to enable / disable smart add to list',
         ],
       },
