@@ -9,6 +9,7 @@ import {
 import {ShoppingListItem} from '../shoppingListItems/types';
 import {
   AddEmptyShoppingListAction,
+  DeleteShoppingListAction,
   EditShoppingListTitleAction,
   ImportIngredientsAction,
   PrepareIngredientsImportAction,
@@ -18,6 +19,7 @@ import {
 import {v4 as uuidv4} from 'uuid';
 
 export const ADD_EMPTY_SHOPPING_LIST = 'shoppingList/ADD_EMPTY';
+export const DELETE_SHOPPING_LIST = 'shoppingList/DELETE';
 export const UPDATE_UNFOUND_ORDER = 'shoppingList/UPDATE_UNFOUND_ORDER';
 export const PREPARE_INGREDIENTS_IMPORT =
   'shoppingList/PREPARE_INGREDIENTS_IMPORT';
@@ -45,6 +47,11 @@ export default function reducer(
       if (!state[action.shoppingListId]) return state;
       return produce(state, (draft) => {
         draft[action.shoppingListId].name = action.title;
+      });
+    case DELETE_SHOPPING_LIST:
+      if (!state[action.shoppingListId]) return state;
+      return produce(state, (draft) => {
+        delete draft[action.shoppingListId];
       });
     case ADD_ITEM:
       if (!state[action.shoppingListId]) return state;
@@ -161,6 +168,10 @@ export const actions = {
     type: EDIT_SHOPPING_LIST_TITLE,
     shoppingListId,
     title,
+  }),
+  deleteShoppingList: (shoppingListId: string): DeleteShoppingListAction => ({
+    type: DELETE_SHOPPING_LIST,
+    shoppingListId,
   }),
 };
 

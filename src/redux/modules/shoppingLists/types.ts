@@ -5,6 +5,7 @@ import {
   UPDATE_UNFOUND_ORDER,
   ADD_EMPTY_SHOPPING_LIST,
   EDIT_SHOPPING_LIST_TITLE,
+  DELETE_SHOPPING_LIST,
 } from './ShoppingLists';
 
 export type ShoppingListEntry = {
@@ -21,6 +22,11 @@ export type AddEmptyShoppingListAction = {
   type: typeof ADD_EMPTY_SHOPPING_LIST;
   shoppingListId: string;
   shoppingList: ShoppingListEntry;
+};
+
+export type DeleteShoppingListAction = {
+  type: typeof DELETE_SHOPPING_LIST;
+  shoppingListId: string;
 };
 
 export type UpdateUnfoundOrderAction = {
@@ -52,4 +58,5 @@ export type ShoppingListActions =
   | UpdateUnfoundOrderAction
   | PrepareIngredientsImportAction
   | ImportIngredientsAction
-  | EditShoppingListTitleAction;
+  | EditShoppingListTitleAction
+  | DeleteShoppingListAction;

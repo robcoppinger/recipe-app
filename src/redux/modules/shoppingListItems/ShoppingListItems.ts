@@ -1,6 +1,9 @@
 import produce from 'immer';
 import {RootState, ReduxAction} from '../..';
-import {IMPORT_INGREDIENTS} from '../shoppingLists/ShoppingLists';
+import {
+  DELETE_SHOPPING_LIST,
+  IMPORT_INGREDIENTS,
+} from '../shoppingLists/ShoppingLists';
 import {
   AddShoppingListItemAction,
   DeleteShoppingListItemAction,
@@ -55,6 +58,15 @@ export default function reducer(
         Object.keys(action.ingredients).map((id) => {
           draft[id] = action.ingredients[id];
         });
+      });
+    case DELETE_SHOPPING_LIST:
+      return produce(state, (draft) => {
+        for (const [shoppingListItemId, shoppingListItem] of Object.entries(
+          state,
+        )) {
+          if (shoppingListItem.shoppingListId === action.shoppingListId)
+            delete draft[shoppingListItemId];
+        }
       });
     default:
       return state;
