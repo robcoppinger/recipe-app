@@ -3,6 +3,8 @@ import {
   IMPORT_INGREDIENTS,
   PREPARE_INGREDIENTS_IMPORT,
   UPDATE_UNFOUND_ORDER,
+  ADD_EMPTY_SHOPPING_LIST,
+  EDIT_SHOPPING_LIST_TITLE,
 } from './ShoppingLists';
 
 export type ShoppingListEntry = {
@@ -13,6 +15,12 @@ export type ShoppingListEntry = {
 
 export type ShoppingListState = {
   [key: string]: ShoppingListEntry;
+};
+
+export type AddEmptyShoppingListAction = {
+  type: typeof ADD_EMPTY_SHOPPING_LIST;
+  shoppingListId: string;
+  shoppingList: ShoppingListEntry;
 };
 
 export type UpdateUnfoundOrderAction = {
@@ -33,7 +41,15 @@ export type ImportIngredientsAction = {
   ingredients: {[key: string]: ShoppingListItem};
 };
 
+export type EditShoppingListTitleAction = {
+  type: typeof EDIT_SHOPPING_LIST_TITLE;
+  shoppingListId: string;
+  title: string;
+};
+
 export type ShoppingListActions =
+  | AddEmptyShoppingListAction
   | UpdateUnfoundOrderAction
   | PrepareIngredientsImportAction
-  | ImportIngredientsAction;
+  | ImportIngredientsAction
+  | EditShoppingListTitleAction;

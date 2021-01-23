@@ -4,6 +4,7 @@ import {IMPORT_INGREDIENTS} from '../shoppingLists/ShoppingLists';
 import {
   AddShoppingListItemAction,
   DeleteShoppingListItemAction,
+  EditShoppingListItemAction,
   MarkShoppingListItemFoundAction,
   MarkShoppingListItemUnfoundAction,
   ShoppingListItem,
@@ -11,6 +12,7 @@ import {
 } from './types';
 
 export const ADD_ITEM = 'shoppingListItem/ADD';
+export const EDIT_ITEM = 'shoppingListItem/EDIT';
 export const DELETE_ITEM = 'shoppingListItem/DELETE';
 export const MARK_FOUND = 'shoppingListItem/MARK_FOUND';
 export const MARK_UNFOUND = 'shoppingListItem/MARK_UNFOUND';
@@ -26,6 +28,14 @@ export default function reducer(
       return produce(state, (draft) => {
         draft[action.shoppingListItemId] = {
           shoppingListId: action.shoppingListId,
+          ...action.shoppingListItem,
+        };
+      });
+    case EDIT_ITEM:
+      if (!state[action.shoppingListItemId]) return state;
+      return produce(state, (draft) => {
+        draft[action.shoppingListItemId] = {
+          ...state[action.shoppingListItemId],
           ...action.shoppingListItem,
         };
       });
@@ -59,6 +69,14 @@ export const actions = {
   ): AddShoppingListItemAction => ({
     type: ADD_ITEM,
     shoppingListId,
+    shoppingListItemId,
+    shoppingListItem,
+  }),
+  editItem: (
+    shoppingListItemId: string,
+    shoppingListItem: ShoppingListItem,
+  ): EditShoppingListItemAction => ({
+    type: EDIT_ITEM,
     shoppingListItemId,
     shoppingListItem,
   }),

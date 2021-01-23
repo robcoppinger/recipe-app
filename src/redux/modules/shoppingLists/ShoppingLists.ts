@@ -8,20 +8,25 @@ import {
 } from '../shoppingListItems/ShoppingListItems';
 import {ShoppingListItem} from '../shoppingListItems/types';
 import {
+  AddEmptyShoppingListAction,
+  EditShoppingListTitleAction,
   ImportIngredientsAction,
   PrepareIngredientsImportAction,
   ShoppingListState,
   UpdateUnfoundOrderAction,
 } from './types';
+import {v4 as uuidv4} from 'uuid';
 
+export const ADD_EMPTY_SHOPPING_LIST = 'shoppingList/ADD_EMPTY';
 export const UPDATE_UNFOUND_ORDER = 'shoppingList/UPDATE_UNFOUND_ORDER';
 export const PREPARE_INGREDIENTS_IMPORT =
   'shoppingList/PREPARE_INGREDIENTS_IMPORT';
 export const IMPORT_INGREDIENTS = 'shoppingList/IMPORT_INGREDIENTS';
+export const EDIT_SHOPPING_LIST_TITLE = 'shoppingList/EDIT_TITLE';
 
 const initialState: ShoppingListState = {
-  'fruha-reahrb': {
-    name: 'Default',
+  [uuidv4()]: {
+    name: 'My Shopping List',
     unfoundItems: [],
     foundItems: [],
   },
@@ -32,6 +37,15 @@ export default function reducer(
   action: ReduxAction,
 ): ShoppingListState {
   switch (action.type) {
+    case ADD_EMPTY_SHOPPING_LIST:
+      return produce(state, (draft) => {
+        draft[action.shoppingListId] = action.shoppingList;
+      });
+    case EDIT_SHOPPING_LIST_TITLE:
+      if (!state[action.shoppingListId]) return state;
+      return produce(state, (draft) => {
+        draft[action.shoppingListId].name = action.title;
+      });
     case ADD_ITEM:
       if (!state[action.shoppingListId]) return state;
       return produce(state, (draft) => {
@@ -127,6 +141,25 @@ export const actions = {
     type: IMPORT_INGREDIENTS,
     shoppingListId,
     ingredients,
+  }),
+  addEmptyShoppingList: (
+    shoppingListId: string,
+  ): AddEmptyShoppingListAction => ({
+    type: ADD_EMPTY_SHOPPING_LIST,
+    shoppingListId,
+    shoppingList: {
+      name: 'New Shopping List',
+      unfoundItems: [],
+      foundItems: [],
+    },
+  }),
+  editShoppingListTitle: (
+    shoppingListId: string,
+    title: string,
+  ): EditShoppingListTitleAction => ({
+    type: EDIT_SHOPPING_LIST_TITLE,
+    shoppingListId,
+    title,
   }),
 };
 

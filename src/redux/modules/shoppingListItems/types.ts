@@ -1,6 +1,7 @@
 import {
   ADD_ITEM,
   DELETE_ITEM,
+  EDIT_ITEM,
   MARK_FOUND,
   MARK_UNFOUND,
 } from './ShoppingListItems';
@@ -20,6 +21,12 @@ export type ShoppingListItemsState = {
 export type AddShoppingListItemAction = {
   type: typeof ADD_ITEM;
   shoppingListId: string;
+  shoppingListItemId: string;
+  shoppingListItem: ShoppingListItem;
+};
+
+export type EditShoppingListItemAction = {
+  type: typeof EDIT_ITEM;
   shoppingListItemId: string;
   shoppingListItem: ShoppingListItem;
 };
@@ -44,6 +51,7 @@ export type MarkShoppingListItemUnfoundAction = {
 
 export type ShoppingListItemActions =
   | AddShoppingListItemAction
+  | EditShoppingListItemAction
   | DeleteShoppingListItemAction
   | MarkShoppingListItemFoundAction
   | MarkShoppingListItemUnfoundAction;
