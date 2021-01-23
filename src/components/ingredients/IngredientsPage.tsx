@@ -23,6 +23,8 @@ import {RecipeMode} from '../../screens/Recipe';
 import {SvgImage} from '../common/SvgImage';
 import {useTheme} from '../../context/ThemeContext';
 import {useSnack} from '../../context/SnackContext';
+import {SelectShoppingList} from '../shoppingLists/SelectShoppingList';
+import {useModalView} from '../../context/ModalViewContext';
 
 type IngredientsPageProps = {
   title?: string; // For TabView Title only
@@ -43,6 +45,7 @@ export const IngredientsPage = ({
   const dispatch = useDispatch();
   const snack = useSnack();
   const insets = useSafeAreaInsets();
+  const modalView = useModalView();
   const recipe = useSelector((st: RootState) => selectors.recipe(st, recipeId));
 
   const OPTIONS_CONTAINER_HEIGHT = OPTIONS_ROW_HEIGHT + insets.bottom;
@@ -87,6 +90,17 @@ export const IngredientsPage = ({
     const newArr = selectedIngredients.filter((i) => i !== ingredientId);
     setSelectedIngredients(newArr);
     if (newArr.length <= 0) setMode('default');
+  };
+
+  const addItemsToShoppingList = (shoppingListId: string) => {
+    dispatch(
+      shoppingListActions.prepareIngredientsImport(
+        shoppingListId,
+        selectedIngredients,
+      ),
+    );
+    snack.showSnack('Added to shopping list', 'cart');
+    setMode('default');
   };
 
   const optionsContainerStyle = useAnimatedStyle(() => ({
@@ -176,14 +190,12 @@ export const IngredientsPage = ({
             </IconButton>
             <IconButton
               onPress={() => {
-                dispatch(
-                  shoppingListActions.prepareIngredientsImport(
-                    'fruha-reahrb',
-                    selectedIngredients,
-                  ),
+                modalView.showModal(() =>
+                  SelectShoppingList({
+                    onSelection: (shoppingListId) =>
+                      addItemsToShoppingList(shoppingListId),
+                  }),
                 );
-                snack.showSnack('Added to shopping list', 'cart');
-                setMode('default');
               }}>
               <SvgImage icon="cart" size={30} fill={theme.colors.primary} />
             </IconButton>
