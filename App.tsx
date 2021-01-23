@@ -17,6 +17,7 @@ import {configureStore} from './src/redux/store';
 import {AppNavigator} from './src/navigators/AppNavigator';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import {SnackContextProvider} from './src/context/SnackContext';
+import {ModalViewContextProvider} from './src/context/ModalViewContext';
 
 const {persistor, store} = configureStore();
 
@@ -28,9 +29,11 @@ const App = () => {
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider>
           <SafeAreaProvider>
-            <SnackContextProvider>
-              <AppNavigator />
-            </SnackContextProvider>
+            <ModalViewContextProvider>
+              <SnackContextProvider>
+                <AppNavigator />
+              </SnackContextProvider>
+            </ModalViewContextProvider>
           </SafeAreaProvider>
         </ThemeProvider>
       </PersistGate>
