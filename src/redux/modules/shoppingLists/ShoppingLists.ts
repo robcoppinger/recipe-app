@@ -144,11 +144,12 @@ export const actions = {
   }),
   addEmptyShoppingList: (
     shoppingListId: string,
+    name: string,
   ): AddEmptyShoppingListAction => ({
     type: ADD_EMPTY_SHOPPING_LIST,
     shoppingListId,
     shoppingList: {
-      name: 'New Shopping List',
+      name: name.trim(),
       unfoundItems: [],
       foundItems: [],
     },

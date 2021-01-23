@@ -21,7 +21,9 @@ export const ShoppingLists = () => {
       style={{position: 'absolute', right: 12}}
       onPress={() => {
         const shoppingListId = uuidV4();
-        dispatch(actions.addEmptyShoppingList(shoppingListId));
+        dispatch(
+          actions.addEmptyShoppingList(shoppingListId, 'New Shopping List'),
+        );
         navigate('ShoppingList', {shoppingListId});
       }}>
       <SvgImage icon="add" size={30} fill={theme.colors.primary} />
