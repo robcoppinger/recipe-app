@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Animated, {
   Easing,
   Extrapolate,
@@ -18,7 +18,7 @@ import {
 } from 'react-native-gesture-handler';
 
 type ModalViewContextType = {
-  showModal: (renderFunction: FunctionComponent) => void;
+  showModal: (renderFunction: JSX.Element) => void;
   hideModal: () => void;
 };
 type ModalViewContextProviderProps = {
@@ -42,10 +42,9 @@ export function ModalViewContextProvider({
   const insets = useSafeAreaInsets();
 
   const viewContainerHeight = useSharedValue(0);
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const RenderComponent = useRef<FunctionComponent | undefined>();
+  const [renderComponent, setRenderComponent] = useState<JSX.Element>();
 
-  const setModalHidden = () => setIsModalVisible(false);
+  const setModalHidden = () => setRenderComponent(undefined);
 
   const snapToExtendedHeight = () => {
     if (viewContainerHeight.value !== SNAP_HEIGHT_TALL) {
@@ -58,9 +57,8 @@ export function ModalViewContextProvider({
     }
   };
 
-  const showModal = (renderFunction: FunctionComponent) => {
-    RenderComponent.current = renderFunction;
-    setIsModalVisible(true);
+  const showModal = (renderFunction: JSX.Element) => {
+    setRenderComponent(renderFunction);
     snapToDefaultHeight();
   };
 
@@ -117,7 +115,7 @@ export function ModalViewContextProvider({
   // -------------------- Provider --------------------
   return (
     <ModalViewContext.Provider value={{showModal, hideModal}}>
-      {isModalVisible && (
+      {renderComponent && (
         <>
           <Overlay style={overlayStyle} />
           <Dismissable onPress={hideModal} />
@@ -128,7 +126,7 @@ export function ModalViewContextProvider({
                 <Handle />
               </HandleContainer>
             </PanGestureHandler>
-            {RenderComponent.current && <RenderComponent.current />}
+            {renderComponent}
           </ViewContainer>
         </>
       )}

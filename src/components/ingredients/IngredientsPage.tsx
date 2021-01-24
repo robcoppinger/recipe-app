@@ -190,11 +190,12 @@ export const IngredientsPage = ({
             </IconButton>
             <IconButton
               onPress={() => {
-                modalView.showModal(() =>
-                  SelectShoppingList({
-                    onSelection: (shoppingListId) =>
-                      addItemsToShoppingList(shoppingListId),
-                  }),
+                modalView.showModal(
+                  <SelectShoppingList
+                    onSelection={(shoppingListId) =>
+                      addItemsToShoppingList(shoppingListId)
+                    }
+                  />,
                 );
               }}>
               <SvgImage icon="cart" size={30} fill={theme.colors.primary} />
