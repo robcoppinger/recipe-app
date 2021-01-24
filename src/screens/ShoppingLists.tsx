@@ -1,5 +1,5 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import {FlatList, TouchableOpacity} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {Layout} from '../components/common/Layout';
 import {ShoppingListsItem} from '../components/shoppingLists/ShoppingListsItem';
@@ -35,11 +35,11 @@ export const ShoppingLists = () => {
       showDrawer
       headerLabel="Shopping Lists"
       headerRightComponent={HeaderRightComponent}>
-      <>
-        {Object.keys(shoppingLists).map((id) => (
-          <ShoppingListsItem key={id} shoppingListId={id} />
-        ))}
-      </>
+      <FlatList
+        data={Object.keys(shoppingLists)}
+        keyExtractor={(item) => item}
+        renderItem={({item}) => <ShoppingListsItem shoppingListId={item} />}
+      />
     </Layout>
   );
 };
