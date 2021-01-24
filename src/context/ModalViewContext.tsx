@@ -81,12 +81,6 @@ export function ModalViewContextProvider({
 
   const viewContainerStyle = useAnimatedStyle(() => ({
     height: viewContainerHeight.value,
-    opacity: interpolate(
-      viewContainerHeight.value,
-      [40, 80],
-      [0, 1],
-      Extrapolate.CLAMP,
-    ),
   }));
 
   const overlayStyle = useAnimatedStyle(() => ({
