@@ -7,7 +7,7 @@ type RoadMapEntry = {
 
 export const roadmap: RoadMapEntry[] = [
   {
-    title: 'Short Term',
+    title: 'Phase One',
     descriptor:
       'This will be the first release of the app. A simple, useful and usable product',
     actions: [
@@ -42,7 +42,7 @@ export const roadmap: RoadMapEntry[] = [
     ],
   },
   {
-    title: 'Medium Term',
+    title: 'Phase Two',
     descriptor:
       'This will be the next version of the app, with some slightly more advanced features making the app more intuitive',
     actions: [
@@ -90,7 +90,7 @@ export const roadmap: RoadMapEntry[] = [
     ],
   },
   {
-    title: 'Long Term',
+    title: 'Phase Three',
     descriptor: 'The potential monetizing phase',
     actions: [
       {
