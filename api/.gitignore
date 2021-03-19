@@ -1,0 +1,9 @@
+node_modules/
+yarn-error.log
+.env
+.env.staging
+.nyc_output
+coverage
+build/
+pgdata/
+dist
