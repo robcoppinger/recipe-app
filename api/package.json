@@ -16,6 +16,7 @@
   "author": "Rob Coppinger",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
     "cookie-parser": "~1.4.4",
