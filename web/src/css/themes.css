@@ -1,0 +1,27 @@
+html {
+  --screen-background: #f0f2f5;
+  --primary-color: #de8888;
+  --paper-color: #ffffff;
+  --input-color: #f0f2f5;
+
+  --primary-text: #1c1e21;
+  --secondary-text: #65676b;
+}
+
+html[data-theme='dark'] {
+  --screen-background: #18191a;
+  --primary-color: #66cfff;
+  --paper-color: #252526;
+  --input-color: #3a3b3d;
+
+  --primary-text: #e4e6eb;
+  --secondary-text: #b0b3b8;
+}
+
+/* html.transition,
+html.transition *,
+html.transition *:before,
+html.transition *:after {
+  transition: all 500ms !important;
+  transition-delay: 0 !important;
+} */
