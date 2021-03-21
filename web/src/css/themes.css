@@ -3,7 +3,8 @@ html {
   --primary-color: #de8888;
   --header-color: #ffffff;
   --paper-color: #ffffff;
-  --input-color: #f0f2f5;
+  /* --input-color: #f0f2f5; */
+  --input-color: #ffffff;
 
   --primary-text: #1c1e21;
   --secondary-text: #65676b;
@@ -11,6 +12,10 @@ html {
   --primary-icon: #1c1e21;
 
   --header-shadow: 0px 1px 2px #e2e2e2;
+
+  /* common */
+  --border-radius: 1rem;
+  --interactive-padding: 1rem;
 }
 
 html[data-theme='dark'] {
