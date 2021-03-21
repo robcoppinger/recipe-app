@@ -8,8 +8,11 @@ html {
 
   --primary-text: #1c1e21;
   --secondary-text: #65676b;
+  --primary-filled-text: #ffffff;
 
   --primary-icon: #1c1e21;
+  --button-disabled-background: #c5c5c5;
+  --button-disabled-color: #949494;
 
   --header-shadow: 0px 1px 2px #e2e2e2;
 
@@ -27,8 +30,11 @@ html[data-theme='dark'] {
 
   --primary-text: #e4e6eb;
   --secondary-text: #b0b3b8;
+  --primary-filled-text: #000000;
 
   --primary-icon: #b1b3b8;
+  --button-disabled-background: #292929;
+  --button-disabled-color: #9c9c9c;
 
   --header-shadow: 0px 1px 2px #6a6a6a;
 }
