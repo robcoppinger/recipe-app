@@ -64,4 +64,12 @@ export class User {
       lastName: this.lastName,
     }
   }
+
+  public getId() {
+    return this.id
+  }
+
+  public verifyPassword(plainPassword: string) {
+    return this.password.verify(plainPassword)
+  }
 }
