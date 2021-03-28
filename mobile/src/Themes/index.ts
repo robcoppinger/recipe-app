@@ -1,5 +1,5 @@
-import {fonts} from './Fonts';
-import {DefaultTheme, ThemeColors} from 'styled-components';
+import { fonts } from './Fonts';
+import { DefaultTheme, ThemeColors } from 'styled-components';
 
 type ColorsObj = {
   light: ThemeColors;
@@ -15,6 +15,7 @@ const themeColors: ColorsObj = {
     primaryFaded: '#F8EEEE',
     text: '#000000',
     textSecondary: '#A8A8A8',
+    primaryFilledContent: '#FFFFFF',
     paper: '#fcfcfc',
     paperSecondary: '#f9f9f9',
     itemSeparator: '#EDEDED',
@@ -34,6 +35,7 @@ const themeColors: ColorsObj = {
     primaryFaded: '#2F3D43',
     text: '#EDEDED',
     textSecondary: '#9E9E9E',
+    primaryFilledContent: '#262626',
     paper: '#292929',
     paperSecondary: '#2c2c2c',
     itemSeparator: '#212121',

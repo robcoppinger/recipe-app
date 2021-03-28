@@ -11,7 +11,7 @@ declare module 'styled-components' {
     | 'light'
     | 'thin';
 
-  export type FontFamily = {[key in FontStyle]: string};
+  export type FontFamily = { [key in FontStyle]: string };
 
   export type ThemeColors = {
     screenBackground: string;
@@ -21,6 +21,7 @@ declare module 'styled-components' {
     primaryFaded: string;
     text: string;
     textSecondary: string;
+    primaryFilledContent: string;
     paper: string;
     paperSecondary: string;
     itemSeparator: string;
