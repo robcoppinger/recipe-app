@@ -46,6 +46,7 @@ export async function createServer() {
   app.use(cors())
 
   useExpressServer(app, {
+    routePrefix: '/api',
     controllers: dirs.controllers,
     middlewares: dirs.middlewares,
     defaultErrorHandler: true,
