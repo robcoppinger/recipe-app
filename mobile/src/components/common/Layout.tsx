@@ -1,5 +1,5 @@
 import React from 'react';
-import {Header} from './Header';
+import { Header } from './Header';
 import styled from 'styled-components/native';
 
 type LayoutProps = {
@@ -36,7 +36,7 @@ export const Layout = ({
   </>
 );
 
-const PageContainer = styled.View`
+export const PageContainer = styled.View`
   background-color: ${(props) => props.theme.colors.screenBackground};
   flex: 1;
 `;
