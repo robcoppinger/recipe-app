@@ -1,4 +1,4 @@
-import {SVGIcon} from './SVGIcon';
+import { SVGIcon } from './SVGIcon';
 
 export const LockIcon = (props: any) => {
   return (

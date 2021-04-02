@@ -1,4 +1,4 @@
-import {forwardRef, InputHTMLAttributes} from 'react';
+import { forwardRef, InputHTMLAttributes } from 'react';
 import styles from './TextInput.module.scss';
 
 interface ITextInput extends InputHTMLAttributes<HTMLInputElement> {
@@ -8,7 +8,7 @@ interface ITextInput extends InputHTMLAttributes<HTMLInputElement> {
 }
 
 export const TextInput = forwardRef<HTMLInputElement, ITextInput>(
-  ({id, label, required = false, ...inputProps}: ITextInput, ref) => (
+  ({ id, label, required = false, ...inputProps }: ITextInput, ref) => (
     <>
       {label && (
         <label className={styles.label} htmlFor={id}>

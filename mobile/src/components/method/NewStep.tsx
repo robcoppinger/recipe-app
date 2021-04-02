@@ -1,22 +1,22 @@
-import React, {createRef, useEffect, useState} from 'react';
+import React, { createRef, useEffect, useState } from 'react';
 import styled from 'styled-components/native';
 import {
   Keyboard,
   TextInput as RNTextInput,
   TouchableOpacity,
 } from 'react-native';
-import {useDispatch} from 'react-redux';
-import {actions} from '../../redux/modules/method/Method';
-import {v4 as uuidV4} from 'uuid';
-import {TextInput} from '../common/TextInput';
-import {SvgImage} from '../common/SvgImage';
-import {useTheme} from '../../context/ThemeContext';
+import { useDispatch } from 'react-redux';
+import { actions } from '../../redux/modules/method/Method';
+import { v4 as uuidV4 } from 'uuid';
+import { TextInput } from '../common/TextInput';
+import { SvgImage } from '../common/SvgImage';
+import { useTheme } from '../../context/ThemeContext';
 
 type NewStepProps = {
   recipeId: string;
 };
 
-export const NewStep = ({recipeId}: NewStepProps) => {
+export const NewStep = ({ recipeId }: NewStepProps) => {
   const dispatch = useDispatch();
   const [step, setStep] = useState('');
   const inputRef = createRef<RNTextInput>();
@@ -31,7 +31,7 @@ export const NewStep = ({recipeId}: NewStepProps) => {
 
   const addStep = () => {
     if (step === '') return;
-    dispatch(actions.addStep(uuidV4(), recipeId, {text: step}));
+    dispatch(actions.addStep(uuidV4(), recipeId, { text: step }));
     setStep('');
     inputRef.current?.focus();
   };
@@ -48,7 +48,7 @@ export const NewStep = ({recipeId}: NewStepProps) => {
         returnKeyType="done"
       />
       <TouchableOpacity
-        style={{marginRight: 8}}
+        style={{ marginRight: 8 }}
         onPress={addStep}
         disabled={step === ''}>
         <SvgImage

@@ -1,0 +1,23 @@
+{
+  "name": "recipes",
+  "version": "1.0.0",
+  "description": "This is a simple mobile application developed using React Native used to store recipes locally.",
+  "main": ".prettierrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretty": "prettier --write \"./**/*.{ts,tsx,json}\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robcoppinger/recipe-app.git"
+  },
+  "author": "Rob Coppinger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/robcoppinger/recipe-app/issues"
+  },
+  "homepage": "https://github.com/robcoppinger/recipe-app#readme",
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  }
+}

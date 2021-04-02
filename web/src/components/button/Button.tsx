@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import {ButtonHTMLAttributes, forwardRef} from 'react';
+import { ButtonHTMLAttributes, forwardRef } from 'react';
 import styles from './Button.module.scss';
 
 interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -8,7 +8,7 @@ interface IButton extends ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 export const Button = forwardRef<HTMLButtonElement, IButton>(
-  ({children, className, variant, ...buttonProps}, ref) => {
+  ({ children, className, variant, ...buttonProps }, ref) => {
     return (
       <button
         type="button"

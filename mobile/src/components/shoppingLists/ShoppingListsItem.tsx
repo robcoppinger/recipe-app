@@ -1,14 +1,14 @@
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/native';
-import {RootState} from '../../redux';
+import { RootState } from '../../redux';
 import {
   actions,
   selectors,
 } from '../../redux/modules/shoppingLists/ShoppingLists';
-import {Deleteable} from '../common/Deleteable';
-import {Text} from '../common/Text';
+import { Deleteable } from '../common/Deleteable';
+import { Text } from '../common/Text';
 
 type ShoppingListsItemProps = {
   shoppingListId: string;
@@ -16,8 +16,10 @@ type ShoppingListsItemProps = {
 
 const SHOPPING_LISTS_ITEM_HEIGHT = 60;
 
-export const ShoppingListsItem = ({shoppingListId}: ShoppingListsItemProps) => {
-  const {navigate} = useNavigation();
+export const ShoppingListsItem = ({
+  shoppingListId,
+}: ShoppingListsItemProps) => {
+  const { navigate } = useNavigation();
   const dispatch = useDispatch();
 
   const shoppingList = useSelector((s: RootState) =>
@@ -32,10 +34,10 @@ export const ShoppingListsItem = ({shoppingListId}: ShoppingListsItemProps) => {
     <Deleteable
       containerHeight={SHOPPING_LISTS_ITEM_HEIGHT}
       onDeleteAnimationComplete={deleteShoppingList}>
-      {({interceptPress}) => (
+      {({ interceptPress }) => (
         <Container
           onPress={() =>
-            interceptPress(() => navigate('ShoppingList', {shoppingListId}))
+            interceptPress(() => navigate('ShoppingList', { shoppingListId }))
           }>
           <ItemText>{shoppingList.name}</ItemText>
         </Container>

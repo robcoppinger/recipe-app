@@ -1,5 +1,5 @@
 import React from 'react';
-import {Dimensions} from 'react-native';
+import { Dimensions } from 'react-native';
 import {
   PanGestureHandler,
   PanGestureHandlerGestureEvent,
@@ -15,13 +15,15 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 import styled from 'styled-components/native';
-import {useTheme} from '../../context/ThemeContext';
-import {SvgImage} from './SvgImage';
+import { useTheme } from '../../context/ThemeContext';
+import { SvgImage } from './SvgImage';
 import * as Haptic from 'expo-haptics';
 
 type DeleteableProps = {
   enabled?: boolean;
-  children: (props: {interceptPress: (cb?: () => void) => void}) => JSX.Element;
+  children: (props: {
+    interceptPress: (cb?: () => void) => void;
+  }) => JSX.Element;
   containerHeight: number;
   onDeleteAnimationStarted?: () => void;
   onDeleteAnimationComplete?: () => void;
@@ -51,12 +53,12 @@ export const Deleteable = ({
   // swipe to delete gesture handler
   const onSwipeGestureEvent = useAnimatedGestureHandler<
     PanGestureHandlerGestureEvent,
-    {x: number; y: number}
+    { x: number; y: number }
   >({
     onStart: (_, ctx) => {
       ctx.x = translateX.value;
     },
-    onActive: ({translationX}, ctx) => {
+    onActive: ({ translationX }, ctx) => {
       let dest = ctx.x + translationX;
       translateX.value = dest <= 0 ? dest : 0;
       if (
@@ -104,7 +106,7 @@ export const Deleteable = ({
 
   const swipeableContainerStyle = useAnimatedStyle(() => ({
     flex: 1,
-    transform: [{translateX: translateX.value}],
+    transform: [{ translateX: translateX.value }],
   }));
 
   const imageStyle = useAnimatedStyle(() => ({
@@ -155,8 +157,8 @@ export const Deleteable = ({
           enabled={enabled}
           activeOffsetX={[-10]}
           onGestureEvent={onSwipeGestureEvent}>
-          <Animated.View style={{flex: 1, height: '100%'}}>
-            {children({interceptPress})}
+          <Animated.View style={{ flex: 1, height: '100%' }}>
+            {children({ interceptPress })}
           </Animated.View>
         </PanGestureHandler>
       </Animated.View>

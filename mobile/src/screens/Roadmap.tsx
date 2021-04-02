@@ -1,18 +1,18 @@
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import styled from 'styled-components/native';
-import {roadmap} from '../components/roadmap/RoadmapData';
-import {Layout} from '../components/common/Layout';
-import {SvgImage} from '../components/common/SvgImage';
-import {Text} from '../components/common/Text';
-import {useTheme} from '../context/ThemeContext';
+import { roadmap } from '../components/roadmap/RoadmapData';
+import { Layout } from '../components/common/Layout';
+import { SvgImage } from '../components/common/SvgImage';
+import { Text } from '../components/common/Text';
+import { useTheme } from '../context/ThemeContext';
 
 export const Roadmap = () => {
   const theme = useTheme();
-  const {navigate} = useNavigation();
+  const { navigate } = useNavigation();
   return (
     <Layout showDrawer>
-      <Container contentContainerStyle={{paddingBottom: 40}}>
+      <Container contentContainerStyle={{ paddingBottom: 40 }}>
         <TitleContainer>
           <Text>
             Below is the roadmap of how I see this product developing, the
@@ -27,11 +27,11 @@ export const Roadmap = () => {
             </HeaderSection>
             {item.actions.map((action, index) => (
               <ActionContainer
-                style={index === 0 && {borderTopWidth: 1}}
+                style={index === 0 && { borderTopWidth: 1 }}
                 key={action.title}
                 onPress={
                   action.moreInfo
-                    ? () => navigate('ActionInfo', {action})
+                    ? () => navigate('ActionInfo', { action })
                     : () => {}
                 }
                 activeOpacity={action.moreInfo ? 0.5 : 1}>
@@ -61,7 +61,7 @@ const TitleContainer = styled.View`
   padding: ${(props) => props.theme.itemPadding};
   padding-bottom: 0;
 `;
-const Title = styled(Text).attrs({variant: 'h1'})`
+const Title = styled(Text).attrs({ variant: 'h1' })`
   margin-bottom: 12px;
 `;
 

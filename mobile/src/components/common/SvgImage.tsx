@@ -1,5 +1,5 @@
-import {useTheme} from 'styled-components';
-import {Images, SvgIcons} from '../../../assets/images';
+import { useTheme } from 'styled-components';
+import { Images, SvgIcons } from '../../../assets/images';
 
 type SvgImageProps = {
   icon: SvgIcons;
@@ -7,7 +7,7 @@ type SvgImageProps = {
   fill?: string;
 };
 
-export const SvgImage = ({icon, size = 25, fill}: SvgImageProps) => {
+export const SvgImage = ({ icon, size = 25, fill }: SvgImageProps) => {
   const theme = useTheme();
   if (!icon) return null;
   const source = Images[icon];

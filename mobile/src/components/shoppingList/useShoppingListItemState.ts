@@ -1,7 +1,7 @@
-import {useReducer} from 'react';
-import {ShoppingListItem as ShoppingListItemType} from '../../redux/modules/shoppingListItems/types';
+import { useReducer } from 'react';
+import { ShoppingListItem as ShoppingListItemType } from '../../redux/modules/shoppingListItems/types';
 import produce from 'immer';
-import {ShoppingListItem} from '../../redux/modules/shoppingListItems/types';
+import { ShoppingListItem } from '../../redux/modules/shoppingListItems/types';
 
 const defaultState: ShoppingListItem = {
   name: '',

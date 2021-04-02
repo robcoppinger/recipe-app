@@ -1,41 +1,44 @@
-import {useNavigation, useRoute} from '@react-navigation/native';
-import React, {useState} from 'react';
-import {ScrollView, TouchableOpacity, View} from 'react-native';
-import {useSharedValue} from 'react-native-reanimated';
-import {useDispatch, useSelector} from 'react-redux';
-import {Layout} from '../components/common/Layout';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import React, { useState } from 'react';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
+import { useSharedValue } from 'react-native-reanimated';
+import { useDispatch, useSelector } from 'react-redux';
+import { Layout } from '../components/common/Layout';
 import {
   ShoppingListItem,
   SHOPPING_LIST_ITEM_HEIGHT,
 } from '../components/shoppingList/ShoppingListItem';
-import {ShoppingListScreenRouteProp} from '../navigators/ShoppingListNavigator';
-import {actions, selectors} from '../redux/modules/shoppingLists/ShoppingLists';
-import {RootState} from '../redux';
+import { ShoppingListScreenRouteProp } from '../navigators/ShoppingListNavigator';
+import {
+  actions,
+  selectors,
+} from '../redux/modules/shoppingLists/ShoppingLists';
+import { RootState } from '../redux';
 import {
   NewShoppingListItem,
   NEW_SHOPPINGLIST_ITEM_HEIGHT,
 } from '../components/shoppingList/NewShoppingListItem';
 import styled from 'styled-components/native';
-import {TextInput} from '../components/common/TextInput';
-import {useTheme} from '../context/ThemeContext';
-import {SvgImage} from '../components/common/SvgImage';
-import {Text} from '../components/common/Text';
-import {EditShoppingListItem} from '../components/shoppingList/EditShoppingListItem';
+import { TextInput } from '../components/common/TextInput';
+import { useTheme } from '../context/ThemeContext';
+import { SvgImage } from '../components/common/SvgImage';
+import { Text } from '../components/common/Text';
+import { EditShoppingListItem } from '../components/shoppingList/EditShoppingListItem';
 
 export const ShoppingList = () => {
   const dispatch = useDispatch();
-  const {goBack} = useNavigation();
+  const { goBack } = useNavigation();
   const theme = useTheme();
 
   const route = useRoute<ShoppingListScreenRouteProp>();
   const params = route.params || {};
-  const {shoppingListId} = params;
+  const { shoppingListId } = params;
 
   const shoppingList = useSelector((s: RootState) =>
     selectors.shoppingList(s, shoppingListId),
   );
   if (!shoppingList) return <View />;
-  const {unfoundItems, foundItems} = shoppingList;
+  const { unfoundItems, foundItems } = shoppingList;
 
   const [mode, setMode] = useState<'default' | 'edit'>('default');
   const [title, setTitle] = useState(shoppingList.name);
@@ -47,7 +50,7 @@ export const ShoppingList = () => {
     .concat(foundItems)
     .filter((value, index, self) => self.indexOf(value) === index);
   const positions = useSharedValue<Positions>(
-    Object.assign({}, ...order.map((id, index) => ({[id]: index}))),
+    Object.assign({}, ...order.map((id, index) => ({ [id]: index }))),
   );
   const newItemOffset = order.length * SHOPPING_LIST_ITEM_HEIGHT;
 
@@ -58,7 +61,7 @@ export const ShoppingList = () => {
       </TouchableOpacity>
       <HeaderTitle
         editable={mode === 'edit'}
-        style={mode === 'edit' && {borderBottomWidth: 1, paddingBottom: 3}}
+        style={mode === 'edit' && { borderBottomWidth: 1, paddingBottom: 3 }}
         value={title}
         selectTextOnFocus
         onChangeText={(value) => setTitle(value)}
@@ -81,9 +84,9 @@ export const ShoppingList = () => {
       customHeaderComponent={customHeader}
       headerLabel={shoppingList.name}
       showGoBack>
-      <View style={{flex: 1}}>
+      <View style={{ flex: 1 }}>
         <ScrollView
-          scrollIndicatorInsets={{right: 1}}
+          scrollIndicatorInsets={{ right: 1 }}
           contentContainerStyle={{
             height:
               order.length * SHOPPING_LIST_ITEM_HEIGHT +
@@ -103,7 +106,7 @@ export const ShoppingList = () => {
             ) : (
               <EditShoppingListItem
                 key={shoppingListItemId}
-                {...{shoppingListItemId, shoppingListId}}
+                {...{ shoppingListItemId, shoppingListId }}
               />
             ),
           )}

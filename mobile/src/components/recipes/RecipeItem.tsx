@@ -1,11 +1,11 @@
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/native';
-import {RootState} from '../../redux';
-import {actions, selectors} from '../../redux/modules/recipes/Recipes';
-import {Deleteable} from '../common/Deleteable';
-import {Text} from '../common/Text';
+import { RootState } from '../../redux';
+import { actions, selectors } from '../../redux/modules/recipes/Recipes';
+import { Deleteable } from '../common/Deleteable';
+import { Text } from '../common/Text';
 
 const HEIGHT = 64;
 
@@ -13,18 +13,20 @@ type RecipeItemProps = {
   recipeId: string;
 };
 
-export const RecipeItem = ({recipeId}: RecipeItemProps) => {
+export const RecipeItem = ({ recipeId }: RecipeItemProps) => {
   const dispatch = useDispatch();
   const recipe = useSelector((st: RootState) => selectors.recipe(st, recipeId));
-  const {navigate} = useNavigation();
+  const { navigate } = useNavigation();
   const deleteItem = () => dispatch(actions.deleteRecipe(recipeId));
 
   return (
     <Deleteable containerHeight={HEIGHT} onDeleteAnimationComplete={deleteItem}>
-      {({interceptPress}) => (
+      {({ interceptPress }) => (
         <RecipeItemContainer
           activeOpacity={0.5}
-          onPress={() => interceptPress(() => navigate('Recipe', {recipeId}))}>
+          onPress={() =>
+            interceptPress(() => navigate('Recipe', { recipeId }))
+          }>
           <RecipeText variant="h3">{recipe.title}</RecipeText>
         </RecipeItemContainer>
       )}

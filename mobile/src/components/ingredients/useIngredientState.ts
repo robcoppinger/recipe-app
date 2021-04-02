@@ -1,5 +1,5 @@
-import {useState, useReducer} from 'react';
-import {Ingredient} from '../../redux/modules/ingredients/types';
+import { useState, useReducer } from 'react';
+import { Ingredient } from '../../redux/modules/ingredients/types';
 import produce from 'immer';
 
 const defaultState = {

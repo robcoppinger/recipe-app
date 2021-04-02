@@ -1,9 +1,9 @@
 import './css/base.css';
 import './css/themes.css';
-import {Home} from './screens/home';
-import {BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
-import {Register} from './screens/register';
-import {Login} from './screens/login';
+import { Home } from './screens/home';
+import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import { Register } from './screens/register';
+import { Login } from './screens/login';
 
 function App() {
   return (

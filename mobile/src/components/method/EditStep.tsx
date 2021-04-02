@@ -1,19 +1,19 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import {actions, selectors} from '../../redux/modules/method/Method';
-import {RootState} from '../../redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { actions, selectors } from '../../redux/modules/method/Method';
+import { RootState } from '../../redux';
 import styled from 'styled-components/native';
-import {TouchableOpacity} from 'react-native';
-import {SvgImage} from '../common/SvgImage';
-import {useTheme} from '../../context/ThemeContext';
-import {TextInput} from '../common/TextInput';
+import { TouchableOpacity } from 'react-native';
+import { SvgImage } from '../common/SvgImage';
+import { useTheme } from '../../context/ThemeContext';
+import { TextInput } from '../common/TextInput';
 
 type EditStepProps = {
   stepId: string;
   recipeId: string;
 };
 
-export const EditStep = ({stepId, recipeId}: EditStepProps) => {
+export const EditStep = ({ stepId, recipeId }: EditStepProps) => {
   const dispatch = useDispatch();
   const stepEntry = useSelector((st: RootState) => selectors.step(st, stepId));
   const [step, setStep] = useState(stepEntry.text);
@@ -24,7 +24,7 @@ export const EditStep = ({stepId, recipeId}: EditStepProps) => {
       dispatch(actions.deleteStep(stepId, recipeId));
       return;
     }
-    dispatch(actions.editStep(stepId, {text: step}));
+    dispatch(actions.editStep(stepId, { text: step }));
   };
 
   return (

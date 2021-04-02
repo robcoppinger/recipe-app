@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Animated, {
   Easing,
   runOnJS,
@@ -6,12 +6,12 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import {SvgIcons} from '../../assets/images';
-import {SvgImage} from '../components/common/SvgImage';
-import {Text} from '../components/common/Text';
-import {useTheme} from './ThemeContext';
+import { SvgIcons } from '../../assets/images';
+import { SvgImage } from '../components/common/SvgImage';
+import { Text } from '../components/common/Text';
+import { useTheme } from './ThemeContext';
 import * as Haptic from 'expo-haptics';
 
 type SnackContextType = {
@@ -31,7 +31,7 @@ const SnackContext = React.createContext<SnackContextType>({
 
 const SNACK_HEIGHT = 60;
 
-export function SnackContextProvider({children}: SnackContextProviderProps) {
+export function SnackContextProvider({ children }: SnackContextProviderProps) {
   const theme = useTheme();
   const insets = useSafeAreaInsets();
   const SNACK_END_POSITION = insets.top;
@@ -57,7 +57,7 @@ export function SnackContextProvider({children}: SnackContextProviderProps) {
   const showSnack = (text: string, icon?: SvgIcons) => {
     if (!text || !!snack) return;
     Haptic.notificationAsync(Haptic.NotificationFeedbackType.Success);
-    setSnack({text, icon});
+    setSnack({ text, icon });
 
     const triggerHide = async () => {
       await new Promise((res) => setTimeout(res, 2000));
@@ -71,12 +71,12 @@ export function SnackContextProvider({children}: SnackContextProviderProps) {
 
   const snackContainerStyle = useAnimatedStyle(() => ({
     opacity: snackOpacity.value,
-    transform: [{translateY: translateY.value}],
+    transform: [{ translateY: translateY.value }],
   }));
 
   // -------------------- Provider --------------------
   return (
-    <SnackContext.Provider value={{showSnack}}>
+    <SnackContext.Provider value={{ showSnack }}>
       {snack && (
         <SnackContainer style={snackContainerStyle}>
           <Snack>

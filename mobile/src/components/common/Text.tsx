@@ -1,6 +1,6 @@
-import React, {FunctionComponent} from 'react';
+import React, { FunctionComponent } from 'react';
 import styled from 'styled-components/native';
-import {TextProps} from 'react-native';
+import { TextProps } from 'react-native';
 
 interface CustomTextProps extends TextProps {
   variant?: 'h1' | 'h2' | 'h3' | 'regular' | 'small' | 'xsmall';

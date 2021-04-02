@@ -1,6 +1,6 @@
-import React, {useEffect, useState} from 'react';
-import {KeyboardAvoidingView, ScrollView} from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import { KeyboardAvoidingView, ScrollView } from 'react-native';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/native';
 import Animated, {
   Easing,
@@ -11,20 +11,20 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import {actions as shoppingListActions} from '../../redux/modules/shoppingLists/ShoppingLists';
-import {actions as ingredientsActions} from '../../redux/modules/ingredients/Ingredients';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
-import {selectors} from '../../redux/modules/recipes/Recipes';
-import {RootState} from '../../redux';
-import {IngredientItem, INGREDIENT_ITEM_HEIGHT} from './IngredientItem';
-import {EditIngredientItem} from './EditIngredientItem';
-import {NewIngredient, NEW_INGREDIENT_HEIGHT} from './NewIngredient';
-import {RecipeMode} from '../../screens/Recipe';
-import {SvgImage} from '../common/SvgImage';
-import {useTheme} from '../../context/ThemeContext';
-import {useSnack} from '../../context/SnackContext';
-import {SelectShoppingList} from '../shoppingLists/SelectShoppingList';
-import {useModalView} from '../../context/ModalViewContext';
+import { actions as shoppingListActions } from '../../redux/modules/shoppingLists/ShoppingLists';
+import { actions as ingredientsActions } from '../../redux/modules/ingredients/Ingredients';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { selectors } from '../../redux/modules/recipes/Recipes';
+import { RootState } from '../../redux';
+import { IngredientItem, INGREDIENT_ITEM_HEIGHT } from './IngredientItem';
+import { EditIngredientItem } from './EditIngredientItem';
+import { NewIngredient, NEW_INGREDIENT_HEIGHT } from './NewIngredient';
+import { RecipeMode } from '../../screens/Recipe';
+import { SvgImage } from '../common/SvgImage';
+import { useTheme } from '../../context/ThemeContext';
+import { useSnack } from '../../context/SnackContext';
+import { SelectShoppingList } from '../shoppingLists/SelectShoppingList';
+import { useModalView } from '../../context/ModalViewContext';
 
 type IngredientsPageProps = {
   title?: string; // For TabView Title only
@@ -59,7 +59,7 @@ export const IngredientsPage = ({
   const positions = useSharedValue<Positions>(
     Object.assign(
       {},
-      ...recipe.ingredients.map((id, index) => ({[id]: index})),
+      ...recipe.ingredients.map((id, index) => ({ [id]: index })),
     ),
   );
 
@@ -116,11 +116,11 @@ export const IngredientsPage = ({
 
   return (
     <KeyboardAvoidingView
-      style={{flex: 1}}
+      style={{ flex: 1 }}
       behavior="padding"
       keyboardVerticalOffset={170}>
       <ScrollView
-        scrollIndicatorInsets={{right: 1}}
+        scrollIndicatorInsets={{ right: 1 }}
         contentContainerStyle={{
           height:
             recipe.ingredients.length * INGREDIENT_ITEM_HEIGHT +

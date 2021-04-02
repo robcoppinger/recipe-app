@@ -1,14 +1,17 @@
-import React, {createRef} from 'react';
+import React, { createRef } from 'react';
 import styled from 'styled-components/native';
-import {useSelector, useDispatch} from 'react-redux';
-import {RootState} from '../../redux';
-import {selectors, actions} from '../../redux/modules/ingredients/Ingredients';
-import {SvgImage} from '../common/SvgImage';
-import {TouchableOpacity, TextInput as RNTextInput} from 'react-native';
-import {useTheme} from '../../context/ThemeContext';
-import {useIngredientState} from './useIngredientState';
-import {TextInput} from '../common/TextInput';
-import {INGREDIENT_ITEM_HEIGHT} from './IngredientItem';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../redux';
+import {
+  selectors,
+  actions,
+} from '../../redux/modules/ingredients/Ingredients';
+import { SvgImage } from '../common/SvgImage';
+import { TouchableOpacity, TextInput as RNTextInput } from 'react-native';
+import { useTheme } from '../../context/ThemeContext';
+import { useIngredientState } from './useIngredientState';
+import { TextInput } from '../common/TextInput';
+import { INGREDIENT_ITEM_HEIGHT } from './IngredientItem';
 
 type EditIngredientItemProps = {
   ingredientId: string;
@@ -42,7 +45,7 @@ export const EditIngredientItem = ({
         value={ingredient.name}
         placeholder="New Ingredient"
         onChangeText={(value) =>
-          dispatchIngredient({type: 'setName', name: value})
+          dispatchIngredient({ type: 'setName', name: value })
         }
         onBlur={onBlur}
         returnKeyType="next"
@@ -53,7 +56,7 @@ export const EditIngredientItem = ({
         placeholder="Amt."
         value={ingredient.amount}
         onChangeText={(value) =>
-          dispatchIngredient({type: 'setAmount', amount: value})
+          dispatchIngredient({ type: 'setAmount', amount: value })
         }
         onBlur={onBlur}
         returnKeyType="next"
@@ -65,7 +68,7 @@ export const EditIngredientItem = ({
         autoCapitalize="none"
         value={ingredient.unit}
         onChangeText={(value) =>
-          dispatchIngredient({type: 'setUnit', unit: value})
+          dispatchIngredient({ type: 'setUnit', unit: value })
         }
         onBlur={onBlur}
         returnKeyType="done"

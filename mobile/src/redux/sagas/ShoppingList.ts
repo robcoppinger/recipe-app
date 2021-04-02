@@ -1,16 +1,16 @@
-import {takeLatest, select, put} from 'redux-saga/effects';
-import {v4 as uuidV4} from 'uuid';
-import {RootState} from '..';
-import {selectors as ingredientSelectors} from '../modules/ingredients/Ingredients';
-import {actions} from '../modules/shoppingLists/ShoppingLists';
-import {ShoppingListItem} from '../modules/shoppingListItems/types';
-import {PREPARE_INGREDIENTS_IMPORT} from '../modules/shoppingLists/ShoppingLists';
-import {PrepareIngredientsImportAction} from '../modules/shoppingLists/types';
+import { takeLatest, select, put } from 'redux-saga/effects';
+import { v4 as uuidV4 } from 'uuid';
+import { RootState } from '..';
+import { selectors as ingredientSelectors } from '../modules/ingredients/Ingredients';
+import { actions } from '../modules/shoppingLists/ShoppingLists';
+import { ShoppingListItem } from '../modules/shoppingListItems/types';
+import { PREPARE_INGREDIENTS_IMPORT } from '../modules/shoppingLists/ShoppingLists';
+import { PrepareIngredientsImportAction } from '../modules/shoppingLists/types';
 
 function* importIngredients(action: PrepareIngredientsImportAction) {
-  const {ingredientIds, shoppingListId} = action;
+  const { ingredientIds, shoppingListId } = action;
 
-  const ingredients: {[key: string]: ShoppingListItem} = {};
+  const ingredients: { [key: string]: ShoppingListItem } = {};
 
   for (var ingredientId of ingredientIds) {
     const ingredient: ShoppingListItem = yield select((s: RootState) =>

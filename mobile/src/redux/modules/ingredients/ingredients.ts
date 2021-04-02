@@ -1,5 +1,5 @@
 import produce from 'immer';
-import {RootState, ReduxAction} from '../..';
+import { RootState, ReduxAction } from '../..';
 import {
   IngredientsState,
   Ingredient,
@@ -8,7 +8,7 @@ import {
   EditIngredientAction,
   DeleteBulkIngredientsAction,
 } from './types';
-import {DELETE_RECIPE} from '../recipes/Recipes';
+import { DELETE_RECIPE } from '../recipes/Recipes';
 
 export const ADD_INGREDIENT = 'ingredient/ADD';
 export const DELETE_INGREDIENT = 'ingredient/DELETE';

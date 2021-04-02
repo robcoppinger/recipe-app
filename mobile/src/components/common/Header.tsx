@@ -1,10 +1,14 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {SafeAreaView, TouchableOpacity} from 'react-native';
-import {useNavigation, useRoute, DrawerActions} from '@react-navigation/native';
-import {SvgImage} from './SvgImage';
-import {Text} from './Text';
-import {useTheme} from '../../context/ThemeContext';
+import { SafeAreaView, TouchableOpacity } from 'react-native';
+import {
+  useNavigation,
+  useRoute,
+  DrawerActions,
+} from '@react-navigation/native';
+import { SvgImage } from './SvgImage';
+import { Text } from './Text';
+import { useTheme } from '../../context/ThemeContext';
 
 type HeaderProps = {
   headerLabel?: string;
@@ -27,7 +31,7 @@ export const Header = ({
   const route = useRoute();
   const theme = useTheme();
   return (
-    <HeaderContainer style={hideHeaderBorder && {borderBottomWidth: 0}}>
+    <HeaderContainer style={hideHeaderBorder && { borderBottomWidth: 0 }}>
       <SafeAreaView />
       {customHeaderComponent ? (
         customHeaderComponent()
@@ -35,14 +39,14 @@ export const Header = ({
         <HeaderContent>
           {showDrawer && (
             <TouchableOpacity
-              style={{position: 'absolute', left: 16}}
+              style={{ position: 'absolute', left: 16 }}
               onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
               <SvgImage size={30} icon="menu" fill={theme.colors.primary} />
             </TouchableOpacity>
           )}
           {showGoBack && !showDrawer && (
             <TouchableOpacity
-              style={{position: 'absolute', left: 16}}
+              style={{ position: 'absolute', left: 16 }}
               onPress={navigation.goBack}>
               <SvgImage size={30} icon="back" fill={theme.colors.primary} />
             </TouchableOpacity>

@@ -1,12 +1,12 @@
 import produce from 'immer';
-import {RootState, ReduxAction} from '../..';
+import { RootState, ReduxAction } from '../..';
 import {
   ADD_ITEM,
   DELETE_ITEM,
   MARK_FOUND,
   MARK_UNFOUND,
 } from '../shoppingListItems/ShoppingListItems';
-import {ShoppingListItem} from '../shoppingListItems/types';
+import { ShoppingListItem } from '../shoppingListItems/types';
 import {
   AddEmptyShoppingListAction,
   DeleteShoppingListAction,
@@ -16,7 +16,7 @@ import {
   ShoppingListState,
   UpdateUnfoundOrderAction,
 } from './types';
-import {v4 as uuidv4} from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 
 export const ADD_EMPTY_SHOPPING_LIST = 'shoppingList/ADD_EMPTY';
 export const DELETE_SHOPPING_LIST = 'shoppingList/DELETE';
@@ -63,8 +63,8 @@ export default function reducer(
     case DELETE_ITEM:
       if (!state[action.shoppingListId]) return state;
       return produce(state, (draft) => {
-        const {shoppingListId, shoppingListItemId} = action;
-        const {unfoundItems, foundItems} = state[shoppingListId];
+        const { shoppingListId, shoppingListItemId } = action;
+        const { unfoundItems, foundItems } = state[shoppingListId];
         if (unfoundItems.includes(shoppingListItemId)) {
           draft[shoppingListId].unfoundItems = unfoundItems.filter(
             (i) => i !== shoppingListItemId,
@@ -143,7 +143,7 @@ export const actions = {
   }),
   importIngredients: (
     shoppingListId: string,
-    ingredients: {[key: string]: ShoppingListItem},
+    ingredients: { [key: string]: ShoppingListItem },
   ): ImportIngredientsAction => ({
     type: IMPORT_INGREDIENTS,
     shoppingListId,

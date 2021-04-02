@@ -1,14 +1,14 @@
-import {useRoute} from '@react-navigation/native';
+import { useRoute } from '@react-navigation/native';
 import React from 'react';
 import styled from 'styled-components/native';
-import {ActioninfoScreenRouteProp} from '../../navigators/RoadmapNavigator';
-import {Layout} from '../common/Layout';
-import {Text} from '../common/Text';
+import { ActioninfoScreenRouteProp } from '../../navigators/RoadmapNavigator';
+import { Layout } from '../common/Layout';
+import { Text } from '../common/Text';
 
 export const ActionInfo = () => {
   const route = useRoute<ActioninfoScreenRouteProp>();
   const params = route.params || {};
-  const {action} = params;
+  const { action } = params;
   return (
     <Layout headerLabel="More Info" showGoBack>
       <Container>
@@ -16,7 +16,9 @@ export const ActionInfo = () => {
           <Text variant="h3">{action.title}</Text>
         </TitleContainer>
         {action.moreInfo?.map((info, index) => (
-          <TextContainer key={info} style={index === 0 && {borderTopWidth: 1}}>
+          <TextContainer
+            key={info}
+            style={index === 0 && { borderTopWidth: 1 }}>
             <Text key={info}>{info}</Text>
           </TextContainer>
         ))}

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {useTheme} from '../../context/ThemeContext';
-import {SvgImage} from '../common/SvgImage';
-import {Text} from '../common/Text';
-import {getOrder, getPosition, Positions} from '../../screens/ShoppingList';
+import { useTheme } from '../../context/ThemeContext';
+import { SvgImage } from '../common/SvgImage';
+import { Text } from '../common/Text';
+import { getOrder, getPosition, Positions } from '../../screens/ShoppingList';
 import Animated, {
   Easing,
   runOnJS,
@@ -17,8 +17,8 @@ import {
   PanGestureHandler,
   PanGestureHandlerGestureEvent,
 } from 'react-native-gesture-handler';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux';
 import {
   selectors,
   actions as listActions,
@@ -28,7 +28,7 @@ import {
   selectors as itemSelectors,
 } from '../../redux/modules/shoppingListItems/ShoppingListItems';
 import * as Haptic from 'expo-haptics';
-import {Deleteable} from '../common/Deleteable';
+import { Deleteable } from '../common/Deleteable';
 
 type ShoppingListItemProps = {
   shoppingListId: string;
@@ -130,7 +130,7 @@ export const ShoppingListItem = ({
   const assignNewPositions = (order: string[]) => {
     positions.value = Object.assign(
       {},
-      ...order.map((i, index) => ({[i]: index})),
+      ...order.map((i, index) => ({ [i]: index })),
     );
   };
 
@@ -187,14 +187,14 @@ export const ShoppingListItem = ({
   // Reordering gesture handler
   const onReOrderGestureEvent = useAnimatedGestureHandler<
     PanGestureHandlerGestureEvent,
-    {x: number; y: number}
+    { x: number; y: number }
   >({
     onStart: (_, ctx) => {
       isReorderGestureActive.value = true;
       ctx.y = translateY.value;
       runOnJS(triggerHaptic)();
     },
-    onActive: ({translationY}, ctx) => {
+    onActive: ({ translationY }, ctx) => {
       // update the position of the active item on drag
       let dest = ctx.y + translationY;
       translateY.value = dest > reorderDragLimit ? reorderDragLimit : dest;
@@ -237,7 +237,7 @@ export const ShoppingListItem = ({
       left: 0,
       width: '100%',
       zIndex,
-      transform: [{translateY: translateY.value}, {scale}],
+      transform: [{ translateY: translateY.value }, { scale }],
     };
   });
 
@@ -249,10 +249,10 @@ export const ShoppingListItem = ({
         containerHeight={SHOPPING_LIST_ITEM_HEIGHT}
         onDeleteAnimationStarted={deleteItemAnimation}
         onDeleteAnimationComplete={deleteItem}>
-        {({interceptPress}) => (
+        {({ interceptPress }) => (
           <ShoppingListItemContainer
             style={
-              item.isFound && {backgroundColor: theme.colors.paperSecondary}
+              item.isFound && { backgroundColor: theme.colors.paperSecondary }
             }>
             <PanGestureHandler
               enabled={!item.isFound}
@@ -280,7 +280,7 @@ export const ShoppingListItem = ({
                 }>
                 {item.name}
               </ItemText>
-              <AmountText style={{paddingLeft: 4}}>
+              <AmountText style={{ paddingLeft: 4 }}>
                 {`${item.amount || ''} ${item.unit || ''}`}
               </AmountText>
             </TextContainer>

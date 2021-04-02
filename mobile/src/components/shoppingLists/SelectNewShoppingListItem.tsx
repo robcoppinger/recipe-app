@@ -1,9 +1,9 @@
 import React from 'react';
-import {TouchableOpacity} from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import styled from 'styled-components/native';
-import {useTheme} from '../../context/ThemeContext';
-import {SvgImage} from '../common/SvgImage';
-import {TextInput} from '../common/TextInput';
+import { useTheme } from '../../context/ThemeContext';
+import { SvgImage } from '../common/SvgImage';
+import { TextInput } from '../common/TextInput';
 
 type SelectNewShoppingListItemProps = {
   isSelected: boolean;
