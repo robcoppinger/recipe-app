@@ -1,11 +1,11 @@
 import React from 'react';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components/native';
-import {useTheme} from '../../context/ThemeContext';
-import {RootState} from '../../redux';
-import {selectors} from '../../redux/modules/shoppingLists/ShoppingLists';
-import {SvgImage} from '../common/SvgImage';
-import {Text} from '../common/Text';
+import { useTheme } from '../../context/ThemeContext';
+import { RootState } from '../../redux';
+import { selectors } from '../../redux/modules/shoppingLists/ShoppingLists';
+import { SvgImage } from '../common/SvgImage';
+import { Text } from '../common/Text';
 
 type SelectShoppingListItemProps = {
   shoppingListId: string;

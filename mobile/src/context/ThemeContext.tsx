@@ -4,10 +4,10 @@ import {
   ThemeProvider as StyledThemeProvider,
 } from 'styled-components/native';
 
-import {theme} from '../themes';
-import {StatusBar} from 'react-native';
-import {useSelector} from 'react-redux';
-import {selectors} from '../redux/modules/application/Application';
+import { theme } from '../themes';
+import { StatusBar } from 'react-native';
+import { useSelector } from 'react-redux';
+import { selectors } from '../redux/modules/application/Application';
 
 export function ThemeProvider({
   children,

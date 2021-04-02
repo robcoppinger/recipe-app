@@ -1,12 +1,13 @@
 import React from 'react';
-import {NavigationContainer} from '@react-navigation/native';
-import {createDrawerNavigator} from '@react-navigation/drawer';
-import {useTheme} from '../context/ThemeContext';
-import {DrawerContent} from './DrawerContent';
-import {SvgImage} from '../components/common/SvgImage';
-import {RecipeNavigator} from './RecipeNavigator';
-import {ShoppingListNavigator} from './ShoppingListNavigator';
-import {RoadmapNavigator} from './RoadmapNavigator';
+import { NavigationContainer } from '@react-navigation/native';
+import { createDrawerNavigator } from '@react-navigation/drawer';
+import { useTheme } from '../context/ThemeContext';
+import { DrawerContent } from './DrawerContent';
+import { SvgImage } from '../components/common/SvgImage';
+import { RecipeNavigator } from './RecipeNavigator';
+import { ShoppingListNavigator } from './ShoppingListNavigator';
+import { RoadmapNavigator } from './RoadmapNavigator';
+import { UnauthenticatedNavigator } from './UnauthenticatedNavigator';
 
 const Drawer = createDrawerNavigator();
 
@@ -30,7 +31,7 @@ export const AppNavigator = () => {
           name="Recipes"
           component={RecipeNavigator}
           options={{
-            drawerIcon: ({color}) => (
+            drawerIcon: ({ color }) => (
               <SvgImage icon="list" fill={color} size={30} />
             ),
           }}
@@ -39,7 +40,7 @@ export const AppNavigator = () => {
           name="Shopping List"
           component={ShoppingListNavigator}
           options={{
-            drawerIcon: ({color}) => (
+            drawerIcon: ({ color }) => (
               <SvgImage icon="cart" fill={color} size={30} />
             ),
           }}
@@ -48,7 +49,7 @@ export const AppNavigator = () => {
           name="Roadmap"
           component={RoadmapNavigator}
           options={{
-            drawerIcon: ({color}) => (
+            drawerIcon: ({ color }) => (
               <SvgImage icon="info" fill={color} size={30} />
             ),
           }}

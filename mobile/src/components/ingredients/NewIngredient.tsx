@@ -1,17 +1,17 @@
-import React, {createRef, useEffect} from 'react';
+import React, { createRef, useEffect } from 'react';
 import styled from 'styled-components/native';
-import {useDispatch} from 'react-redux';
-import {actions} from '../../redux/modules/ingredients/Ingredients';
-import {v4 as uuidV4} from 'uuid';
+import { useDispatch } from 'react-redux';
+import { actions } from '../../redux/modules/ingredients/Ingredients';
+import { v4 as uuidV4 } from 'uuid';
 import {
   TextInput as RNTextInput,
   TouchableOpacity,
   Keyboard,
 } from 'react-native';
-import {SvgImage} from '../common/SvgImage';
-import {useTheme} from '../../context/ThemeContext';
-import {useIngredientState} from './useIngredientState';
-import {TextInput} from '../common/TextInput';
+import { SvgImage } from '../common/SvgImage';
+import { useTheme } from '../../context/ThemeContext';
+import { useIngredientState } from './useIngredientState';
+import { TextInput } from '../common/TextInput';
 
 type NewIngredientProps = {
   recipeId: string;
@@ -19,7 +19,7 @@ type NewIngredientProps = {
 
 export const NEW_INGREDIENT_HEIGHT = 60;
 
-export const NewIngredient = ({recipeId}: NewIngredientProps) => {
+export const NewIngredient = ({ recipeId }: NewIngredientProps) => {
   const [ingredient, dispatchIngredient] = useIngredientState();
   const dispatch = useDispatch();
   const theme = useTheme();
@@ -38,7 +38,7 @@ export const NewIngredient = ({recipeId}: NewIngredientProps) => {
   const addIngredient = () => {
     if (ingredient.name.length < 1) return;
     dispatch(actions.addIngredient(uuidV4(), recipeId, ingredient));
-    dispatchIngredient({type: 'resetAll'});
+    dispatchIngredient({ type: 'resetAll' });
     ingredientInputRef.current?.focus();
   };
 
@@ -48,7 +48,7 @@ export const NewIngredient = ({recipeId}: NewIngredientProps) => {
         ref={ingredientInputRef}
         value={ingredient.name}
         onChangeText={(value) =>
-          dispatchIngredient({type: 'setName', name: value})
+          dispatchIngredient({ type: 'setName', name: value })
         }
         placeholder="New Ingredient"
         returnKeyType="next"
@@ -57,7 +57,7 @@ export const NewIngredient = ({recipeId}: NewIngredientProps) => {
       <Amount
         value={ingredient.amount}
         onChangeText={(value) =>
-          dispatchIngredient({type: 'setAmount', amount: value})
+          dispatchIngredient({ type: 'setAmount', amount: value })
         }
         ref={amountRef}
         placeholder="Amt."
@@ -67,7 +67,7 @@ export const NewIngredient = ({recipeId}: NewIngredientProps) => {
       <Unit
         value={ingredient.unit}
         onChangeText={(value) =>
-          dispatchIngredient({type: 'setUnit', unit: value})
+          dispatchIngredient({ type: 'setUnit', unit: value })
         }
         ref={unitRef}
         placeholder="unit"
@@ -76,7 +76,7 @@ export const NewIngredient = ({recipeId}: NewIngredientProps) => {
         autoCapitalize="none"
       />
       <TouchableOpacity
-        style={{marginRight: 8, paddingBottom: 8}}
+        style={{ marginRight: 8, paddingBottom: 8 }}
         onPress={addIngredient}
         disabled={ingredient.name === ''}>
         <SvgImage

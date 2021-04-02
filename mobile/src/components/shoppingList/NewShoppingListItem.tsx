@@ -1,16 +1,16 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Animated, {
   useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import {useDispatch} from 'react-redux';
+import { useDispatch } from 'react-redux';
 import styled from 'styled-components/native';
-import {v4 as uuidV4} from 'uuid';
-import {actions} from '../../redux/modules/shoppingListItems/ShoppingListItems';
-import {TextInput} from '../common/TextInput';
-import {animationConfig, SHOPPING_LIST_ITEM_HEIGHT} from './ShoppingListItem';
+import { v4 as uuidV4 } from 'uuid';
+import { actions } from '../../redux/modules/shoppingListItems/ShoppingListItems';
+import { TextInput } from '../common/TextInput';
+import { animationConfig, SHOPPING_LIST_ITEM_HEIGHT } from './ShoppingListItem';
 
 type NewShoppingListItemProps = {
   shoppingListId: string;
@@ -61,7 +61,7 @@ export const NewShoppingListItem = ({
       top: 0,
       left: 0,
       width: '100%',
-      transform: [{translateY: translateY.value}],
+      transform: [{ translateY: translateY.value }],
       justifyContent: 'center',
     };
   });

@@ -1,6 +1,6 @@
 import produce from 'immer';
-import {RootState, ReduxAction} from '../..';
-import {ApplicationState, ToggleThemeAction} from './types';
+import { RootState, ReduxAction } from '../..';
+import { ApplicationState, ToggleThemeAction } from './types';
 
 export const UPDATE_UNFOUND_ORDER = 'shoppingList/UPDATE_UNFOUND_ORDER';
 

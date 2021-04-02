@@ -1,8 +1,8 @@
-import {ReactNode} from 'react';
+import { ReactNode } from 'react';
 import styles from './Icons.module.scss';
 
 export const SVGIcon = (
-  {children, size}: {children: ReactNode; size: number},
+  { children, size }: { children: ReactNode; size: number },
   ...props: any
 ) => {
   return (

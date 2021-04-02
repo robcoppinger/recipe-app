@@ -1,15 +1,18 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components/native';
-import {useDispatch, useSelector} from 'react-redux';
-import {RootState} from '../../redux';
-import {actions, selectors} from '../../redux/modules/ingredients/Ingredients';
-import {actions as recipeActions} from '../../redux/modules/recipes/Recipes';
-import {Text} from '../common/Text';
-import {Deleteable} from '../common/Deleteable';
-import {IngredientMode, Positions} from './IngredientsPage';
-import {useTheme} from '../../context/ThemeContext';
-import {SvgImage} from '../common/SvgImage';
-import {RecipeMode} from '../../screens/Recipe';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../redux';
+import {
+  actions,
+  selectors,
+} from '../../redux/modules/ingredients/Ingredients';
+import { actions as recipeActions } from '../../redux/modules/recipes/Recipes';
+import { Text } from '../common/Text';
+import { Deleteable } from '../common/Deleteable';
+import { IngredientMode, Positions } from './IngredientsPage';
+import { useTheme } from '../../context/ThemeContext';
+import { SvgImage } from '../common/SvgImage';
+import { RecipeMode } from '../../screens/Recipe';
 import Animated, {
   Easing,
   interpolate,
@@ -59,7 +62,7 @@ export const IngredientItem = ({
   const ingredient = useSelector((st: RootState) =>
     selectors.ingredient(st, ingredientId),
   );
-  const {name, amount, unit} = ingredient;
+  const { name, amount, unit } = ingredient;
 
   const position = getPosition(positions.value[ingredientId]);
   const translateY = useSharedValue(position.y); // changed on reorder
@@ -151,14 +154,14 @@ export const IngredientItem = ({
   // Reordering gesture handler
   const onReOrderGestureEvent = useAnimatedGestureHandler<
     PanGestureHandlerGestureEvent,
-    {x: number; y: number}
+    { x: number; y: number }
   >({
     onStart: (_, ctx) => {
       isReorderGestureActive.value = true;
       ctx.y = translateY.value;
       runOnJS(triggerReorderHaptic)();
     },
-    onActive: ({translationY}, ctx) => {
+    onActive: ({ translationY }, ctx) => {
       // update the position of the active item on drag
       translateY.value = ctx.y + translationY;
 
@@ -200,7 +203,7 @@ export const IngredientItem = ({
       left: 0,
       width: '100%',
       zIndex,
-      transform: [{translateY: translateY.value}, {scale}],
+      transform: [{ translateY: translateY.value }, { scale }],
     };
   });
 
@@ -230,7 +233,7 @@ export const IngredientItem = ({
     return {
       width: 25,
       height: 25,
-      transform: [{scale}],
+      transform: [{ scale }],
     };
   });
 
@@ -241,7 +244,7 @@ export const IngredientItem = ({
         containerHeight={INGREDIENT_ITEM_HEIGHT}
         onDeleteAnimationStarted={deleteItemAnimation}
         onDeleteAnimationComplete={deleteItem}>
-        {({interceptPress}) => (
+        {({ interceptPress }) => (
           <IngredientContainer
             style={
               isSelected && {
@@ -272,7 +275,7 @@ export const IngredientItem = ({
             </Animated.View>
             <TextContainer>
               <IngredientText numberOfLines={1}>{name}</IngredientText>
-              <AmountText style={{paddingLeft: 4}}>{`${amount || ''} ${
+              <AmountText style={{ paddingLeft: 4 }}>{`${amount || ''} ${
                 unit || ''
               }`}</AmountText>
             </TextContainer>

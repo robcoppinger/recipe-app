@@ -1,7 +1,7 @@
 import classNames from 'classnames';
-import {LockIcon} from '../../assets/images/LockIcon';
-import {Button} from '../../components/button';
-import {TextInput} from '../../components/textInput';
+import { LockIcon } from '../../assets/images/LockIcon';
+import { Button } from '../../components/button';
+import { TextInput } from '../../components/textInput';
 import styles from './Login.module.scss';
 
 export const Login = () => {
@@ -10,9 +10,9 @@ export const Login = () => {
       <div className={classNames(styles.loginIcon)}>
         <LockIcon size={32} />
       </div>
-      <h1 style={{marginBottom: '4rem'}}>Login</h1>
+      <h1 style={{ marginBottom: '4rem' }}>Login</h1>
       <TextInput
-        style={{marginBottom: '2rem'}}
+        style={{ marginBottom: '2rem' }}
         autoFocus
         tabIndex={1}
         type="email"

@@ -1,4 +1,4 @@
-import React, {FunctionComponent, useEffect, useRef, useState} from 'react';
+import React, { FunctionComponent, useEffect, useRef, useState } from 'react';
 import Animated, {
   Easing,
   Extrapolate,
@@ -9,9 +9,9 @@ import Animated, {
   useSharedValue,
   withTiming,
 } from 'react-native-reanimated';
-import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import styled from 'styled-components/native';
-import {Dimensions, Keyboard} from 'react-native';
+import { Dimensions, Keyboard } from 'react-native';
 import {
   PanGestureHandler,
   PanGestureHandlerGestureEvent,
@@ -94,12 +94,12 @@ export function ModalViewContextProvider({
 
   const onGestureEvent = useAnimatedGestureHandler<
     PanGestureHandlerGestureEvent,
-    {x: number; y: number}
+    { x: number; y: number }
   >({
     onStart: (_, ctx) => {
       ctx.x = viewContainerHeight.value;
     },
-    onActive: ({translationY}, ctx) => {
+    onActive: ({ translationY }, ctx) => {
       viewContainerHeight.value = ctx.x - translationY;
     },
     onEnd: () => {
@@ -116,13 +116,13 @@ export function ModalViewContextProvider({
 
   // -------------------- Provider --------------------
   return (
-    <ModalViewContext.Provider value={{showModal, hideModal}}>
+    <ModalViewContext.Provider value={{ showModal, hideModal }}>
       {isModalVisible && (
         <>
           <Overlay style={overlayStyle} />
           <Dismissable onPress={hideModal} />
           <ViewContainer
-            style={[viewContainerStyle, {paddingBottom: insets.bottom}]}>
+            style={[viewContainerStyle, { paddingBottom: insets.bottom }]}>
             <PanGestureHandler onGestureEvent={onGestureEvent}>
               <HandleContainer>
                 <Handle />

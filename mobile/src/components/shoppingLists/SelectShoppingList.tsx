@@ -1,17 +1,17 @@
-import React, {useState} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/native';
-import {useTheme} from '../../context/ThemeContext';
+import { useTheme } from '../../context/ThemeContext';
 import {
   actions,
   selectors,
 } from '../../redux/modules/shoppingLists/ShoppingLists';
-import {SvgImage} from '../common/SvgImage';
-import {Text} from '../common/Text';
-import {SelectNewShoppingListItem} from './SelectNewShoppingListItem';
-import {SelectShoppingListItem} from './SelectShoppingListItem';
-import {v4 as uuidV4} from 'uuid';
-import {useModalView} from '../../context/ModalViewContext';
+import { SvgImage } from '../common/SvgImage';
+import { Text } from '../common/Text';
+import { SelectNewShoppingListItem } from './SelectNewShoppingListItem';
+import { SelectShoppingListItem } from './SelectShoppingListItem';
+import { v4 as uuidV4 } from 'uuid';
+import { useModalView } from '../../context/ModalViewContext';
 
 export const SelectShoppingList = ({
   onSelection,

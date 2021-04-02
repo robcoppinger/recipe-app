@@ -1,12 +1,12 @@
 import React from 'react';
-import {RouteProp} from '@react-navigation/native';
-import {createStackNavigator} from '@react-navigation/stack';
-import {ShoppingList} from '../screens/ShoppingList';
-import {ShoppingLists} from '../screens/ShoppingLists';
+import { RouteProp } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { ShoppingList } from '../screens/ShoppingList';
+import { ShoppingLists } from '../screens/ShoppingLists';
 
 type ShoppingListParamList = {
   ShoppingLists: undefined;
-  ShoppingList: {shoppingListId: string};
+  ShoppingList: { shoppingListId: string };
 };
 
 export type ShoppingListScreenRouteProp = RouteProp<

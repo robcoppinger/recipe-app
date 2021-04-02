@@ -1,9 +1,9 @@
-import React, {forwardRef} from 'react';
-import {TextInputProps, TextInput as RNTextInput} from 'react-native';
-import {useSelector} from 'react-redux';
+import React, { forwardRef } from 'react';
+import { TextInputProps, TextInput as RNTextInput } from 'react-native';
+import { useSelector } from 'react-redux';
 import styled from 'styled-components/native';
-import {useTheme} from '../../context/ThemeContext';
-import {selectors} from '../../redux/modules/application/Application';
+import { useTheme } from '../../context/ThemeContext';
+import { selectors } from '../../redux/modules/application/Application';
 
 export const TextInput = forwardRef<RNTextInput, TextInputProps>(
   (props, ref) => {

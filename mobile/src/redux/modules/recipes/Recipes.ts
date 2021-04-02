@@ -1,5 +1,5 @@
 import produce from 'immer';
-import {RootState, ReduxAction} from '../..';
+import { RootState, ReduxAction } from '../..';
 import {
   RecipesState,
   AddEmptyRecipeAction,
@@ -12,7 +12,7 @@ import {
   DELETE_BULK_INGREDIENTS,
   DELETE_INGREDIENT,
 } from '../ingredients/Ingredients';
-import {ADD_STEP, DELETE_STEP} from '../method/Method';
+import { ADD_STEP, DELETE_STEP } from '../method/Method';
 
 export const ADD_EMPTY_RECIPE = 'recipes/ADD_EMPTY';
 export const EDIT_TITLE = 'recipes/EDIT_TITLE';

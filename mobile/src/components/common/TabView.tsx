@@ -1,18 +1,18 @@
-import React, {useRef, useState} from 'react';
-import {Animated, Dimensions, ScrollView} from 'react-native';
+import React, { useRef, useState } from 'react';
+import { Animated, Dimensions, ScrollView } from 'react-native';
 import styled from 'styled-components/native';
-import {Text} from './Text';
+import { Text } from './Text';
 
 const WIDTH = Dimensions.get('window').width;
 
-export const TabView = ({children}: {children: JSX.Element[]}) => {
+export const TabView = ({ children }: { children: JSX.Element[] }) => {
   const TAB_WIDTH = WIDTH / children.length;
   const scrollViewRef = useRef<ScrollView>();
   const [scrollXOffset] = useState(new Animated.Value(0));
 
   const scrollToInterval = (interval: number) => {
     if (!scrollViewRef) return;
-    scrollViewRef.current?.scrollTo({x: interval * WIDTH, animated: true});
+    scrollViewRef.current?.scrollTo({ x: interval * WIDTH, animated: true });
   };
 
   const activeIndicatorOffset = scrollXOffset.interpolate({
@@ -39,14 +39,14 @@ export const TabView = ({children}: {children: JSX.Element[]}) => {
         <ActiveIndicatorContainer
           style={{
             width: TAB_WIDTH,
-            transform: [{translateX: activeIndicatorOffset}],
+            transform: [{ translateX: activeIndicatorOffset }],
           }}>
           <ActiveIndicator />
         </ActiveIndicatorContainer>
       </TabBarContainer>
       <Animated.ScrollView
         ref={scrollViewRef}
-        contentContainerStyle={{width: WIDTH * children.length}}
+        contentContainerStyle={{ width: WIDTH * children.length }}
         horizontal
         snapToInterval={WIDTH}
         decelerationRate="fast"
@@ -63,7 +63,7 @@ export const TabView = ({children}: {children: JSX.Element[]}) => {
               },
             },
           ],
-          {useNativeDriver: true},
+          { useNativeDriver: true },
         )}>
         {children.map((child) => (
           <ScrollViewPageContainer key={`view-${child.props.title}`}>

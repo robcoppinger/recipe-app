@@ -3,13 +3,13 @@ import {
   DrawerItemList,
 } from '@react-navigation/drawer';
 import React from 'react';
-import {Switch} from 'react-native';
+import { Switch } from 'react-native';
 import Animated from 'react-native-reanimated';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/native';
-import {Text} from '../components/common/Text';
-import {useTheme} from '../context/ThemeContext';
-import {actions, selectors} from '../redux/modules/application/Application';
+import { Text } from '../components/common/Text';
+import { useTheme } from '../context/ThemeContext';
+import { actions, selectors } from '../redux/modules/application/Application';
 
 export const DrawerContent = (props: any) => {
   const dispatch = useDispatch();
@@ -24,9 +24,9 @@ export const DrawerContent = (props: any) => {
 
   return (
     <DrawerContentScrollView
-      style={{backgroundColor: theme.colors.paper}}
+      style={{ backgroundColor: theme.colors.paper }}
       {...props}>
-      <Animated.View style={{transform: [{translateX}]}}>
+      <Animated.View style={{ transform: [{ translateX }] }}>
         <Content>
           <DrawerItemList {...props} />
         </Content>

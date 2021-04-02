@@ -1,12 +1,12 @@
 import React from 'react';
-import {RouteProp} from '@react-navigation/native';
-import {Recipes} from '../screens/Recipes';
-import {Recipe} from '../screens/Recipe';
-import {createStackNavigator} from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
+import { Recipes } from '../screens/Recipes';
+import { Recipe } from '../screens/Recipe';
+import { createStackNavigator } from '@react-navigation/stack';
 
 export type RecipeStackParamList = {
   Recipes: undefined;
-  Recipe: {recipeId: string};
+  Recipe: { recipeId: string };
 };
 
 export type RecipeScreenRouteProp = RouteProp<RecipeStackParamList, 'Recipe'>;

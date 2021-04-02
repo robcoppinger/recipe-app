@@ -1,9 +1,9 @@
-import {applyMiddleware, createStore} from 'redux';
-import {persistReducer, persistStore} from 'redux-persist';
+import { applyMiddleware, createStore } from 'redux';
+import { persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 import createSagaMiddleware from 'redux-saga';
-import {composeWithDevTools} from 'remote-redux-devtools';
-import {rootReducer} from './index';
+import { composeWithDevTools } from 'remote-redux-devtools';
+import { rootReducer } from './index';
 import AsyncStorage from '@react-native-community/async-storage';
 import rootSaga from './sagas';
 
@@ -37,5 +37,5 @@ export function configureStore(key = 'primary') {
 
   sagaMiddleware.run(rootSaga);
 
-  return {store, persistor};
+  return { store, persistor };
 }

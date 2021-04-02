@@ -1,15 +1,15 @@
 import React from 'react';
 import styled from 'styled-components/native';
-import {Text} from '../common/Text';
-import {useSelector} from 'react-redux';
-import {RootState} from '../../redux';
-import {selectors} from '../../redux/modules/method/Method';
+import { Text } from '../common/Text';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux';
+import { selectors } from '../../redux/modules/method/Method';
 
 type StepItemProps = {
   stepId: string;
 };
 
-export const StepItem = ({stepId}: StepItemProps) => {
+export const StepItem = ({ stepId }: StepItemProps) => {
   const step = useSelector((st: RootState) => selectors.step(st, stepId));
   return (
     <StepItemContainer>

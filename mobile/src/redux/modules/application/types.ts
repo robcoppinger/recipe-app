@@ -1,4 +1,4 @@
-import {TOGGLE_THEME} from './Application';
+import { TOGGLE_THEME } from './Application';
 
 export type ApplicationState = {
   theme: 'light' | 'dark';

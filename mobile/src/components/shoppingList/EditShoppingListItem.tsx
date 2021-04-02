@@ -1,17 +1,17 @@
-import React, {createRef} from 'react';
+import React, { createRef } from 'react';
 import styled from 'styled-components/native';
-import {useSelector, useDispatch} from 'react-redux';
-import {RootState} from '../../redux';
-import {SvgImage} from '../common/SvgImage';
-import {TouchableOpacity, TextInput as RNTextInput} from 'react-native';
-import {useTheme} from '../../context/ThemeContext';
-import {TextInput} from '../common/TextInput';
-import {SHOPPING_LIST_ITEM_HEIGHT} from './ShoppingListItem';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../redux';
+import { SvgImage } from '../common/SvgImage';
+import { TouchableOpacity, TextInput as RNTextInput } from 'react-native';
+import { useTheme } from '../../context/ThemeContext';
+import { TextInput } from '../common/TextInput';
+import { SHOPPING_LIST_ITEM_HEIGHT } from './ShoppingListItem';
 import {
   actions,
   selectors,
 } from '../../redux/modules/shoppingListItems/ShoppingListItems';
-import {useShoppingListItemState} from './useShoppingListItemState';
+import { useShoppingListItemState } from './useShoppingListItemState';
 
 type EditShoppingListItemProps = {
   shoppingListItemId: string;
@@ -46,7 +46,7 @@ export const EditShoppingListItem = ({
       <ItemText
         value={shoppingListItem.name}
         placeholder="New item"
-        onChangeText={(value) => dispatchItem({type: 'setName', name: value})}
+        onChangeText={(value) => dispatchItem({ type: 'setName', name: value })}
         onBlur={onBlur}
         returnKeyType="next"
         onSubmitEditing={() => amountInput.current?.focus()}
@@ -56,7 +56,7 @@ export const EditShoppingListItem = ({
         placeholder="Amt."
         value={shoppingListItem.amount}
         onChangeText={(value) =>
-          dispatchItem({type: 'setAmount', amount: value})
+          dispatchItem({ type: 'setAmount', amount: value })
         }
         onBlur={onBlur}
         returnKeyType="next"
@@ -67,7 +67,7 @@ export const EditShoppingListItem = ({
         placeholder="unit"
         autoCapitalize="none"
         value={shoppingListItem.unit}
-        onChangeText={(value) => dispatchItem({type: 'setUnit', unit: value})}
+        onChangeText={(value) => dispatchItem({ type: 'setUnit', unit: value })}
         onBlur={onBlur}
         returnKeyType="done"
       />

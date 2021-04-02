@@ -1,4 +1,4 @@
-import {ShoppingListItem} from '../shoppingListItems/types';
+import { ShoppingListItem } from '../shoppingListItems/types';
 import {
   IMPORT_INGREDIENTS,
   PREPARE_INGREDIENTS_IMPORT,
@@ -44,7 +44,7 @@ export type PrepareIngredientsImportAction = {
 export type ImportIngredientsAction = {
   type: typeof IMPORT_INGREDIENTS;
   shoppingListId: string;
-  ingredients: {[key: string]: ShoppingListItem};
+  ingredients: { [key: string]: ShoppingListItem };
 };
 
 export type EditShoppingListTitleAction = {

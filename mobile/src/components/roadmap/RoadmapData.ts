@@ -1,4 +1,4 @@
-export type RoadMapAction = {title: string; moreInfo?: string[]};
+export type RoadMapAction = { title: string; moreInfo?: string[] };
 type RoadMapEntry = {
   title: string;
   descriptor?: string;

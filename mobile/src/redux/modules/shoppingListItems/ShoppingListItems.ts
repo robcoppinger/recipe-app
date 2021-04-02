@@ -1,5 +1,5 @@
 import produce from 'immer';
-import {RootState, ReduxAction} from '../..';
+import { RootState, ReduxAction } from '../..';
 import {
   DELETE_SHOPPING_LIST,
   IMPORT_INGREDIENTS,

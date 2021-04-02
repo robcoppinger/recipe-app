@@ -1,29 +1,29 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components/native';
-import {Layout} from '../components/common/Layout';
-import {useDispatch, useSelector} from 'react-redux';
-import {selectors, actions} from '../redux/modules/recipes/Recipes';
-import {useRoute, useNavigation} from '@react-navigation/native';
-import {RootState} from '../redux';
-import {TouchableOpacity} from 'react-native-gesture-handler';
-import {Text} from '../components/common/Text';
-import {SvgImage} from '../components/common/SvgImage';
-import {useTheme} from '../context/ThemeContext';
-import {IngredientsPage} from '../components/ingredients/IngredientsPage';
-import {MethodPage} from '../components/method/MethodPage';
-import {TabView} from '../components/common/TabView';
-import {TextInput} from '../components/common/TextInput';
-import {RecipeScreenRouteProp} from '../navigators/RecipeNavigator';
+import { Layout } from '../components/common/Layout';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectors, actions } from '../redux/modules/recipes/Recipes';
+import { useRoute, useNavigation } from '@react-navigation/native';
+import { RootState } from '../redux';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Text } from '../components/common/Text';
+import { SvgImage } from '../components/common/SvgImage';
+import { useTheme } from '../context/ThemeContext';
+import { IngredientsPage } from '../components/ingredients/IngredientsPage';
+import { MethodPage } from '../components/method/MethodPage';
+import { TabView } from '../components/common/TabView';
+import { TextInput } from '../components/common/TextInput';
+import { RecipeScreenRouteProp } from '../navigators/RecipeNavigator';
 
 export type RecipeMode = 'edit' | 'default' | 'select';
 
 export const Recipe = () => {
   const route = useRoute<RecipeScreenRouteProp>();
   const dispatch = useDispatch();
-  const {goBack} = useNavigation();
+  const { goBack } = useNavigation();
   const theme = useTheme();
   const params = route.params || {};
-  const {recipeId} = params;
+  const { recipeId } = params;
 
   const recipe = useSelector((st: RootState) => selectors.recipe(st, recipeId));
   if (!recipe) return <Layout />;
@@ -54,7 +54,7 @@ export const Recipe = () => {
       </TouchableOpacity>
       <HeaderTitle
         editable={mode === 'edit'}
-        style={mode === 'edit' && {borderBottomWidth: 1, paddingBottom: 3}}
+        style={mode === 'edit' && { borderBottomWidth: 1, paddingBottom: 3 }}
         value={title}
         selectTextOnFocus
         onChangeText={(value) => setTitle(value)}
