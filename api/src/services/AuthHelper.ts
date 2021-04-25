@@ -11,7 +11,7 @@ interface IGenerateAccessToken {
   audience: TAccessTokenAudience
 }
 
-interface ICreateAndPersistRefreshToken {
+interface IGenerateAndPersistRefreshToken {
   userId: number
   accessTokenAudience: TAccessTokenAudience
 }
@@ -49,10 +49,10 @@ export const generateAccessToken = ({
   )
 }
 
-export const createAndPersistRefreshToken = async ({
+export const generateAndPersistRefreshToken = async ({
   userId,
   accessTokenAudience,
-}: ICreateAndPersistRefreshToken): Promise<string> => {
+}: IGenerateAndPersistRefreshToken): Promise<string> => {
   const jwtToken = jwt.sign(
     {
       exp: moment().add(60, 'days').unix(),
