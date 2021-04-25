@@ -4,7 +4,7 @@ import {
   ThemeProvider as StyledThemeProvider,
 } from 'styled-components/native';
 
-import { theme } from '../themes';
+import { theme } from '../Themes';
 import { StatusBar } from 'react-native';
 import { useSelector } from 'react-redux';
 import { selectors } from '../redux/modules/application/Application';
