@@ -9,7 +9,7 @@ import cors from 'cors'
 export async function createServer() {
   const dirs = {
     controllers: [__dirname + '/controllers/**/*.{ts,js}'],
-    middlewares: [__dirname + '/middlewares/*.{ts,js}'],
+    middlewares: [__dirname + '/middleware/*.{ts,js}'],
     entities: [__dirname + '/entities/**/*.{ts,js}'],
     migrations: [__dirname + '/migration/*.{ts,js}'],
   }
@@ -58,11 +58,11 @@ export async function createServer() {
       }
     },
     authorizationChecker: async (action: Action, roles: any) => {
-      // if (!action.request.user) return false
-      // const user = action.request.user
+      if (!action.request.user) return false
+      const user = action.request.user
       // if (user && !roles.length) return true
       // if (user && roles.includes(user.role)) return true
-      return false
+      return !!user
     },
   })
 
