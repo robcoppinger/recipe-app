@@ -1,15 +1,11 @@
 import { Middleware, ExpressMiddlewareInterface } from 'routing-controllers'
-import jwt from 'jsonwebtoken'
-import { env } from '../env'
 import { getRepository } from 'typeorm'
-import { User } from 'entities/User'
+import { User } from '../entities/User'
+import { decodeJwt } from '../services/AuthHelper'
 
 function extractTokenFromRequest(request: any) {
   const token = request.headers.authorization
-
-  if (!token) {
-    return null
-  }
+  if (!token) return null
 
   if (token.startsWith('Bearer ')) {
     // remove Bearer from token
@@ -23,27 +19,21 @@ function extractTokenFromRequest(request: any) {
 export class AuthenticationMiddleware implements ExpressMiddlewareInterface {
   use(request: any, response: any, next: (err: any) => any): void {
     const token = extractTokenFromRequest(request)
+    if (!token) return next(null)
 
-    if (!token) {
-      // no token to decode
-      return next(null)
-    }
+    decodeJwt(token)
+      .then((decoded) => {
+        if (!decoded) return next(null)
+        if (!['web', 'app'].includes(decoded.aud)) return next(null)
 
-    jwt.verify(token, env.app.secret, (err: any, decoded: any) => {
-      if (err) {
-        return next(err)
-      }
-
-      const userRepo = getRepository(User)
-      userRepo
-        .findOne({ where: { id: decoded.id } })
-        .then((user) => {
-          request.user = user
-          next(null)
+        const userRepo = getRepository(User)
+        userRepo.findOne({ where: { id: decoded.userId } }).then((user) => {
+          request.user = user.get()
+          return next(null)
         })
-        .catch((e) => {
-          next(e)
-        })
-    })
+      })
+      .catch((e) => {
+        next(null)
+      })
   }
 }
