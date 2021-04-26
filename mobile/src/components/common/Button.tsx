@@ -1,5 +1,9 @@
 import React, { FunctionComponent } from 'react';
-import { TouchableOpacityProps, TouchableOpacity } from 'react-native';
+import {
+  TouchableOpacityProps,
+  TouchableOpacity,
+  ActivityIndicator,
+} from 'react-native';
 import styled from 'styled-components';
 import { useTheme } from '../../context/ThemeContext';
 import { Text } from './Text';
@@ -7,14 +11,17 @@ import { Text } from './Text';
 interface CutsomButtonProps extends TouchableOpacityProps {
   text: string;
   variant?: 'filled' | 'outline';
+  isLoading?: boolean;
 }
 
 export const Button: FunctionComponent<CutsomButtonProps> = ({
   variant = 'filled',
   text,
+  isLoading,
   ...rest
 }) => {
   const theme = useTheme();
+  const { disabled } = rest;
 
   const RootButton = ({ ...props }) => {
     switch (variant) {
@@ -30,14 +37,23 @@ export const Button: FunctionComponent<CutsomButtonProps> = ({
   const textColor = () => {
     switch (variant) {
       case 'filled':
-        return theme.colors.primaryFilledContent;
+        return disabled
+          ? theme.colors.disabledForeground
+          : theme.colors.primaryFilledContent;
       case 'outline':
-        return theme.colors.primary;
+        return disabled
+          ? theme.colors.disabledForeground
+          : theme.colors.primary;
     }
   };
+
   return (
     <RootButton {...rest}>
-      <Text style={{ fontWeight: '600', color: textColor() }}>{text}</Text>
+      {isLoading ? (
+        <ActivityIndicator size="small" color={textColor()} />
+      ) : (
+        <Text style={{ fontWeight: '600', color: textColor() }}>{text}</Text>
+      )}
     </RootButton>
   );
 };
@@ -50,11 +66,17 @@ const BaseButton = styled(TouchableOpacity)`
 `;
 
 const FilledButton = styled(BaseButton)`
-  background-color: ${(props) => props.theme.colors.primary};
+  background-color: ${(props) =>
+    props.disabled
+      ? props.theme.colors.disabledBackground
+      : props.theme.colors.primary};
 `;
 
 const OutlinedButton = styled(BaseButton)`
   border-width: 2px;
-  border-color: ${(p) => p.theme.colors.primary};
+  border-color: ${(props) =>
+    props.disabled
+      ? props.theme.colors.disabledForeground
+      : props.theme.colors.primary};
   background-color: transparent;
 `;

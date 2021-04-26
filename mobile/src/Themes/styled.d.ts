@@ -32,6 +32,8 @@ declare module 'styled-components' {
     placeholder: string;
     danger: string;
     drawerActiveTintColor: string;
+    disabledBackground: string;
+    disabledForeground: string;
   };
 
   export type FontSize = {
