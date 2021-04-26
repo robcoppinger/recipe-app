@@ -26,6 +26,8 @@ const themeColors: ColorsObj = {
     placeholder: 'rgba(0,0,0.1, 0.2)',
     danger: '#DB302A',
     drawerActiveTintColor: '#F5C5BC',
+    disabledBackground: '#e0e0e0',
+    disabledForeground: '#A8A8A8',
   },
   dark: {
     screenBackground: '#303030',
@@ -46,6 +48,8 @@ const themeColors: ColorsObj = {
     placeholder: 'rgba(0,0,0.1, 0.2)',
     danger: '#DB302A',
     drawerActiveTintColor: '#E0FDFF',
+    disabledBackground: '#2F3D43',
+    disabledForeground: '#9E9E9E',
   },
 };
 
