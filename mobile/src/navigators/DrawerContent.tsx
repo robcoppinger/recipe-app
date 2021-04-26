@@ -7,9 +7,12 @@ import { Switch } from 'react-native';
 import Animated from 'react-native-reanimated';
 import { useDispatch, useSelector } from 'react-redux';
 import styled from 'styled-components/native';
+import { env } from '../../env';
+import { Button } from '../components/common/Button';
 import { Text } from '../components/common/Text';
 import { useTheme } from '../context/ThemeContext';
 import { actions, selectors } from '../redux/modules/application/Application';
+import { actions as authActions } from '../redux/modules/auth/Auth';
 
 export const DrawerContent = (props: any) => {
   const dispatch = useDispatch();
@@ -43,6 +46,14 @@ export const DrawerContent = (props: any) => {
             value={selectedTheme === 'light'}
           />
         </ThemeToggleContainer>
+        {env.featureFlags.isAuthEnabled && (
+          <Button
+            onPress={() => dispatch(authActions.logoutSuccess())}
+            style={{ margin: 20 }}
+            variant="outline"
+            text="Log Out"
+          />
+        )}
       </Animated.View>
     </DrawerContentScrollView>
   );
