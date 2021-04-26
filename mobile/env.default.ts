@@ -4,4 +4,7 @@ export const env = {
     hostname: 'localhost',
     port: 8000,
   },
+  featureFlags: {
+    isAuthEnabled: false,
+  },
 };
