@@ -1,5 +1,6 @@
 import { combineReducers } from 'redux';
 import application from './modules/application/Application';
+import auth from './modules/auth/Auth';
 import ingredients from './modules/ingredients/Ingredients';
 import recipes from './modules/recipes/Recipes';
 import method from './modules/method/Method';
@@ -11,9 +12,11 @@ import { MethodActions } from './modules/method/types';
 import { ShoppingListItemActions } from './modules/shoppingListItems/types';
 import { ShoppingListActions } from './modules/shoppingLists/types';
 import { ApplicationActions } from './modules/application/types';
+import { AuthActions } from './modules/auth/types';
 
 const reducer = combineReducers({
   application,
+  auth,
   recipes,
   ingredients,
   method,
@@ -27,6 +30,7 @@ export const rootReducer = (state: any, action: any) => {
 
 export type ReduxAction =
   | ApplicationActions
+  | AuthActions
   | IngredientsActions
   | RecipesActions
   | MethodActions
