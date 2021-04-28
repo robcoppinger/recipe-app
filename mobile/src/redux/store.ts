@@ -10,33 +10,31 @@ import { env } from '../../env';
 
 export const version = -1;
 
-export function configureStore(key = 'primary') {
-  const persistConfig = {
-    version,
-    key,
-    storage: AsyncStorage,
-    timeout: 10000,
-    throttle: 500,
-    blacklist: [],
-  };
-  const persistedReducer = persistReducer(persistConfig, rootReducer);
+const persistConfig = {
+  version,
+  key: 'primary',
+  storage: AsyncStorage,
+  timeout: 10000,
+  throttle: 500,
+  blacklist: [],
+};
+const persistedReducer = persistReducer(persistConfig, rootReducer);
 
-  const composeEnhancers = composeWithDevTools({
-    hostname: env.remotedev.hostname,
-    port: env.remotedev.port,
-    realtime: true,
-  });
+const composeEnhancers = composeWithDevTools({
+  hostname: env.remotedev.hostname,
+  port: env.remotedev.port,
+  realtime: true,
+});
 
-  const sagaMiddleware = createSagaMiddleware();
+const sagaMiddleware = createSagaMiddleware();
 
-  const store = createStore(
-    persistedReducer,
-    composeEnhancers(applyMiddleware(thunk, sagaMiddleware)),
-  );
+const store = createStore(
+  persistedReducer,
+  composeEnhancers(applyMiddleware(thunk, sagaMiddleware)),
+);
 
-  const persistor = persistStore(store);
+const persistor = persistStore(store);
 
-  sagaMiddleware.run(rootSaga);
+sagaMiddleware.run(rootSaga);
 
-  return { store, persistor };
-}
+export { store, persistor };

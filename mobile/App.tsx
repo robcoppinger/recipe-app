@@ -13,13 +13,11 @@ import 'react-native-get-random-values';
 import { ThemeProvider } from './src/context/ThemeContext';
 import { Provider as ReduxProvider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { configureStore } from './src/redux/store';
+import { store, persistor } from './src/redux/store';
 import { AppNavigator } from './src/navigators/AppNavigator';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { SnackContextProvider } from './src/context/SnackContext';
 import { ModalViewContextProvider } from './src/context/ModalViewContext';
-
-const { persistor, store } = configureStore();
 
 declare const global: { HermesInternal: null | {} };
 
