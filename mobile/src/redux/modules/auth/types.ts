@@ -1,4 +1,4 @@
-import { LOGIN_SUCCESS, LOGOUT_SUCCESS } from './Auth';
+import { LOGIN_SUCCESS, LOGOUT_SUCCESS, REFRESH_TOKENS } from './Auth';
 
 export interface IUser {
   id: number;
@@ -29,4 +29,16 @@ export interface LogoutSuccessAction {
   type: typeof LOGOUT_SUCCESS;
 }
 
-export type AuthActions = LoginSuccessAction | LogoutSuccessAction;
+export interface IRefreshTokens {
+  accessToken: string;
+  refreshToken: string;
+}
+
+export interface RefreshTokensAction extends IRefreshTokens {
+  type: typeof REFRESH_TOKENS;
+}
+
+export type AuthActions =
+  | LoginSuccessAction
+  | LogoutSuccessAction
+  | RefreshTokensAction;

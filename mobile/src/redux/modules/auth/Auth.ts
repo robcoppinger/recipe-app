@@ -3,8 +3,10 @@ import { RootState, ReduxAction } from '../..';
 import {
   IAuthState,
   ILoginSuccess,
+  IRefreshTokens,
   LoginSuccessAction,
   LogoutSuccessAction,
+  RefreshTokensAction,
 } from './types';
 
 export const UPDATE_UNFOUND_ORDER = 'shoppingList/UPDATE_UNFOUND_ORDER';
@@ -15,6 +17,7 @@ const initialState: IAuthState = {
 
 export const LOGIN_SUCCESS = 'auth/LOGIN_SUCCESS';
 export const LOGOUT_SUCCESS = 'auth/LOGOUT_SUCCESS';
+export const REFRESH_TOKENS = 'auth/REFRESH_TOKENS';
 
 export default function reducer(
   state: IAuthState = initialState,
@@ -32,6 +35,12 @@ export default function reducer(
 
     case LOGOUT_SUCCESS:
       return initialState;
+
+    case REFRESH_TOKENS:
+      return produce(state, (draft) => {
+        draft.accessToken = action.accessToken;
+        draft.refreshToken = action.refreshToken;
+      });
 
     default:
       return state;
@@ -52,9 +61,19 @@ export const actions = {
   logoutSuccess: (): LogoutSuccessAction => ({
     type: LOGOUT_SUCCESS,
   }),
+  refreshTokens: ({
+    accessToken,
+    refreshToken,
+  }: IRefreshTokens): RefreshTokensAction => ({
+    type: REFRESH_TOKENS,
+    accessToken,
+    refreshToken,
+  }),
 };
 
 export const selectors = {
   isLoggedIn: (state: RootState) => state.auth.isLoggedIn,
   user: (state: RootState) => state.auth.user,
+  accessToken: (state: RootState) => state.auth.accessToken,
+  refreshToken: (state: RootState) => state.auth.refreshToken,
 };
