@@ -7,7 +7,6 @@ import {
   NotFoundError,
   Post,
   UnauthorizedError,
-  Get,
   HeaderParam,
   BadRequestError,
 } from 'routing-controllers'
@@ -52,7 +51,7 @@ export class AuthController {
     return { user: user.get(), accessToken, refreshToken }
   }
 
-  @Get('/refresh-token')
+  @Post('/refresh-token')
   async refreshToken(@HeaderParam('refreshtoken') refreshToken: string) {
     if (!refreshToken) throw new BadRequestError('refresh token not found')
 
