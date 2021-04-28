@@ -34,7 +34,7 @@ export const generateAccessToken = ({
       case 'web':
         return moment().add(15, 'minutes').unix()
       case 'app':
-        return moment().add(5, 'days').unix()
+        return moment().add(1, 'day').unix()
       default:
         return moment().add(15, 'minutes').unix()
     }
