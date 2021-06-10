@@ -1,5 +1,5 @@
-import React, { createRef } from 'react';
-import { TextInput as RNTextInput } from 'react-native';
+import React, { createRef, useEffect } from 'react';
+import { TextInput as RNTextInput, Keyboard } from 'react-native';
 import Animated, {
   useAnimatedReaction,
   useAnimatedStyle,
@@ -34,6 +34,13 @@ export const NewShoppingListItem = ({
   const nameInputRef = createRef<RNTextInput>();
   const amountRef = createRef<RNTextInput>();
   const unitRef = createRef<RNTextInput>();
+
+  useEffect(() => {
+    Keyboard.addListener('keyboardWillHide', addItem);
+    return () => {
+      Keyboard.removeListener('keyboardWillHide', addItem);
+    };
+  }, [newItem]);
 
   const addItem = () => {
     if (newItem.name === '') return;
