@@ -7,9 +7,6 @@ import { ShoppingListNavigator } from './ShoppingListNavigator';
 import { RoadmapNavigator } from './RoadmapNavigator';
 
 import { useTheme } from '../context/ThemeContext';
-export type UnauthenticatedStackParamList = {
-  Login: undefined;
-};
 
 const Drawer = createDrawerNavigator();
 
