@@ -1,6 +1,11 @@
 import { useNavigation, useRoute } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { ScrollView, TouchableOpacity, View } from 'react-native';
+import {
+  KeyboardAvoidingView,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { useSharedValue } from 'react-native-reanimated';
 import { useDispatch, useSelector } from 'react-redux';
 import { Layout } from '../components/common/Layout';
@@ -84,7 +89,10 @@ export const ShoppingList = () => {
       customHeaderComponent={customHeader}
       headerLabel={shoppingList.name}
       showGoBack>
-      <View style={{ flex: 1 }}>
+      <KeyboardAvoidingView
+        style={{ flex: 1 }}
+        behavior="padding"
+        keyboardVerticalOffset={110}>
         <ScrollView
           scrollIndicatorInsets={{ right: 1 }}
           contentContainerStyle={{
@@ -116,7 +124,7 @@ export const ShoppingList = () => {
             deletingId={deletingId}
           />
         </ScrollView>
-      </View>
+      </KeyboardAvoidingView>
     </Layout>
   );
 };
