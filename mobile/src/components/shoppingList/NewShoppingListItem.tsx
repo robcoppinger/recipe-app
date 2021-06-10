@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { createRef } from 'react';
+import { TextInput as RNTextInput } from 'react-native';
 import Animated, {
   useAnimatedReaction,
   useAnimatedStyle,
@@ -11,6 +12,7 @@ import { v4 as uuidV4 } from 'uuid';
 import { actions } from '../../redux/modules/shoppingListItems/ShoppingListItems';
 import { TextInput } from '../common/TextInput';
 import { animationConfig, SHOPPING_LIST_ITEM_HEIGHT } from './ShoppingListItem';
+import { useShoppingListItemState } from './useShoppingListItemState';
 
 type NewShoppingListItemProps = {
   shoppingListId: string;
@@ -18,7 +20,7 @@ type NewShoppingListItemProps = {
   deletingId: Animated.SharedValue<string | undefined>;
 };
 
-export const NEW_SHOPPINGLIST_ITEM_HEIGHT = 50;
+export const NEW_SHOPPINGLIST_ITEM_HEIGHT = 60;
 
 export const NewShoppingListItem = ({
   shoppingListId,
@@ -26,20 +28,18 @@ export const NewShoppingListItem = ({
   deletingId,
 }: NewShoppingListItemProps) => {
   const dispatch = useDispatch();
-  const [newItem, setNewItem] = useState('');
+  const [newItem, dispatchNewItem] = useShoppingListItemState();
   const translateY = useSharedValue(offset);
 
+  const nameInputRef = createRef<RNTextInput>();
+  const amountRef = createRef<RNTextInput>();
+  const unitRef = createRef<RNTextInput>();
+
   const addItem = () => {
-    if (newItem === '') return;
+    if (newItem.name === '') return;
     const newId = uuidV4();
-    dispatch(
-      actions.addItem(shoppingListId, newId, {
-        shoppingListId,
-        name: newItem.trim(),
-        isFound: false,
-      }),
-    );
-    setNewItem('');
+    dispatch(actions.addItem(shoppingListId, newId, newItem));
+    dispatchNewItem({ type: 'resetAll' });
   };
 
   useAnimatedReaction(
@@ -68,21 +68,76 @@ export const NewShoppingListItem = ({
 
   return (
     <Animated.View style={containerStyle}>
-      <NewItem
-        placeholder="new Item"
-        value={newItem}
-        onChangeText={setNewItem}
-        blurOnSubmit={newItem === ''}
-        onSubmitEditing={addItem}
-      />
+      <NewItemContainer>
+        <ItemName
+          ref={nameInputRef}
+          value={newItem.name}
+          onChangeText={(value) =>
+            dispatchNewItem({ type: 'setName', name: value })
+          }
+          placeholder="New Item"
+          returnKeyType="next"
+          onSubmitEditing={() => amountRef.current?.focus()}
+        />
+        <Amount
+          value={newItem.amount}
+          onChangeText={(value) =>
+            dispatchNewItem({ type: 'setAmount', amount: value })
+          }
+          ref={amountRef}
+          placeholder="Amt."
+          returnKeyType="next"
+          onSubmitEditing={() => unitRef.current?.focus()}
+        />
+        <Unit
+          value={newItem.unit}
+          onChangeText={(value) =>
+            dispatchNewItem({ type: 'setUnit', unit: value })
+          }
+          ref={unitRef}
+          placeholder="unit"
+          returnKeyType="done"
+          onSubmitEditing={addItem}
+          autoCapitalize="none"
+        />
+      </NewItemContainer>
     </Animated.View>
   );
 };
 
-const NewItem = styled(TextInput)`
-  height: 100%;
-  border-bottom-width: 1px;
-  padding-bottom: 12px;
+const NewItemContainer = styled.View`
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+  background-color: transparent;
+  margin-bottom: 8px;
   padding-top: 12px;
-  margin: 12px;
+  padding-left: ${(props) => props.theme.itemPadding};
+  padding-right: 8px;
+`;
+
+const Input = styled(TextInput)`
+  font-family: ${(props) => props.theme.defaultFontFamily['regular']};
+  font-size: ${(props) => props.theme.fontSize.regular};
+  font-weight: 500;
+  border-color: ${(props) => props.theme.colors.iconSubtleColor};
+  color: ${(props) => props.theme.colors.text};
+  border-bottom-width: 1px;
+  margin-right: 8px;
+  padding-bottom: 12px;
+`;
+
+const ItemName = styled(Input)`
+  flex: 1;
+  border-bottom-width: 1px;
+`;
+
+const Amount = styled(Input)`
+  width: 44px;
+  text-align: center;
+`;
+
+const Unit = styled(Input)`
+  width: 36px;
+  text-align: center;
 `;
